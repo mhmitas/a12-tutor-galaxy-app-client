@@ -1,18 +1,31 @@
 import React from 'react';
 import { FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 
 const SignIn = () => {
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
+    const { signIn } = useAuth()
 
-    function onSubmit(data) {
-        console.log(data);
+    async function onSubmit(data) {
+        // console.log(data);
+        try {
+            const result = await signIn(data.email, data.password)
+            console.log(result.user);
+            toast.success('Sign in Successfully')
+            navigate('/')
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.message)
+        }
     }
 
     return (

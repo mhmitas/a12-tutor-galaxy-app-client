@@ -70,13 +70,13 @@ const CreateStudySession = () => {
                         <label className="label">
                             <span className="label-text">Tutor Name</span>
                         </label>
-                        <input {...register('tutor_name')} readOnly defaultValue={user?.email} type="text" className="input input-bordered" required />
+                        <input {...register('tutor_name')} readOnly defaultValue={user?.displayName} type="text" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Tutor Email</span>
                         </label>
-                        <input {...register('tutor_email')} readOnly defaultValue={user?.displayName} type="email" className="input input-bordered" required />
+                        <input {...register('tutor_email')} readOnly defaultValue={user?.email} type="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -88,7 +88,7 @@ const CreateStudySession = () => {
                         <label className="label">
                             <span className="label-text">Session Duration</span>
                         </label>
-                        <input {...register('Session Duration')} type="text" className="input input-bordered" required />
+                        <input {...register('session_duration')} type="text" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">

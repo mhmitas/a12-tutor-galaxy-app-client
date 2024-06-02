@@ -23,8 +23,6 @@ const SessionsCard = ({ session }) => {
             <div className="card-body">
                 <h2 className="card-title">{session_title}</h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
-                <p>reg start date: {format(session.registrationDuration.regStart, "dd/MM/yyyy")}</p>
-                <p className='bg-base-200'>reg end date: {format(session.registrationDuration.regEnd, "dd/MM/yyyy")}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/detail/${session?._id}`}>
                         <button className="btn btn-primary">Read More</button>

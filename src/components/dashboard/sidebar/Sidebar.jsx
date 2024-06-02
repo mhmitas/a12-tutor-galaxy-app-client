@@ -4,23 +4,14 @@ import { FaBook, FaCalendar, FaHome, FaList, FaRegCalendarCheck, FaShoppingCart,
 import { Link, NavLink } from 'react-router-dom'
 import { MdMenuBook, MdReviews } from "react-icons/md";
 import { ImSpoonKnife } from "react-icons/im";
-import { studentMenuItems } from './menuItems';
+import { tutorMenuItems, studentMenuItems } from './menuItems';
+import useRole from '../../../hooks/useRole';
 // import { useQuery } from '@tanstack/react-query';
 
 
 const Sidebar = () => {
-    // const { user } = useAuth()
-    let isAdmin = true;
-    // const [admin, isPending] = useAdmin()
-    // const { user } = useAuth()
-    // const { data: admin, isPending } = useQuery({
-    //     queryKey: ['isAdmin', user],
-    //     queryFn: async () => {
-    //         const res = await axiosInstance.get(`/users/admin/${user?.uid}`)
-    //         console.log(res.data);
-    //         return res.data.admin
-    //     }
-    // })
+    const [role, isLoading] = useRole()
+    console.log(role);
 
     return (
         <ul className="menu p-4 lg:w-64 w-60 min-h-full bg-base-300 text-base-content">
@@ -31,9 +22,12 @@ const Sidebar = () => {
                 />
             </label>
             <Link to="/" className="lg:text-3xl  text-2xl p-4 font-semibold cursor-pointer">TutorGalaxy</Link>
-            {
+            {isLoading ?
+                <span>Loading...</span>
+                :
                 <>
-                    <li><NavLink to="/dashboard/create-study-session">Create Study Session</NavLink></li>
+                    {role === 'student' && studentMenuItems}
+                    {role === 'tutor' && tutorMenuItems}
                 </>
             }
 

@@ -9,6 +9,7 @@ import SignUp from "../pages/authentication/SignUp";
 import Dashboard from "../layouts/Dashboard";
 import CreateStudySession from "../pages/Dashboard/tutor/CreateStudySession";
 import SessionDetail from "../pages/session-detail/SessionDetail";
+import AllStudySessions from "../pages/Dashboard/tutor/AllStudySessions";
 
 export const router = createBrowserRouter([
     {
@@ -42,7 +43,11 @@ export const router = createBrowserRouter([
             {
                 path: 'create-study-session',
                 element: <CreateStudySession />
-            }
+            },
+            {
+                path: 'all-study-sessions',
+                element: <AllStudySessions />
+            },
         ]
     }
 ])

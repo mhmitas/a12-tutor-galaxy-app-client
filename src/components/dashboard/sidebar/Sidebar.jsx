@@ -30,7 +30,7 @@ const Sidebar = () => {
                 htmlFor="my-drawer-2" className="btn btn-sm btn-ghost absolute top-4 right-4 z-10 sm:hidden"><RxCross1 size={16}
                 />
             </label>
-            <Link to="/" className="lg:text-3xl  text-2xl p-4 font-semibold cursor-pointer">Tutor Galaxy</Link>
+            <Link to="/" className="lg:text-3xl  text-2xl p-4 font-semibold cursor-pointer">TutorGalaxy</Link>
             {
                 <>
                     <li><NavLink to="/dashboard/create-study-session">Create Study Session</NavLink></li>

@@ -7,10 +7,15 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRange } from "react-date-range";
 import useAuth from '../../../hooks/useAuth';
 import axios from "axios";
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast, { } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
 
 const CreateStudySession = () => {
+    const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const [registrationDate, setRegistrationDate] = useState([
         {
             startDate: new Date(),
@@ -32,6 +37,7 @@ const CreateStudySession = () => {
         const registrationDuration = { regStart: registrationDate[0].startDate, regEnd: registrationDate[0].endDate }
         let thumbnail_image = 'https://i.ibb.co/fGVzbks/default-learning.jpg'
         const ThumbnailImage = { image: data.thumbnail_image[0] }
+        const sessionInfo = { ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image }
         try {
             // upload img in img-bb
             if (ThumbnailImage) {
@@ -40,11 +46,16 @@ const CreateStudySession = () => {
                 })
                 thumbnail_image = imgbbRes.data.data.display_url
             }
+            const res = await axiosSecure.post('/study-sessions', sessionInfo)
+            console.log(res.data);
+            toast.success('Session created. Please wait admins will respond soon')
+            reset()
+            navigate(-1)
         } catch (err) {
             console.error(err);
         }
 
-        // console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image: image });
+        console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image });
     }
 
 

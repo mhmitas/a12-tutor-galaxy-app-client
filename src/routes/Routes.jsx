@@ -7,6 +7,7 @@ import Home from "../pages/home/Home";
 import SignIn from "../pages/authentication/SignIn";
 import SignUp from "../pages/authentication/SignUp";
 import Dashboard from "../layouts/Dashboard";
+import CreateStudySession from "../pages/Dashboard/tutor/CreateStudySession";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +32,12 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <Dashboard />,
-        children: []
+        children: [
+            // tutor related routes
+            {
+                path: 'create-study-session',
+                element: <CreateStudySession />
+            }
+        ]
     }
 ])

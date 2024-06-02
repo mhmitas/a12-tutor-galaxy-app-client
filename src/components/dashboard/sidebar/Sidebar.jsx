@@ -23,16 +23,18 @@ const Sidebar = () => {
     // })
 
     return (
-        <ul className="menu p-4 lg:w-72 w-60 min-h-full bg-base-300 text-base-content">
+        <ul className="menu p-4 lg:w-64 w-60 min-h-full bg-base-300 text-base-content">
 
             {/* Sidebar content here */}
             <label
                 htmlFor="my-drawer-2" className="btn btn-sm btn-ghost absolute top-4 right-4 z-10 sm:hidden"><RxCross1 size={16}
                 />
             </label>
-            <Link to="/" className="text-2xl p-4 font-semibold cursor-pointer">Tutor Galaxy</Link>
+            <Link to="/" className="lg:text-3xl  text-2xl p-4 font-semibold cursor-pointer">Tutor Galaxy</Link>
             {
-                studentMenuItems
+                <>
+                    <li><NavLink to="/dashboard/create-study-session">Create Study Session</NavLink></li>
+                </>
             }
 
             <div className="divider divider-neutral"></div>

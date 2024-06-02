@@ -3,29 +3,25 @@ import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import Heading from '../../../components/common/Heading';
-import TutorsSessionsTableRow from '../../../components/table-rows/TutorsSessionsTableRow';
+import UploadMaterialRow from '../../../components/table-rows/UploadMaterialRow';
 
-const AllStudySessions = () => {
+const UploadMaterials = () => {
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: sessions, isLoading } = useQuery({
-        queryKey: ['all-study-sessions', user?.email],
+    const { data: sessions = [] } = useQuery({
+        queryKey: ['approved-sessions', user?.email],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosSecure(`/study-sessions/tutor/${user?.email}`)
-            // console.log(data);
+            const { data } = await axiosSecure(`/study-sessions/tutor/${user?.email}?status=approved`)
+            console.log(data);
             return data
         }
     })
 
-    if (isLoading) {
-        return <span>Loading...</span>
-    }
-
     return (
         <div className='p-2 bg-base-100 min-h-screen'>
-            <Heading heading='All Sessions' />
+            <Heading heading='Upload Materials' />
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
@@ -33,14 +29,14 @@ const AllStudySessions = () => {
                         <tr className='bg-base-300'>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Status</th>
-                            <th></th>
-                            <th></th>
+                            <th>Show Materials</th>
+                            <th>Upload Materials</th>
+                            {/* <th></th> */}
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            sessions.map((session, idx) => <TutorsSessionsTableRow session={session} key={session._id} idx={idx} />)
+                            sessions.map((session, idx) => <UploadMaterialRow session={session} key={session._id} idx={idx} />)
                         }
 
                     </tbody>
@@ -50,4 +46,4 @@ const AllStudySessions = () => {
     );
 };
 
-export default AllStudySessions;
+export default UploadMaterials;

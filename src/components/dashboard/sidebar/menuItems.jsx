@@ -10,9 +10,9 @@ const studentMenuItems = <>
 const tutorMenuItems = <>
     <li><NavLink to="/dashboard/create-study-session">Create a session</NavLink></li>
     <li><NavLink to="/dashboard/all-study-sessions">View all sessions</NavLink></li>
-    <li><NavLink>Upload materials</NavLink></li>
+    <li><NavLink to="/dashboard/upload-materials">Upload materials</NavLink></li>
     <li><NavLink>View all materials</NavLink></li>
-    <li><NavLink>View all notes</NavLink></li>
+    {/* <li><NavLink>View all notes</NavLink></li> */}
 </>
 
 export { studentMenuItems, tutorMenuItems }

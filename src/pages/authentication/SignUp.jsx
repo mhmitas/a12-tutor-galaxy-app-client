@@ -5,29 +5,39 @@ import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
 import toast from "react-hot-toast";
 import saveUserInDb from '../../utils/saveUserInDb';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SignUp = () => {
     const navigate = useNavigate()
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm()
-    const { createUser, updateUserProfile } = useAuth()
+    const { register, handleSubmit, } = useForm()
+    const googleProvider = new GoogleAuthProvider()
+    const { createUser, updateUserProfile, signInWithProvider, setAuthLoading } = useAuth()
 
     async function onSubmit(data) {
         // console.log(data);
         try {
-            const result = await createUser(data.email, data.password)
-            console.log(result.user);
+            const result = await createUser(data.email, data.password);
             await updateUserProfile(data.userName)
-            // console.log('result', result);
+            await saveUserInDb({ ...result.user, role: data.role });
             toast.success('Sign up successfully')
-            saveUserInDb({ ...result.user, role: data.role })
-            navigate('/')
+            // navigate('/')
         } catch (err) {
             toast.error(err?.message)
             console.error(err);
+            setAuthLoading(false)
+        }
+    }
+
+    async function handleProviderSignIn(provider) {
+        try {
+            const result = await signInWithProvider(provider)
+            await saveUserInDb({ ...result.user, role: 'student' });
+            toast.success('Sign up successfully')
+            // navigate('/')
+        } catch (err) {
+            toast.error(err?.message)
+            console.error(err);
+            setAuthLoading(false)
         }
     }
 
@@ -98,7 +108,7 @@ const SignUp = () => {
                     <div className="form-control">
                         <div className="flex justify-center space-x-2 mt-4">
                             <button
-
+                                onClick={() => handleProviderSignIn(googleProvider)}
                                 className="btn btn-outline btn-icon btn-google w-full text-lg">
                                 <FaGoogle className='text-xl' /> Google
                             </button>

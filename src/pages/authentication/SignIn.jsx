@@ -4,16 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
+import saveUserInDb from '../../utils/saveUserInDb';
 
 
 const SignIn = () => {
     const navigate = useNavigate()
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm()
-    const { signIn } = useAuth()
+    const googleProvider = new GoogleAuthProvider()
+    const { register, handleSubmit, } = useForm()
+    const { signIn, signInWithProvider, setAuthLoading } = useAuth()
 
     async function onSubmit(data) {
         // console.log(data);
@@ -21,10 +20,24 @@ const SignIn = () => {
             const result = await signIn(data.email, data.password)
             console.log(result.user);
             toast.success('Sign in Successfully')
-            navigate('/')
+            // navigate('/')
         } catch (err) {
             console.error(err);
             toast.error(err?.message)
+            setAuthLoading(false)
+        }
+    }
+
+    async function handleProviderSignIn(provider) {
+        try {
+            const result = await signInWithProvider(provider)
+            await saveUserInDb({ ...result.user, role: 'student' });
+            toast.success('Sign up successfully')
+            // navigate('/')
+        } catch (err) {
+            toast.error(err?.message)
+            console.error(err);
+            setAuthLoading(false)
         }
     }
 
@@ -72,7 +85,7 @@ const SignIn = () => {
                     <div className="form-control">
                         <div className="flex justify-center space-x-2 mt-4">
                             <button
-
+                                onClick={() => handleProviderSignIn(googleProvider)}
                                 className="btn btn-outline btn-icon btn-google w-full text-lg">
                                 <FaGoogle className='text-xl' /> Google
                             </button>

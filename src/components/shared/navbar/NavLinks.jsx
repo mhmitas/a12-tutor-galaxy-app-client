@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 export const navLinks = <>
-    <li><NavLink>navLink</NavLink></li>
-    <li><NavLink>navLink</NavLink></li>
-    <li><NavLink>navLink</NavLink></li>
+    <li><NavLink>Home</NavLink></li>
+    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
 </>

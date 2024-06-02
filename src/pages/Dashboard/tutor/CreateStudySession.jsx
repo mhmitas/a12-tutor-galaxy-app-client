@@ -37,7 +37,6 @@ const CreateStudySession = () => {
         const registrationDuration = { regStart: registrationDate[0].startDate, regEnd: registrationDate[0].endDate }
         let thumbnail_image = 'https://i.ibb.co/fGVzbks/default-learning.jpg'
         const ThumbnailImage = { image: data.thumbnail_image[0] }
-        const sessionInfo = { ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image }
         try {
             // upload img in img-bb
             if (ThumbnailImage) {
@@ -46,6 +45,8 @@ const CreateStudySession = () => {
                 })
                 thumbnail_image = imgbbRes.data.data.display_url
             }
+            const sessionInfo = { ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image }
+            // post on database
             const res = await axiosSecure.post('/study-sessions', sessionInfo)
             console.log(res.data);
             toast.success('Session created. Please wait admins will respond soon')
@@ -55,7 +56,7 @@ const CreateStudySession = () => {
             console.error(err);
         }
 
-        console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image });
+        // console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image });
     }
 
 

@@ -11,6 +11,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast, { } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 
+// TODO: have to fix loading states
 const CreateStudySession = () => {
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
@@ -39,7 +40,7 @@ const CreateStudySession = () => {
         const ThumbnailImage = { image: data.thumbnail_image[0] }
         try {
             // upload img in img-bb
-            if (ThumbnailImage) {
+            if (data.thumbnail_image[0]) {
                 const imgbbRes = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY}`, ThumbnailImage, {
                     headers: { "Content-Type": "multipart/form-data" }
                 })

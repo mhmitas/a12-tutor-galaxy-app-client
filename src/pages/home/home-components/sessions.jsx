@@ -4,7 +4,7 @@ import useStudySessions from '../../../hooks/useStudySessions';
 
 const Sessions = () => {
     const [sessions, isLoading, error] = useStudySessions()
-    console.log(sessions);
+    // console.log(sessions);
 
     if (isLoading) {
         return <span>Loading...</span>

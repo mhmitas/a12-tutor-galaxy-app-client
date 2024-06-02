@@ -8,6 +8,7 @@ import SignIn from "../pages/authentication/SignIn";
 import SignUp from "../pages/authentication/SignUp";
 import Dashboard from "../layouts/Dashboard";
 import CreateStudySession from "../pages/Dashboard/tutor/CreateStudySession";
+import SessionDetail from "../pages/session-detail/SessionDetail";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: 'detail/:id',
+                element: <SessionDetail />
             }
         ],
     },

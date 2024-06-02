@@ -44,7 +44,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 menu menu-sm dropdown-content bg-base-100 rounded-md w-52 shadow-xl">
-                                    <li><Link to="/profile">Profile</Link></li>
+                                    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
                                     <li><span onClick={handleSignOut}>Sign out</span></li>
                                 </ul>
                             </div>

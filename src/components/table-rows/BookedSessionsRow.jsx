@@ -1,18 +1,22 @@
 import React from 'react';
 import { format } from "date-fns";
+import { Link } from 'react-router-dom';
 
-const BookedSessionsRow = ({ session }) => {
+const BookedSessionsRow = ({ session, idx }) => {
     const { session_title, tutor_name, classDuration } = session
+
     return (
         <tr>
-            <td>#</td>
+            <td>{idx + 1}</td>
             <td>{session_title}</td>
             <td>{tutor_name}</td>
             <td>
                 <span>{format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</span> -
                 <span> {format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</span>
             </td>
-            <td>Action</td>
+            <td>
+                <Link to={`/dashboard/booked-session-detail/${session?.sessionId}`}><button className='btn btn-sm btn-primary'>View Detail</button></Link>
+            </td>
         </tr>
     );
 };

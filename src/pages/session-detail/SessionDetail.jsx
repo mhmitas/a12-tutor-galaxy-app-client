@@ -6,6 +6,8 @@ import { differenceInCalendarDays, format } from "date-fns";
 import useRole from '../../hooks/useRole';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast'
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const SessionDetail = () => {
     const navigate = useNavigate()
@@ -34,6 +36,18 @@ const SessionDetail = () => {
             return data
         }
     })
+
+    // get session's review from database:
+    const { data: reviews = [], isLoading: reviewsLoading } = useQuery({
+        queryKey: ['session-reviews', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/reviews/${id}`)
+            // console.log(data);
+            return data
+        }
+    })
+    const averageRatings = reviews?.reduce((total, review) => total + review.rating, 0) / reviews?.length || 0
+    // console.log(averageRatings);
 
     // destructuring from loaded detail data
     const { session_title, thumbnail_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, session_description } = data;
@@ -100,13 +114,9 @@ const SessionDetail = () => {
                             </div>
                             <div className="flex items-center mb-2">
                                 <div className="rating">
-                                    <input type="radio" name="rating" className="mask mask-star-2 bg-yellow-400" />
-                                    <input type="radio" name="rating" className="mask mask-star-2 bg-yellow-400" />
-                                    <input type="radio" name="rating" className="mask mask-star-2 bg-yellow-400" />
-                                    <input type="radio" name="rating" className="mask mask-star-2 bg-yellow-400" />
-                                    <input type="radio" name="rating" className="mask mask-star-2 bg-gray-400" />
+                                    <Rating readOnly value={averageRatings} style={{ maxWidth: 150 }} />
                                 </div>
-                                <span className="ml-2 ">4.0</span>
+                                <span className="ml-2 ">{averageRatings}</span>
                             </div>
                             <p className="mb-4">{session_description}</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -135,15 +145,17 @@ const SessionDetail = () => {
                     </div>
                     <div className="mt-8">
                         <h2 className="text-xl font-bold">Reviews</h2>
+                        {reviews.length < 1 && <span>Not available</span>}
                         <div className="space-y-4">
-                            <div className="p-4 rounded-lg shadow">
-                                <p className="font-semibold">Student Name 1</p>
-                                <p className="">Review text from student 1...</p>
-                            </div>
-                            <div className="p-4 rounded-lg shadow">
-                                <p className="font-semibold">Student Name 2</p>
-                                <p className="">Review text from student 2...</p>
-                            </div>
+                            {reviewsLoading ?
+                                <span>Loading...</span> :
+                                reviews.map(review => <div key={review._id} className="p-4 rounded-lg shadow-lg">
+                                    <p className="font-semibold">{review?.userEmail}</p>
+                                    <Rating readOnly value={review?.rating} style={{ maxWidth: 70 }} />
+                                    <p className="">{review?.review}</p>
+                                </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

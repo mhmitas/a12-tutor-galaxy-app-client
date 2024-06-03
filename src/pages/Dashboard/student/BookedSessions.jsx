@@ -14,10 +14,11 @@ const BookedSessions = () => {
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/bookings/${user?.email}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })
+
     if (isLoading) {
         return <span>Loading...</span>
     }
@@ -34,7 +35,7 @@ const BookedSessions = () => {
                             <th>Title</th>
                             <th>Tutor</th>
                             <th>Class Duration</th>
-                            <th>Action</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

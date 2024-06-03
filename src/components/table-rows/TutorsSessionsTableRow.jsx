@@ -1,8 +1,15 @@
-import React from 'react';
-import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { BiSolidMessageAltDetail } from "react-icons/bi";
+import FeedbackAndRequestModal from '../dashboard/modals/FeedbackAndRequestModal';
 
 const TutorsSessionsTableRow = ({ session, idx }) => {
-    const { session_title, thumbnail_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, status } = session;
+    const { session_title, status } = session;
+    const [showModal, setShowModal] = useState(false)
+
+    function handleReasonModal() {
+        setShowModal(true)
+    }
 
     return (
         <>
@@ -18,7 +25,11 @@ const TutorsSessionsTableRow = ({ session, idx }) => {
                         }`}>{status}</span>
 
                 </td>
-                <td></td>
+                <td>{status === 'rejected' &&
+                    <button onClick={handleReasonModal} className='btn btn-ghost btn-xs'><BiSolidMessageAltDetail size={18} /></button>
+                }
+                    {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} />}
+                </td>
                 <td>
                     <div className='flex items-center gap-2'>
                         <span className='btn btn-xs btn-ghost'><FaEdit size={14} /></span>

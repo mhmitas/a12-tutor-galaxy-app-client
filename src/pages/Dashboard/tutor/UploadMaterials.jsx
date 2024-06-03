@@ -14,7 +14,7 @@ const UploadMaterials = () => {
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure(`/study-sessions/tutor/${user?.email}?status=approved`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })
@@ -29,7 +29,6 @@ const UploadMaterials = () => {
                         <tr className='bg-base-300'>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Show Materials</th>
                             <th>Upload Materials</th>
                             {/* <th></th> */}
                         </tr>

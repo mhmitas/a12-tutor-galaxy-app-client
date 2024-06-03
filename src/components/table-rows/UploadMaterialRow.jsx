@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import UploadMaterialsModal from '../dashboard/modals/UploadMaterialsModal';
 
 const UploadMaterialRow = ({ session, idx }) => {
-    const { session_title, thumbnail_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, status } = session;
+    const { session_title, } = session;
+    const [showModal, setShowModal] = useState(false)
+
 
     return (
         <>
             <tr>
                 <th>{idx + 1}</th>
                 <td>{session_title}</td>
-                <td></td>
                 <td>
-                    <button className='btn btn-sm btn-primary'>Upload materials</button>
+                    <button onClick={() => setShowModal(true)} className='btn btn-sm btn-primary'>Upload materials</button>
+                    {showModal && <UploadMaterialsModal setShowModal={setShowModal} session={session} />}
                 </td>
             </tr>
         </>
@@ -18,3 +21,5 @@ const UploadMaterialRow = ({ session, idx }) => {
 };
 
 export default UploadMaterialRow;
+
+//  thumbnail_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, status 

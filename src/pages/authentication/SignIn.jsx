@@ -41,6 +41,8 @@ const SignIn = () => {
         }
     }
 
+    console.log('TODO: ENSURE ALL REDIRECTS');
+
     return (
         <div className='min-h-screen flex flex-col justify-center'>
             <div>

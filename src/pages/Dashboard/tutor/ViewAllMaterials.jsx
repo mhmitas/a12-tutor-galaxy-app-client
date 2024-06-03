@@ -31,7 +31,7 @@ const ViewAllMaterials = () => {
         try {
             const ask = await askConfirm('Are you sure? You want to delete this material')
             if (!ask) { return };
-            const { data } = await axiosSecure.delete(`materials/delete/${id}`)
+            const { data } = await axiosSecure.delete(`/materials/delete/${id}`)
             console.log(data);
             toast.success('Successfully Deleted')
             refetch()

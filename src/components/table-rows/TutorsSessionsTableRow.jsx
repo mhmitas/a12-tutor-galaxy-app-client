@@ -3,7 +3,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { BiSolidMessageAltDetail } from "react-icons/bi";
 import FeedbackAndRequestModal from '../dashboard/modals/FeedbackAndRequestModal';
 
-const TutorsSessionsTableRow = ({ session, idx, refetch }) => {
+const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
     const { session_title, status } = session;
     const [showModal, setShowModal] = useState(false)
 
@@ -33,7 +33,7 @@ const TutorsSessionsTableRow = ({ session, idx, refetch }) => {
                 <td>
                     <div className='flex items-center gap-2'>
                         <span className='btn btn-xs btn-ghost'><FaEdit size={14} /></span>
-                        <span className='btn btn-xs btn-ghost'><FaTrashAlt className='' /></span>
+                        <button onClick={() => handleDelete(session?._id)} className='btn btn-xs btn-ghost'><FaTrashAlt className='' /></button>
                     </div>
                 </td>
             </tr>

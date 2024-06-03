@@ -13,9 +13,23 @@ const Sessions = () => {
         return <span>{error.message}</span>
     }
 
+    //| TODO: SHOW ONLY 
+    //| APPROVED SESSIONS;
+    //| DON’T SHOW PENDING 
+    //| OR REJECTED SESSIONS
+    console.log('some todo exist');
+
     return (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-            {sessions.map(session => <SessionsCard session={session} key={session._id} />)}
+        <div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+                {sessions.map(session => <SessionsCard session={session} key={session._id} />)}
+            </div>
+            <div className='text-center'>
+                {/* need to repair */}
+                {sessions?.length >= 6 &&
+                    <button className='btn btn-primary mt-8'>See all sessions</button>
+                }
+            </div>
         </div>
     );
 };

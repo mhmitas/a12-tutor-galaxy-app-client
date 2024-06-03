@@ -4,6 +4,8 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import Heading from '../../../components/common/Heading';
 import TutorsSessionsTableRow from '../../../components/table-rows/TutorsSessionsTableRow';
+import askConfirm from '../../../components/modals/confirm-modal/AskConfirm';
+import toast from 'react-hot-toast';
 
 const AllStudySessions = () => {
     const { user, authLoading } = useAuth()
@@ -18,6 +20,20 @@ const AllStudySessions = () => {
             return data
         }
     })
+
+    async function handleDelete(id) {
+        try {
+            const ask = await askConfirm('Are you sure? You want to delete this material')
+            if (!ask) { return };
+            const { data } = await axiosSecure.delete(`/study-sessions/delete/${id}`)
+            console.log(data);
+            toast.success('Successfully Deleted')
+            refetch()
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
 
     if (isLoading) {
         return <span>Loading...</span>
@@ -44,6 +60,7 @@ const AllStudySessions = () => {
                             refetch={refetch}
                             key={session._id}
                             idx={idx}
+                            handleDelete={handleDelete}
                         />)}
                     </tbody>
                 </table>

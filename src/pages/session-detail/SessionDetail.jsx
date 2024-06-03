@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { format } from "date-fns";
+import { differenceInCalendarDays, format } from "date-fns";
 import useRole from '../../hooks/useRole';
 
 // CAUTION: hERE IS A POSSIBILITY OF SOME ERROR WITH THE DATES
 //````````````````````````````````````````````````````````````
 const SessionDetail = () => {
+    const navigate = useNavigate()
     const [role, isLoading] = useRole()
     const axiosSecure = useAxiosSecure()
     const { id } = useParams()
@@ -16,18 +17,28 @@ const SessionDetail = () => {
         queryKey: ['session-detail', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/study-sessions/${id}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })
     const { session_title, thumbnail_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, session_description } = data;
 
-    // if (registrationDuration) {
-    //     // console.log(format(new Date(registrationDuration?.regEnd), 'dd MMM yyyy'));
-    // }
+    const regStartDate = data?.registrationDuration?.regStart;
+    const regEndDate = data?.registrationDuration?.regEnd;
+    let dateValidation;
+    if (regEndDate && regStartDate && !dataLoading) {
+        dateValidation = differenceInCalendarDays(
+            new Date(regEndDate),
+            new Date(),
+        )
+    }
 
     if (dataLoading || isLoading) {
         return <span>Loading...</span>
+    }
+
+    function handleBookNowButton() {
+        navigate('/')
     }
 
     return (
@@ -59,7 +70,13 @@ const SessionDetail = () => {
                                 <p><strong>Registration Fee:</strong> ${registration_fee}</p>
                             </div>
                             {
-                                role === 'student' && <Link><button className="btn btn-primary mt-4">Book Now</button></Link>
+                                role === 'student' &&
+                                <button
+                                    onClick={handleBookNowButton}
+                                    className="btn btn-primary mt-4"
+                                    disabled={dateValidation < 0 && true}
+                                >{dateValidation < 0 ? 'Registration Closed' : 'Book Now'}
+                                </button>
                             }
                         </div>
                     </div>

@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import uploadImage from '../../../utils/uploadImage';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const UpdateMaterialModal = ({ material, setShowModal }) => {
     const [uploading, setUploading] = useState(false)
-    console.log(material);
+    const axiosSecure = useAxiosSecure()
+    // console.log(material);
+    const { materialTitle, driveLink, imageUrl: oldImageUrl } = material
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -10,37 +15,38 @@ const UpdateMaterialModal = ({ material, setShowModal }) => {
         const materialTitle = form.material_title.value;
         const driveLink = form.drive_link.value;
         // upload image on imgBB
-        let imageUrl = null;
+        let imageUrl = oldImageUrl;
         try {
             setUploading(true)
-            const materialImage = form.material_image?.files[0]
+            // upload img in imgBB
             if (form.material_image?.files[0]) {
+                const materialImage = form.material_image?.files[0]
                 imageUrl = await uploadImage(materialImage)
             }
             const materials = {
                 driveLink, imageUrl, materialTitle,
-                sessionId: session._id,
-                session_title: session?.session_title,
-                tutor_name: session?.tutor_name,
-                tutor_email: session?.tutor_email
             }
-            // post on db
-            const result = await mutateAsync(materials)
-            console.log(result);
-            toast.success("Materials Uploaded")
+            console.table(materials);
+            // post on db;
+            const result = await axiosSecure.patch(`/materials/update/${material?._id}`, materials)
+            console.log(result.data);
+            if (result.data?.modifiedCount > 0) {
+                toast.success("Materials Uploaded")
+            }
             setUploading(false);
-            // setShowModal(false)
+            setShowModal(false)
         } catch (err) {
             console.log(err);
             setUploading(false);
-            // setShowModal(false)
+            toast.error(err.message)
+            setShowModal(false)
         }
     }
 
 
     return (
         <div className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-10 z-50'>
-            <div className='shadow-xl p-6 bg-base-100 w-full max-w-md rounded-md mx-auto relative'>
+            <div className='shadow-xl p-6 bg-base-100 w-full max-w-md rounded-md mx-auto relative overflow-y-auto max-h-[90vh]'>
                 <div className='space-y-1'>
                     <h2 className="text-2xl">{material.session_title}</h2>
                     <p>Session Id: {material._id}</p>
@@ -58,6 +64,7 @@ const UpdateMaterialModal = ({ material, setShowModal }) => {
                             <input
                                 name='material_title'
                                 required
+                                defaultValue={materialTitle}
                                 className='input input-bordered '
                                 type="text" />
                         </div>
@@ -68,6 +75,7 @@ const UpdateMaterialModal = ({ material, setShowModal }) => {
                             <input
                                 name='drive_link'
                                 required
+                                defaultValue={driveLink}
                                 className='input input-bordered'
                                 type="text" />
                         </div>

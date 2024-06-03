@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import UpdateMaterialModal from '../dashboard/modals/UpdateMateralModal';
 
 const ViewAllMaterialsRow = ({ material, handleDelete }) => {
     const [showModal, setShowModal] = useState(false)
-    const axiosSecure = useAxiosSecure()
 
 
     return (
@@ -25,7 +22,7 @@ const ViewAllMaterialsRow = ({ material, handleDelete }) => {
                     <button onClick={() => handleDelete(material._id)} className='btn btn-sm btn-ghost'><FaTrashAlt className='text-lg' /></button>
                 </div>
             </div>
-            {showModal && <UpdateMaterialModal material={material} />}
+            {showModal && <UpdateMaterialModal material={material} setShowModal={setShowModal} />}
         </div>
     );
 };

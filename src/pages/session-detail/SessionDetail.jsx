@@ -24,8 +24,8 @@ const SessionDetail = () => {
         }
     })
 
-    // get detail data of the session
-    const { data: usersBooedIds = {}, refetch: refetchUsersBooedIds } = useQuery({
+    // get booked session ids by user/student
+    const { data: usersBooedIds = [], isPending: isIdsLoading, refetch: refetchUsersBooedIds } = useQuery({
         queryKey: ['usersBooedIds', user?.email],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
@@ -49,12 +49,14 @@ const SessionDetail = () => {
         )
     }
 
-    if (dataLoading || isLoading || authLoading) {
+    if (dataLoading || isLoading || authLoading || isIdsLoading) {
         return <span>Loading...</span>
     }
 
+    let isBooked = usersBooedIds?.includes(data?._id)
+
     async function handleBookNowButton() {
-        if (usersBooedIds.includes(data._id)) {
+        if (isBooked) {
             return toast('You have already booked this session')
         }
         // does the session is free?  
@@ -111,7 +113,7 @@ const SessionDetail = () => {
                                 <p><strong>Registration Start Date:</strong> {format(new Date(registrationDuration?.regEnd), 'dd MMM yyyy')}</p>
                                 <p><strong>Registration End Date:</strong> {format(new Date(registrationDuration?.regStart), 'dd MMM yyyy')}</p>
                                 <p><strong>Class Start Date:</strong> {format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</p>
-                                <p><strong>Class End Date:</strong> {format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</p>
+                                <p><strong>Class End Date:</strong> {format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</p>
                                 <p><strong>Session Duration:</strong> {data.session_duration || data['Session Duration']}</p>
                                 <p><strong>Registration Fee:</strong> ${registration_fee}</p>
                             </div>
@@ -123,7 +125,7 @@ const SessionDetail = () => {
                                     disabled={dateValidation < 0 && true}
                                 >{dateValidation < 0 ?
                                     'Registration Closed' :
-                                    usersBooedIds.includes(data._id) ?
+                                    isBooked ?
                                         'Booked' :
                                         'Book Now'
                                     }

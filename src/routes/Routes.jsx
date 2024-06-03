@@ -12,6 +12,7 @@ import SessionDetail from "../pages/session-detail/SessionDetail";
 import AllStudySessions from "../pages/Dashboard/tutor/AllStudySessions";
 import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials";
 import ViewAllMaterials from "../pages/Dashboard/tutor/ViewAllMaterials";
+import BookedSessions from "../pages/Dashboard/student/BookedSessions";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <Dashboard />,
         children: [
+            // student related routes
+            {
+                path: 'view-booked-sessions',
+                element: <BookedSessions />
+            },
             // tutor related routes
             {
                 path: 'create-study-session',

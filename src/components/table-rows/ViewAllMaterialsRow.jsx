@@ -1,31 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import UpdateMaterialModal from '../dashboard/modals/UpdateMateralModal';
 
-const ViewAllMaterialsRow = ({ material, idx }) => {
+const ViewAllMaterialsRow = ({ material, handleDelete }) => {
+    const [showModal, setShowModal] = useState(false)
     const axiosSecure = useAxiosSecure()
-    ////////////////////////////////////
-    //| TODO: MUST CHANGE DATA LOADING
-    //| METHOD. JUST LOAD THOSE FIELDS
-    //| WHICH NEED:
-    //`````````````````````````````````
-    const { data = {}, isPending: dataLoading, error } = useQuery({
-        queryKey: ['session-for-materials', material?.sessionId],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/study-sessions/${material?.sessionId}`)
-            console.log(data);
-            return data
-        }
-    })
-    const { session_title, thumbnail_image, tutor_email, tutor_name } = data;
+
 
     return (
-        <tr>
-            <td>{idx + 1}</td>
-            <td>{session_title}</td>
-            <td>Job</td>
-            <td>Favorite Color</td>
-        </tr>
+        <div className="card max-w-96 bg-base-100 shadow-lg">
+            <div className="card-body">
+                <h2 className="card-title">{material.session_title}</h2>
+                <div className='overflow-x-hidden'>
+                    <p className='font-semibold mb-2'>Topic: <span className='underline'>{material?.materialTitle}</span></p>
+                    <div>Google Drive Link: <a className='link link-primary' target='_black' href={material?.driveLink}>Click</a></div>
+                    {material?.imageUrl && <>
+                        Image: <a className='link link-primary' target='_black' href={material?.imageUrl}>Click</a>
+                    </>}
+                </div>
+                <div className="card-actions justify-end mt-2">
+                    <button onClick={() => setShowModal(true)} className='btn btn-sm btn-ghost'><FaEdit size={20} /></button>
+                    <button onClick={() => handleDelete(material._id)} className='btn btn-sm btn-ghost'><FaTrashAlt className='text-lg' /></button>
+                </div>
+            </div>
+            {showModal && <UpdateMaterialModal material={material} />}
+        </div>
     );
 };
 

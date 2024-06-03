@@ -1,26 +1,8 @@
 import React, { useState } from 'react';
-import uploadImage from '../../../utils/uploadImage';
-import { useMutation } from '@tanstack/react-query';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import toast from 'react-hot-toast';
 
-const UploadMaterialsModal = ({ setShowModal, session }) => {
-    const axiosSecure = useAxiosSecure()
+const UpdateMaterialModal = ({ material, setShowModal }) => {
     const [uploading, setUploading] = useState(false)
-
-    const { mutateAsync, isPending } = useMutation({
-        mutationFn: async (materials) => {
-            const { data } = await axiosSecure.post(`/materials`, materials)
-            return data
-        },
-        onSuccess: () => {
-            setShowModal(false)
-        },
-        onError: (error) => {
-            toast.error(error.message)
-            setShowModal(false)
-        }
-    })
+    console.log(material);
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -55,13 +37,14 @@ const UploadMaterialsModal = ({ setShowModal, session }) => {
         }
     }
 
+
     return (
         <div className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-10 z-50'>
             <div className='shadow-xl p-6 bg-base-100 w-full max-w-md rounded-md mx-auto relative'>
                 <div className='space-y-1'>
-                    <h2 className="text-2xl">{session.session_title}</h2>
-                    <p>Session Id: {session._id}</p>
-                    <p>Email: {session.tutor_email}</p>
+                    <h2 className="text-2xl">{material.session_title}</h2>
+                    <p>Session Id: {material._id}</p>
+                    <p>Email: {material.tutor_email}</p>
                 </div>
                 <div className='divider my-2'></div>
                 <div>
@@ -119,4 +102,4 @@ const UploadMaterialsModal = ({ setShowModal, session }) => {
     );
 };
 
-export default UploadMaterialsModal;
+export default UpdateMaterialModal;

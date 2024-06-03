@@ -12,7 +12,7 @@ const ViewAllMaterials = () => {
     const axiosSecure = useAxiosSecure()
 
     const { data: materials = [], isLoading, refetch } = useQuery({
-        queryKey: ['all-study-sessions', user?.email],
+        queryKey: ['all-study-materials', user?.email],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure(`/materials/tutor/${user?.email}`)

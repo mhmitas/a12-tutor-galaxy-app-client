@@ -3,7 +3,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { BiSolidMessageAltDetail } from "react-icons/bi";
 import FeedbackAndRequestModal from '../dashboard/modals/FeedbackAndRequestModal';
 
-const TutorsSessionsTableRow = ({ session, idx }) => {
+const TutorsSessionsTableRow = ({ session, idx, refetch }) => {
     const { session_title, status } = session;
     const [showModal, setShowModal] = useState(false)
 
@@ -28,7 +28,7 @@ const TutorsSessionsTableRow = ({ session, idx }) => {
                 <td>{status === 'rejected' &&
                     <button onClick={handleReasonModal} className='btn btn-ghost btn-xs'><BiSolidMessageAltDetail size={18} /></button>
                 }
-                    {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} />}
+                    {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} sessionId={session?._id} refetch={refetch} />}
                 </td>
                 <td>
                     <div className='flex items-center gap-2'>

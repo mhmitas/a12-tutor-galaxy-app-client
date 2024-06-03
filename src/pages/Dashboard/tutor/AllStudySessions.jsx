@@ -4,13 +4,12 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import Heading from '../../../components/common/Heading';
 import TutorsSessionsTableRow from '../../../components/table-rows/TutorsSessionsTableRow';
-import FeedbackAndRequestModal from '../../../components/dashboard/modals/FeedbackAndRequestModal';
 
 const AllStudySessions = () => {
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: sessions = [], isLoading } = useQuery({
+    const { data: sessions = [], isLoading, refetch } = useQuery({
         queryKey: ['all-study-sessions', user?.email],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
@@ -36,12 +35,13 @@ const AllStudySessions = () => {
                             <th>Title</th>
                             <th>Status</th>
                             <th>Reason</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {sessions.map((session, idx) => <TutorsSessionsTableRow
                             session={session}
+                            refetch={refetch}
                             key={session._id}
                             idx={idx}
                         />)}

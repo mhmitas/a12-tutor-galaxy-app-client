@@ -4,16 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { differenceInCalendarDays, format } from "date-fns";
 import useRole from '../../hooks/useRole';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast'
 
-// CAUTION: hERE IS A POSSIBILITY OF SOME ERROR WITH THE DATES
-//````````````````````````````````````````````````````````````
 const SessionDetail = () => {
     const navigate = useNavigate()
+    const { user, authLoading } = useAuth()
     const [role, isLoading] = useRole()
     const axiosSecure = useAxiosSecure()
     const { id } = useParams()
 
-    const { data = {}, isPending: dataLoading, error } = useQuery({
+    // get detail data of the session
+    const { data = {}, isPending: dataLoading, refetch } = useQuery({
         queryKey: ['session-detail', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/study-sessions/${id}`)
@@ -21,8 +23,22 @@ const SessionDetail = () => {
             return data
         }
     })
+
+    // get detail data of the session
+    const { data: usersBooedIds = {}, refetch: refetchUsersBooedIds } = useQuery({
+        queryKey: ['usersBooedIds', user?.email],
+        enabled: !authLoading || !!user?.email,
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/bookings/session-ids/${user?.email}`)
+            // console.log(data);
+            return data
+        }
+    })
+
+    // destructuring from loaded detail data
     const { session_title, thumbnail_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, session_description } = data;
 
+    // deal with date
     const regStartDate = data?.registrationDuration?.regStart;
     const regEndDate = data?.registrationDuration?.regEnd;
     let dateValidation;
@@ -33,12 +49,39 @@ const SessionDetail = () => {
         )
     }
 
-    if (dataLoading || isLoading) {
+    if (dataLoading || isLoading || authLoading) {
         return <span>Loading...</span>
     }
 
-    function handleBookNowButton() {
-        navigate('/')
+    async function handleBookNowButton() {
+        if (usersBooedIds.includes(data._id)) {
+            return toast('You have already booked this session')
+        }
+        // does the session is free?  
+        if (Number(registration_fee) === 0) {
+            const sessionData = {
+                session_title, tutor_email, tutor_name, registrationDuration, classDuration,
+                sessionId: data._id,
+                userName: user?.displayName,
+                userEmail: user?.email,
+            }
+            try {
+                const res = await axiosSecure.post(`/bookings`, sessionData)
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success('Session Booked')
+                }
+                refetch()
+                refetchUsersBooedIds()
+            } catch (err) {
+                console.error(err);
+            }
+
+
+            return
+        }
+        return alert('You cannot book it now')
+        // navigate('/')
     }
 
     return (
@@ -49,7 +92,10 @@ const SessionDetail = () => {
                         <img src={thumbnail_image} alt="Session Thumbnail" className="w-full lg:w-1/3 rounded-lg" />
                         <div className="">
                             <h1 className="text-2xl font-bold mb-2">{session_title}</h1>
-                            <p className="mb-2"><strong>Tutor:</strong> {tutor_name}</p>
+                            <div className="mb-3">
+                                <p className='text-lg'><strong>Tutor:</strong> {tutor_name}</p>
+                                <p className='text-sm'><strong>Email:</strong> {tutor_email}</p>
+                            </div>
                             <div className="flex items-center mb-2">
                                 <div className="rating">
                                     <input type="radio" name="rating" className="mask mask-star-2 bg-yellow-400" />
@@ -75,7 +121,12 @@ const SessionDetail = () => {
                                     onClick={handleBookNowButton}
                                     className="btn btn-primary mt-4"
                                     disabled={dateValidation < 0 && true}
-                                >{dateValidation < 0 ? 'Registration Closed' : 'Book Now'}
+                                >{dateValidation < 0 ?
+                                    'Registration Closed' :
+                                    usersBooedIds.includes(data._id) ?
+                                        'Booked' :
+                                        'Book Now'
+                                    }
                                 </button>
                             }
                         </div>

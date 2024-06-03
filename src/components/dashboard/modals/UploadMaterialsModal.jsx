@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { GoX } from 'react-icons/go';
 import uploadImage from '../../../utils/uploadImage';
 import { useMutation } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
@@ -47,7 +46,6 @@ const UploadMaterialsModal = ({ setShowModal, session }) => {
             setUploading(false);
             // setShowModal(false)
         }
-
     }
 
     return (

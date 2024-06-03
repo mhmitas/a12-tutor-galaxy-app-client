@@ -11,6 +11,7 @@ import CreateStudySession from "../pages/Dashboard/tutor/CreateStudySession";
 import SessionDetail from "../pages/session-detail/SessionDetail";
 import AllStudySessions from "../pages/Dashboard/tutor/AllStudySessions";
 import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials";
+import ViewAllMaterials from "../pages/Dashboard/tutor/ViewAllMaterials";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
             {
                 path: 'upload-materials',
                 element: <UploadMaterials />
+            },
+            {
+                path: 'view-all-materials',
+                element: <ViewAllMaterials />
             },
         ]
     }

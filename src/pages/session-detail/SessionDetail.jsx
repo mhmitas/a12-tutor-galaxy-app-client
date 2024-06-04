@@ -120,8 +120,8 @@ const SessionDetail = () => {
                             </div>
                             <p className="mb-4">{session_description}</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <p><strong>Registration Start Date:</strong> {format(new Date(registrationDuration?.regEnd), 'dd MMM yyyy')}</p>
-                                <p><strong>Registration End Date:</strong> {format(new Date(registrationDuration?.regStart), 'dd MMM yyyy')}</p>
+                                <p><strong>Registration Start Date:</strong> {format(new Date(registrationDuration?.regStart), 'dd MMM yyyy')}</p>
+                                <p><strong>Registration End Date:</strong> {format(new Date(registrationDuration?.regEnd), 'dd MMM yyyy')}</p>
                                 <p><strong>Class Start Date:</strong> {format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</p>
                                 <p><strong>Class End Date:</strong> {format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</p>
                                 <p><strong>Session Duration:</strong> {data.session_duration || data['Session Duration']}</p>

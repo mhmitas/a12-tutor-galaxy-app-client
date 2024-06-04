@@ -3,7 +3,7 @@ import { differenceInCalendarDays, format, isBefore, isEqual } from "date-fns";
 import { Link } from 'react-router-dom';
 
 const SessionsCard = ({ session }) => {
-    const { session_title, thumbnail_image, } = session
+    const { session_title, thumbnail_image, session_description } = session
 
     const regStartDate = session.registrationDuration.regStart;
     const regEndDate = session.registrationDuration.regEnd;
@@ -26,7 +26,7 @@ const SessionsCard = ({ session }) => {
             <figure><img className='rounded-md' src={thumbnail_image} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{session_title}</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <p>{session_description?.slice(0, 50)}{session_description.length > 50 && '...'}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/detail/${session?._id}`}>
                         <button className="btn btn-primary">Read More</button>

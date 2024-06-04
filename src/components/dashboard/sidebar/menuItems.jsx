@@ -15,4 +15,12 @@ const tutorMenuItems = <>
     {/* <li><NavLink>View all notes</NavLink></li> */}
 </>
 
-export { studentMenuItems, tutorMenuItems }
+
+const adminMenuItems = <>
+    <li><NavLink>All users</NavLink></li>
+    <li><NavLink to="/dashboard/admin/all-study-sessions">All study sessions</NavLink></li>
+    <li><NavLink>All materials</NavLink></li>
+</>
+
+
+export { studentMenuItems, tutorMenuItems, adminMenuItems }

@@ -21,6 +21,7 @@ import ViewAllStudyMaterials from "../pages/Dashboard/student/ViewAllStudyMateri
 import ViewSessionMaterials from "../pages/Dashboard/student/ViewSessionMaterials";
 import PrivateRoute from "./PrivateRoute";
 import StudentRoute from "./StudentRoute";
+import AllStudySessionsAdmin from "../pages/Dashboard/admin/AllStudySessionsAdmin";
 
 export const router = createBrowserRouter([
     {
@@ -104,6 +105,11 @@ export const router = createBrowserRouter([
                 path: 'view-all-materials',
                 element: <ViewAllMaterials />
             },
+            // admin related routes
+            {
+                path: 'admin/all-study-sessions',
+                element: <AllStudySessionsAdmin />,
+            }
         ]
     }
 ])

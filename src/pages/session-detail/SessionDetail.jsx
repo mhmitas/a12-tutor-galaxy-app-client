@@ -20,7 +20,7 @@ const SessionDetail = () => {
     const { data = {}, isPending: dataLoading, refetch } = useQuery({
         queryKey: ['session-detail', id],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/study-sessions/${id}`)
+            const { data } = await axiosSecure.get(`/study-sessions/detail/${id}`)
             // console.log(data);
             return data
         }

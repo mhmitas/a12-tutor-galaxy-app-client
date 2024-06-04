@@ -1,20 +1,21 @@
 import React from 'react';
 import { RxCross1 } from "react-icons/rx";
-import { FaBook, FaCalendar, FaHome, FaList, FaRegCalendarCheck, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import { FaHome, FaRegUserCircle } from 'react-icons/fa';
+import { MdOutlineLogout } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom'
-import { MdMenuBook, MdReviews } from "react-icons/md";
-import { ImSpoonKnife } from "react-icons/im";
-import { tutorMenuItems, studentMenuItems } from './menuItems';
+import { tutorMenuItems, studentMenuItems, adminMenuItems } from './menuItems';
 import useRole from '../../../hooks/useRole';
+import useAuth from '../../../hooks/useAuth';
 // import { useQuery } from '@tanstack/react-query';
 
 
 const Sidebar = () => {
+    const { signOutUser } = useAuth()
     const [role, isLoading] = useRole()
     console.log(role);
 
     return (
-        <ul className="menu p-4 lg:w-64 w-60 min-h-full bg-base-300 text-base-content">
+        <ul className="menu p-4 lg:w-64 w-60 min-h-full bg-base-300 text-base-content ">
 
             {/* Sidebar content here */}
             <label
@@ -28,35 +29,18 @@ const Sidebar = () => {
                 <>
                     {role === 'student' && studentMenuItems}
                     {role === 'tutor' && tutorMenuItems}
+                    {role === 'admin' && adminMenuItems}
                 </>
             }
 
-            <div className="divider divider-neutral"></div>
             {/* SHARED Navlinks */}
-            <li>
-                <NavLink to="/"><FaHome className='text-lg' />home</NavLink>
-            </li>
-            <li>
-                <NavLink to="/menu"><MdMenuBook className='text-lg' />menu</NavLink>
-            </li>
+            {/* <div className="divider divider-neutral"></div> */}
+            {/* <li><NavLink to="/"><FaHome className='text-lg' />home</NavLink></li> */}
+            <div className='divider mt-auto'></div>
+            <li><NavLink to={'/'}><FaRegUserCircle size={17} />Profile</NavLink></li>
+            <li className='mb-2'><button onClick={() => signOutUser()}><MdOutlineLogout size={20} />Sign out</button></li>
         </ul>
     );
 };
 
 export default Sidebar;
-
-/*
-<li className='hidden'>
-    <div className='flex items-center'>
-        <div className="avatar">
-            <div className="w-9 rounded-full">
-                <img src={user?.photoURL} alt="" />
-            </div>
-        </div>
-        <div className='flex flex-col'>
-            <span>{user?.displayName}</span>
-            <span className='text-xs'>{user?.email}</span>
-        </div>
-    </div>
-</li>
-*/

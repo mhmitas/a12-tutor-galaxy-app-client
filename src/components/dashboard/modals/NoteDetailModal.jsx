@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Linkify from "linkify-react";
+import { Link } from 'react-router-dom';
 
 
-const NoteDetailModal = ({ setShowModal, note, handleDelete, handleUpdate }) => {
+const NoteDetailModal = ({ setShowModal, note, handleDelete }) => {
     const handleOverlayClick = (e) => {
         if (e.target === e.currentTarget) {
             setShowModal(false);
@@ -21,11 +22,11 @@ const NoteDetailModal = ({ setShowModal, note, handleDelete, handleUpdate }) => 
                 </Linkify>
                 <div className="sticky bottom-0 mb-0 pb-0">
                     <div className='flex justify-center space-x-4 pb-2 pt-3 bg-base-100'>
-                        <button
-                            onClick={() => handleUpdate(note?._id)}
+                        <Link to={`/dashboard/update-note/${note?._id}`}><button
                             className="btn btn-sm btn-primary">
                             <FaEdit />
-                        </button>
+                        </button></Link>
+
                         <button
                             onClick={() => handleDelete(note?._id)}
                             className="btn hover:btn-error btn-sm" >

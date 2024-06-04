@@ -20,7 +20,7 @@ const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
                     <span className={`badge badge-primary ${status === 'pending' ?
                         'badge-primary' :
                         status === 'rejected' ?
-                            'badge-warning' :
+                            'badge-error' :
                             'badge-success'
                         }`}>{status}</span>
 
@@ -28,7 +28,7 @@ const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
                 <td>{status === 'rejected' &&
                     <button onClick={handleReasonModal} className='btn btn-ghost btn-xs'><BiSolidMessageAltDetail size={18} /></button>
                 }
-                    {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} sessionId={session?._id} refetch={refetch} />}
+                    {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} sessionId={session?._id} session={session} refetch={refetch} />}
                 </td>
                 <td>
                     <div className='flex items-center gap-2'>

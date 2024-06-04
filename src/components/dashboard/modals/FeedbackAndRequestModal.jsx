@@ -3,7 +3,7 @@ import { GoX } from "react-icons/go";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast'
 
-const FeedbackAndRequestModal = ({ sessionId, setShowModal, refetch }) => {
+const FeedbackAndRequestModal = ({ session, sessionId, setShowModal, refetch }) => {
     const axiosSecure = useAxiosSecure()
     const [processing, setProcessing] = useState(false)
     const [checked, setChecked] = useState(false);
@@ -35,13 +35,11 @@ const FeedbackAndRequestModal = ({ sessionId, setShowModal, refetch }) => {
                 <div>
                     <div className='mb-4'>
                         <h2 className="text-xl">Rejection Reason:</h2>
-                        <p>The posting lacks details about the specific subject or topic of the study session.</p>
+                        <p>{session?.rejection_info?.rejection_reason}</p>
                     </div>
                     <div className='mb-4'>
                         <h2 className="text-xl">Feedback:</h2>
-                        <p>Needs details: specify subject & target student level (beginner, intermediate, advanced).
-                            Briefly mention your relevant qualifications.
-                            Consider adding session details (date, time, duration).</p>
+                        <p>{session?.rejection_info?.feedback}</p>
                     </div>
                 </div>
                 <button onClick={() => setShowModal(false)} className="btn btn-sm hover:btn-error absolute top-1 right-1 btn-circle" ><GoX size={19} /></button>

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ApprovalModal from '../dashboard/modals/ApproveModal';
+import RejectSessionModal from '../dashboard/modals/RejectModal';
 
 const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
     const [showModal, setShowModal] = useState(false)
+    const [showRejectModal, setShowRejectModal] = useState(false)
     const { session_title, status, tutor_name, tutor_email } = session
 
     function handleApprove() {
         setShowModal(true)
     }
     function handleReject() {
-        console.log('Reject');
+        setShowRejectModal(true)
     }
 
     return (
@@ -26,7 +28,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                 <span className={`badge badge-primary ${status === 'pending' ?
                     'badge-primary' :
                     status === 'rejected' ?
-                        'badge-warning' :
+                        'badge-error' :
                         'badge-success'
                     }`}>{status}</span>
             </td>
@@ -47,6 +49,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                     </ul>
                 </div>
                 {showModal && <ApprovalModal setShowModal={setShowModal} refetch={refetch} session={session} />}
+                {showRejectModal && <RejectSessionModal setShowRejectModal={setShowRejectModal} refetch={refetch} session={session} />}
             </td>
         </tr>
     );

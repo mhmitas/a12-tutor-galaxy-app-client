@@ -13,7 +13,7 @@ const StudentRoute = ({ children }) => {
     }
 
     if (role === 'student' && user) {
-        children
+        return children
     }
 
     return <Navigate to={'/'} />

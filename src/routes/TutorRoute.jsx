@@ -13,7 +13,7 @@ const TutorRoute = ({ children }) => {
     }
 
     if (role === 'tutor' && user) {
-        children
+        return children
     }
 
     return <Navigate to={'/'} />

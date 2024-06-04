@@ -4,7 +4,7 @@ const studentMenuItems = <>
     <li><NavLink to="/dashboard/view-booked-sessions">View booked sessions</NavLink></li>
     <li><NavLink to="/dashboard/create-note">Create note</NavLink></li>
     <li><NavLink to="/dashboard/manage-notes">Manage notes</NavLink></li>
-    <li><NavLink>Study materials</NavLink></li>
+    <li><NavLink to="/dashboard/student/all-materials">Study materials</NavLink></li>
 </>
 
 const tutorMenuItems = <>

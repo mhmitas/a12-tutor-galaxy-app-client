@@ -17,6 +17,8 @@ import BookedSessionDetail from "../pages/Dashboard/student/BookedSessionDetail"
 import CreateNote from "../pages/Dashboard/student/CreateNote";
 import ManageNotes from "../pages/Dashboard/student/ManageNotes";
 import UpdateNote from "../pages/Dashboard/student/UpdateNote";
+import ViewAllStudyMaterials from "../pages/Dashboard/student/ViewAllStudyMaterilas";
+import ViewSessionMaterials from "../pages/Dashboard/student/ViewSessionMaterials";
 
 export const router = createBrowserRouter([
     {
@@ -66,6 +68,14 @@ export const router = createBrowserRouter([
             {
                 path: 'update-note/:id',
                 element: <UpdateNote />
+            },
+            {
+                path: 'student/all-materials',
+                element: <ViewAllStudyMaterials />
+            },
+            {
+                path: 'student/session-materials/:id',
+                element: <ViewSessionMaterials />
             },
             // tutor related routes
             {

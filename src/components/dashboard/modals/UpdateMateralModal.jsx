@@ -31,7 +31,7 @@ const UpdateMaterialModal = ({ material, setShowModal }) => {
             const result = await axiosSecure.patch(`/materials/update/${material?._id}`, materials)
             console.log(result.data);
             if (result.data?.modifiedCount > 0) {
-                toast.success("Materials Uploaded")
+                toast.success("Material Updated")
             }
             setUploading(false);
             setShowModal(false)
@@ -93,7 +93,7 @@ const UpdateMaterialModal = ({ material, setShowModal }) => {
                             <button
                                 type='submit'
                                 className="btn btn-primary">
-                                Upload
+                                Update
                             </button>
                             <button
                                 type='btn'

@@ -1,33 +1,30 @@
 import React from 'react';
 import Heading from '../../../components/common/Heading';
-import BookedSessionsRow from '../../../components/table-rows/BookedSessionsRow';
+import Container from '../../../components/shared/Container';
 import useStudentBookedSessions from '../../../hooks/useStudentBookedSessions';
+import BookedSessionsRow from '../../../components/table-rows/BookedSessionsRow';
+import StudentsBookedMaterialsRow from '../../../components/table-rows/StudentsBookedMaterials';
 
-const BookedSessions = () => {
-
+const ViewAllStudyMaterials = () => {
     const [bookedSessions, isLoading, refetch] = useStudentBookedSessions()
 
-    if (isLoading) {
-        return <span>Loading...</span>
-    }
-
     return (
-        <div className='p-2 bg-base-100 min-h-screen'>
-            <Heading heading='All Booked Sessions' />
+        <Container>
+            <Heading heading={'All Study Materials'} />
+            {bookedSessions.length}
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>
                         <tr className='bg-base-300'>
                             <th>#</th>
-                            <th>Title</th>
+                            <th>Session</th>
                             <th>Tutor</th>
-                            <th>Class Duration</th>
-                            <th></th>
+                            <th>Materials</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {bookedSessions.map((session, idx) => <BookedSessionsRow
+                        {bookedSessions.map((session, idx) => <StudentsBookedMaterialsRow
                             session={session}
                             refetch={refetch}
                             key={session._id}
@@ -37,8 +34,8 @@ const BookedSessions = () => {
                 </table>
 
             </div>
-        </div>
+        </Container>
     );
 };
 
-export default BookedSessions;
+export default ViewAllStudyMaterials;

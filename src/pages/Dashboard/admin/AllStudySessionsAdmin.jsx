@@ -14,10 +14,14 @@ const AllStudySessionsAdmin = () => {
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure(`/all-sessions`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })
+
+    if (isLoading) {
+        <span>Loading...</span>
+    }
 
     return (
         <div className='p-2 bg-base-100 min-h-screen'>

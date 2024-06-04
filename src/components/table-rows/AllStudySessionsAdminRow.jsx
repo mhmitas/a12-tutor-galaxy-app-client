@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ApprovalModal from '../dashboard/modals/ApproveModal';
 
-const AllStudySessionsAdminRow = ({ session, idx }) => {
+const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
+    const [showModal, setShowModal] = useState(false)
     const { session_title, status, tutor_name, tutor_email } = session
 
-    function handleStatusChange(e) {
-        console.log(e.target);
+    function handleApprove() {
+        setShowModal(true)
+    }
+    function handleReject() {
+        console.log('Reject');
     }
 
     return (
@@ -18,30 +23,30 @@ const AllStudySessionsAdminRow = ({ session, idx }) => {
                 <p className='text-xs'>{tutor_email}</p>
             </td>
             <td>
-                <td>
-                    <span className={`badge badge-primary ${status === 'pending' ?
-                        'badge-primary' :
-                        status === 'rejected' ?
-                            'badge-warning' :
-                            'badge-success'
-                        }`}>{status}</span>
-
-                </td>
+                <span className={`badge badge-primary ${status === 'pending' ?
+                    'badge-primary' :
+                    status === 'rejected' ?
+                        'badge-warning' :
+                        'badge-success'
+                    }`}>{status}</span>
             </td>
             <td>
                 <div className="dropdown dropdown-bottom">
                     <div tabIndex={0} role="button"
                         className={`btn btn-sm m-1 ${status === 'approved' ? 'btn-success' :
-                            status === 'pending' ? 'btn-primary' :
-                                status === 'rejected' ? 'btn-error' : ''
-                            }`}>{status}</div>
+                            status === 'pending' ?
+                                'btn-primary' :
+                                status === 'rejected' ?
+                                    'btn-error' : ''
+                            }`}
+                    >{status}</div>
                     <ul tabIndex={0}
                         className={`dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box`}>
-                        <li><button onClick={handleStatusChange}>Pending</button></li>
-                        <li><button onClick={handleStatusChange}>Conform</button></li>
-                        <li><button onClick={handleStatusChange}>Completed</button></li>
+                        <li><button onClick={handleApprove}>Approve</button></li>
+                        <li><button onClick={handleReject}>Reject</button></li>
                     </ul>
                 </div>
+                {showModal && <ApprovalModal setShowModal={setShowModal} refetch={refetch} session={session} />}
             </td>
         </tr>
     );

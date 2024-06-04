@@ -14,6 +14,7 @@ import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials";
 import ViewAllMaterials from "../pages/Dashboard/tutor/ViewAllMaterials";
 import BookedSessions from "../pages/Dashboard/student/BookedSessions";
 import BookedSessionDetail from "../pages/Dashboard/student/BookedSessionDetail";
+import CreateNote from "../pages/Dashboard/student/CreateNote";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path: 'booked-session-detail/:id',
                 element: <BookedSessionDetail />
+            },
+            {
+                path: 'create-note',
+                element: <CreateNote />
             },
             // tutor related routes
             {

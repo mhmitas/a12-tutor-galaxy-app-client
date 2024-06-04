@@ -17,7 +17,7 @@ const SignIn = () => {
     const { signIn, signInWithProvider, setAuthLoading, user, authLoading } = useAuth()
 
     const from = location.state?.from?.pathname
-    console.log(from);
+    // console.log(from);
 
     async function onSubmit(data) {
         // console.log(data);

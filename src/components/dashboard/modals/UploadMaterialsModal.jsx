@@ -93,6 +93,7 @@ const UploadMaterialsModal = ({ setShowModal, session }) => {
                                 <span className="label-text">Pick an image</span>
                             </div>
                             <input
+                                required
                                 type="file"
                                 name='material_image'
                                 className="file-input file-input-bordered w-full " />

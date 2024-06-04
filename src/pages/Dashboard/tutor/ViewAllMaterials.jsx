@@ -48,6 +48,7 @@ const ViewAllMaterials = () => {
                     material={material}
                     key={material._id}
                     handleDelete={handleDelete}
+                    refetch={refetch}
                 />)}
             </div>
             {/* ------------------ */}

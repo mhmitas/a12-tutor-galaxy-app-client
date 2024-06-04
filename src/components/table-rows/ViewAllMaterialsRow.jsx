@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import UpdateMaterialModal from '../dashboard/modals/UpdateMateralModal';
 
-const ViewAllMaterialsRow = ({ material, handleDelete }) => {
+const ViewAllMaterialsRow = ({ material, handleDelete, refetch }) => {
     const [showModal, setShowModal] = useState(false)
 
 
     return (
-        <div className="card max-w-96 bg-base-100 shadow-lg">
+        <div className="card card-compact max-w-96 bg-base-100 shadow-lg rounded-md">
+            <figure><img src={material?.imageUrl} alt="" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{material.session_title}</h2>
                 <div className='overflow-x-hidden'>
@@ -22,7 +23,7 @@ const ViewAllMaterialsRow = ({ material, handleDelete }) => {
                     <button onClick={() => handleDelete(material._id)} className='btn btn-sm btn-ghost'><FaTrashAlt className='text-lg' /></button>
                 </div>
             </div>
-            {showModal && <UpdateMaterialModal material={material} setShowModal={setShowModal} />}
+            {showModal && <UpdateMaterialModal material={material} setShowModal={setShowModal} refetch={refetch} />}
         </div>
     );
 };

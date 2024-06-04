@@ -11,6 +11,14 @@ const useAxiosSecure = () => {
     const navigate = useNavigate()
     const { signOutUser } = useAuth()
 
+    axiosSecure.interceptors.request.use(
+        function (request) {
+            const token = localStorage.getItem('access-token')
+            request.headers.Authorization = token ? `Bearer ${token}` : ''
+            return request
+        }
+    )
+
     useEffect(() => {
         axiosSecure.interceptors.response.use(
             function (res) {

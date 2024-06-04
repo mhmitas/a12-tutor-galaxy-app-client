@@ -3,7 +3,7 @@ import uploadImage from '../../../utils/uploadImage';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 
-const UpdateMaterialModal = ({ material, setShowModal }) => {
+const UpdateMaterialModal = ({ material, setShowModal, refetch }) => {
     const [uploading, setUploading] = useState(false)
     const axiosSecure = useAxiosSecure()
     // console.log(material);
@@ -35,6 +35,7 @@ const UpdateMaterialModal = ({ material, setShowModal }) => {
             }
             setUploading(false);
             setShowModal(false)
+            refetch()
         } catch (err) {
             console.log(err);
             setUploading(false);

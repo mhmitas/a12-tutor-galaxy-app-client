@@ -1,18 +1,23 @@
 import React from 'react';
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
 import saveUserInDb from '../../utils/saveUserInDb';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 
 const SignIn = () => {
+    const location = useLocation()
     const navigate = useNavigate()
     const googleProvider = new GoogleAuthProvider()
     const { register, handleSubmit, } = useForm()
-    const { signIn, signInWithProvider, setAuthLoading } = useAuth()
+    const { signIn, signInWithProvider, setAuthLoading, user, authLoading } = useAuth()
+
+    const from = location.state?.from?.pathname
+    console.log(from);
 
     async function onSubmit(data) {
         // console.log(data);
@@ -20,7 +25,7 @@ const SignIn = () => {
             const result = await signIn(data.email, data.password)
             console.log(result.user);
             toast.success('Sign in Successfully')
-            // navigate('/')
+            navigate(from ? from : '/')
         } catch (err) {
             console.error(err);
             toast.error(err?.message)
@@ -33,7 +38,7 @@ const SignIn = () => {
             const result = await signInWithProvider(provider)
             await saveUserInDb({ ...result.user, role: 'student' });
             toast.success('Sign up successfully')
-            // navigate('/')
+            navigate(from ? from : '/')
         } catch (err) {
             toast.error(err?.message)
             console.error(err);
@@ -41,7 +46,11 @@ const SignIn = () => {
         }
     }
 
-    console.log('TODO: ENSURE ALL REDIRECTS');
+    if (authLoading) {
+        return <LoadingSpinner />
+    } else if (user) {
+        return <Navigate to={'/'} />
+    }
 
     return (
         <div className='min-h-screen flex flex-col justify-center'>

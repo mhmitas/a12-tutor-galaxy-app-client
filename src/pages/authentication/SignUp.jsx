@@ -1,17 +1,18 @@
 import React from 'react';
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
 import toast from "react-hot-toast";
 import saveUserInDb from '../../utils/saveUserInDb';
 import { GoogleAuthProvider } from 'firebase/auth';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const SignUp = () => {
     const navigate = useNavigate()
     const { register, handleSubmit, } = useForm()
     const googleProvider = new GoogleAuthProvider()
-    const { createUser, updateUserProfile, signInWithProvider, setAuthLoading } = useAuth()
+    const { createUser, updateUserProfile, signInWithProvider, setAuthLoading, authLoading, user } = useAuth()
 
     async function onSubmit(data) {
         // console.log(data);
@@ -20,7 +21,7 @@ const SignUp = () => {
             await updateUserProfile(data.userName)
             await saveUserInDb({ ...result.user, role: data.role });
             toast.success('Sign up successfully')
-            // navigate('/')
+            navigate('/')
         } catch (err) {
             toast.error(err?.message)
             console.error(err);
@@ -33,12 +34,18 @@ const SignUp = () => {
             const result = await signInWithProvider(provider)
             await saveUserInDb({ ...result.user, role: 'student' });
             toast.success('Sign up successfully')
-            // navigate('/')
+            navigate('/')
         } catch (err) {
             toast.error(err?.message)
             console.error(err);
             setAuthLoading(false)
         }
+    }
+
+    if (authLoading) {
+        return <LoadingSpinner />
+    } else if (user) {
+        return <Navigate to={'/'} />
     }
 
     return (

@@ -19,6 +19,8 @@ import ManageNotes from "../pages/Dashboard/student/ManageNotes";
 import UpdateNote from "../pages/Dashboard/student/UpdateNote";
 import ViewAllStudyMaterials from "../pages/Dashboard/student/ViewAllStudyMaterilas";
 import ViewSessionMaterials from "../pages/Dashboard/student/ViewSessionMaterials";
+import PrivateRoute from "./PrivateRoute";
+import StudentRoute from "./StudentRoute";
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +33,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'detail/:id',
-                element: <SessionDetail />
+                element: <PrivateRoute>
+                    <SessionDetail />
+                </PrivateRoute>
             }
         ],
     },
@@ -46,7 +50,9 @@ export const router = createBrowserRouter([
     // dashboard routes
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute>
+            <Dashboard />
+        </PrivateRoute>,
         children: [
             // student related routes
             {
@@ -71,11 +77,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'student/all-materials',
-                element: <ViewAllStudyMaterials />
+                element: <StudentRoute>
+                    <ViewAllStudyMaterials />
+                </StudentRoute>
             },
             {
                 path: 'student/session-materials/:id',
-                element: <ViewSessionMaterials />
+                element: <StudentRoute>
+                    <ViewSessionMaterials />
+                </StudentRoute>
             },
             // tutor related routes
             {

@@ -126,7 +126,7 @@ const CreateStudySession = () => {
                         <label className="label">
                             <span className="label-text">Session Description</span>
                         </label>
-                        <textarea required {...register('session_description')} className="textarea textarea-bordered" placeholder="Bio"></textarea>
+                        <textarea required {...register('session_description')} className="textarea textarea-bordered" placeholder="About session"></textarea>
                     </div>
                     <div className='text-center w-full md:col-span-2'>
                         <label className="form-control w-full max-w-xs">

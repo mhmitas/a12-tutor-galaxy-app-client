@@ -23,7 +23,7 @@ const AllStudySessions = () => {
 
     async function handleDelete(id) {
         try {
-            const ask = await askConfirm('Are you sure? You want to delete this material')
+            const ask = await askConfirm('Are you sure? You want to delete this session')
             if (!ask) { return };
             const { data } = await axiosSecure.delete(`/study-sessions/delete/${id}`)
             console.log(data);

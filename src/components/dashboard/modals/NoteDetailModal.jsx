@@ -13,11 +13,11 @@ const NoteDetailModal = ({ setShowModal, note, handleDelete }) => {
 
     return (
         <div onClick={handleOverlayClick} className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-20 z-50 '>
-            <div className='shadow-xl p-6 pb-0 bg-base-100 w-full max-w-md rounded-md mx-auto max-h-[80vh] overflow-y-auto relative'>
+            <div className='shadow-xl p-6 pb-0 bg-base-100 w-full max-w-lg rounded-md mx-auto max-h-[80vh] overflow-y-auto relative'>
                 <Linkify >
                     <div className="my-link">
                         <h2 className="text-xl mb-4">{note?.title}</h2>
-                        <p className='text-justify'>{note?.body}</p>
+                        <p className=''>{note?.body}</p>
                     </div>
                 </Linkify>
                 <div className="sticky bottom-0 mb-0 pb-0">

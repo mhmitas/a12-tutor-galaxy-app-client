@@ -13,10 +13,6 @@ const Sessions = () => {
         return <span>{error.message}</span>
     }
 
-    //| TODO: SHOW ONLY 
-    //| APPROVED SESSIONS;
-    //| DON’T SHOW PENDING 
-    //| OR REJECTED SESSIONS
     console.log('some todo exist');
 
     return (

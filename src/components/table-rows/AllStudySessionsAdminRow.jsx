@@ -40,6 +40,10 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
         }
     }
 
+    function handleUpdate(updateData) {
+        console.log(updateData);
+    }
+
     return (
         <tr>
             <td>{idx}</td>
@@ -76,7 +80,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                         <button onClick={() => handleDelete(session._id)} className='btn btn-xs btn-ghost'><FaTrashAlt size={15} /></button>
                     </div>
                 }
-                {showUpdateModal && <UpdateStudySessionModal setShowUpdateModal={setShowUpdateModal} />}
+                {showUpdateModal && <UpdateStudySessionModal setShowModal={setShowUpdateModal} session={session} />}
             </td>
         </tr>
     );

@@ -92,8 +92,6 @@ const SessionDetail = () => {
             } catch (err) {
                 console.error(err);
             }
-
-
             return
         }
         return alert('You cannot book it now')

@@ -26,7 +26,7 @@ const SessionDetail = () => {
         }
     })
 
-    // get booked session ids by user/student
+    // get booked sessions ids by current user/student
     const { data: usersBooedIds = [], isPending: isIdsLoading, refetch: refetchUsersBooedIds } = useQuery({
         queryKey: ['usersBooedIds', user?.email],
         enabled: !authLoading || !!user?.email,
@@ -63,7 +63,7 @@ const SessionDetail = () => {
         )
     }
 
-    if (dataLoading || isLoading || authLoading || isIdsLoading) {
+    if (dataLoading || isIdsLoading || authLoading || isLoading) {
         return <span>Loading...</span>
     }
 

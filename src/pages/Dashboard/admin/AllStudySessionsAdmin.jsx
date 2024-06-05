@@ -36,7 +36,7 @@ const AllStudySessionsAdmin = () => {
                             <th>View detail</th>
                             <th>Tutor</th>
                             <th>Status</th>
-                            <th>Change Status</th>
+                            {/* <th>Change Status</th> */}
                         </tr>
                     </thead>
                     <tbody>

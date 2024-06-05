@@ -24,14 +24,14 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                 <p>{tutor_name}</p>
                 <p className='text-xs'>{tutor_email}</p>
             </td>
-            <td>
+            {/* <td>
                 <span className={`badge badge-primary ${status === 'pending' ?
                     'badge-primary' :
                     status === 'rejected' ?
                         'badge-error' :
                         'badge-success'
                     }`}>{status}</span>
-            </td>
+            </td> */}
             <td>
                 <div className="dropdown dropdown-bottom">
                     <div tabIndex={0} role="button"
@@ -41,7 +41,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                                 status === 'rejected' ?
                                     'btn-error' : ''
                             }`}
-                    >{status}</div>
+                    >{status.replace(/\b\w/g, match => match.toUpperCase())}</div>
                     <ul tabIndex={0}
                         className={`dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box`}>
                         <li><button onClick={handleApprove}>Approve</button></li>

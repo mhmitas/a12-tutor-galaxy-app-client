@@ -14,20 +14,20 @@ const ViewAllMaterialsAdmin = () => {
     return (
         <div>
             <Heading heading={'All study Materials'} />
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto bg-base-100">
                 <table className="table table-zebra">
                     {/* head */}
-                    <thead>
+                    <thead className='bg-base-300'>
                         <tr>
                             <th>#</th>
                             <th>Session name</th>
                             <th>Material name</th>
                             <th>Tutor</th>
-                            <th>Favorite Color</th>
+                            <th>View materials</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((material, idx) => <ViewAllMaterialsAdminRow material={material} key={material?._id} idx={idx} />)}
+                        {data.map((material, idx) => <ViewAllMaterialsAdminRow material={material} key={material?._id} idx={idx} refetch={refetch} />)}
                     </tbody>
                 </table>
             </div>

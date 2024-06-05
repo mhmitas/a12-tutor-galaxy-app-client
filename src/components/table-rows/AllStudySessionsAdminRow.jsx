@@ -78,27 +78,3 @@ export default AllStudySessionsAdminRow;
 
 
 
-
-/*
-<div className=" ">
-    <div onClick={() => setShowMenu(!showMenu)} tabIndex={0} role="button" className={`btn btn-sm m-1 ${status === 'approved' ? 'btn-success' :
-        status === 'rejected' ? 'btn-info' :
-            status === 'pending' ? 'btn-warning' : ''
-        }`}>Click</div>
-    {showMenu &&
-        <ul tabIndex={0} className="dropdown-content absolute z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-        </ul>
-    }
-</div>
-*/
-
-{/* <td>
-<span className={`badge badge-primary ${status === 'pending' ?
-'badge-primary' :
-status === 'rejected' ?
-'badge-error' :
-'badge-success'
-}`}>{status}</span>
-</td> */}

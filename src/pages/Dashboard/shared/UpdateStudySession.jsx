@@ -52,7 +52,7 @@ const UpdateStudySession = () => {
         <Container>
             <Heading heading="Update Study Session" />
             <section className='mt-8 mb-20'>
-                <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md'>
+                <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md overflow-x-auto'>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Tutor Name</span>
@@ -83,16 +83,16 @@ const UpdateStudySession = () => {
                         </label>
                         <input {...register('registration_fee')} defaultValue={0} readOnly type="text" className="input input-bordered" required />
                     </div>
-                    <div className='flex justify-between col-span-2'>
+                    <div className='flex justify-between flex-col lg:flex-row md:col-span-2'>
                         {/* registration duration */}
                         <div className="flex gap-2">
-                            <div className="">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text ">Registration Start Date</span>
                                 </label>
                                 <input name="regStart" type="date" className="input input-bordered" />
                             </div>
-                            <div className="">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text ">Registration End Date</span>
                                 </label>
@@ -102,13 +102,13 @@ const UpdateStudySession = () => {
                         <div className="divider divider-horizontal hidden md:flex"></div>
                         {/* class start to end date duration */}
                         <div className="flex gap-2">
-                            <div className="">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text ">Class Start Date</span>
                                 </label>
                                 <input name="endDate" type="date" className="input input-bordered" />
                             </div>
-                            <div className="">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text ">Class End Date</span>
                                 </label>
@@ -140,3 +140,38 @@ const UpdateStudySession = () => {
 };
 
 export default UpdateStudySession
+
+// async function onSubmit(data, event) {
+//     const form = event.target;
+//     const regStart = form.regStart.value;
+//     const regEnd = form.regEnd.value;
+//     const startDate = form.startDate.value;
+//     const endDate = form.endDate.value;
+//     const registrationDuration = { regStart, regEnd }
+//     const classDuration = { startDate, endDate }
+//     console.log(registrationDuration, classDuration);
+
+//     return
+//     let thumbnail_image = 'https://i.ibb.co/fGVzbks/default-learning.jpg'
+//     const ThumbnailImage = { image: data.thumbnail_image[0] }
+//     try {
+//         // upload img in img-bb
+//         if (data.thumbnail_image[0]) {
+//             const imgbbRes = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY}`, ThumbnailImage, {
+//                 headers: { "Content-Type": "multipart/form-data" }
+//             })
+//             thumbnail_image = imgbbRes.data.data.display_url
+//         }
+//         const sessionInfo = { ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image }
+//         // post on database
+//         const res = await axiosSecure.post('/study-sessions', sessionInfo)
+//         console.log(res.data);
+//         toast.success('Session created. Please wait admins will respond soon')
+//         reset()
+//         navigate(-1)
+//     } catch (err) {
+//         console.error(err);
+//     }
+
+//     // console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image });
+// }

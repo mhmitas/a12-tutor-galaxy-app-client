@@ -25,7 +25,7 @@ const SessionsCard = ({ session }) => {
 
             <figure><img className='rounded-md' src={thumbnail_image} alt="Shoes" /></figure>
             <div className="card-body">
-                <h2 className="card-title">{session_title}</h2>
+                <h2 className="card-title">{session_title} ({session?.status})</h2>
                 <p>{session_description?.slice(0, 50)}{session_description.length > 50 && '...'}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/detail/${session?._id}`}>

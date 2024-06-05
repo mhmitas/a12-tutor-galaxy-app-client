@@ -3,7 +3,7 @@ import SessionsCard from './SessionsCard';
 import useStudySessions from '../../../hooks/useStudySessions';
 
 const Sessions = () => {
-    const [sessions, isLoading, error] = useStudySessions()
+    const [sessions, isLoading, error] = useStudySessions(7, 'approved')
     // console.log(sessions);
 
     if (isLoading) {

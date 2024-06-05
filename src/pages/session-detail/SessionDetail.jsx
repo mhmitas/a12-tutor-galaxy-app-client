@@ -145,7 +145,7 @@ const SessionDetail = () => {
                             }
                         </div>
                     </div>
-                    <div className="mt-8">
+                    <div className="mt-8 lg:mt-32">
                         <h2 className="text-xl font-bold">Reviews</h2>
                         {reviews.length < 1 && <span>Not available</span>}
                         <div className="space-y-4">

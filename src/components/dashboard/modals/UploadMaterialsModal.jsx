@@ -3,6 +3,7 @@ import uploadImage from '../../../utils/uploadImage';
 import { useMutation } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import 'animate.css';
 
 const UploadMaterialsModal = ({ setShowModal, session }) => {
     const axiosSecure = useAxiosSecure()
@@ -57,7 +58,7 @@ const UploadMaterialsModal = ({ setShowModal, session }) => {
 
     return (
         <div className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-10 z-50'>
-            <div className='shadow-xl p-6 bg-base-100 w-full max-w-md rounded-md mx-auto relative'>
+            <div className='shadow-xl p-6 bg-base-100 w-full max-w-md rounded-md mx-auto relative '>
                 <div className='space-y-1'>
                     <h2 className="text-2xl">{session.session_title}</h2>
                     <p>Session Id: {session._id}</p>

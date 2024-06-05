@@ -25,6 +25,7 @@ import AllStudySessionsAdmin from "../pages/Dashboard/admin/AllStudySessionsAdmi
 import UpdateStudySession from "../pages/Dashboard/shared/UpdateStudySession";
 import ViewAllMaterialsAdmin from "../pages/Dashboard/admin/ViewAllMaterialsAdmin";
 import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
+import Payment from "../pages/payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: 'test',
                 element: <UpdateStudySession />
+            },
+            {
+                path: 'payment/:id',
+                element: <Payment />
             }
         ],
     },

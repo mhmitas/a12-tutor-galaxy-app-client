@@ -94,11 +94,10 @@ const SessionDetail = () => {
             }
             return
         }
-        return alert('You cannot book it now')
-        // navigate('/')
+        // in not free make payment
+        navigate(`/payment/${id}`)
     }
 
-    console.log(data);
 
     return (
         <div>

@@ -8,6 +8,9 @@ const Home = () => {
         <div className='*:mb-16'>
             <Hero />
             <Sessions />
+            <div>
+                <input onChange={(e) => console.log(e.target.value)} type="date" className='input input-bordered' />
+            </div>
         </div>
     );
 };

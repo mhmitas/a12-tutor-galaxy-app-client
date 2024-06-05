@@ -44,7 +44,7 @@ const AllStudySessionsAdmin = () => {
                             <th>View detail</th>
                             <th>Tutor</th>
                             <th>Status</th>
-                            {/* <th>Change Status</th> */}
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

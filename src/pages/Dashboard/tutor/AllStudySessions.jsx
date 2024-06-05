@@ -31,6 +31,7 @@ const AllStudySessions = () => {
             refetch()
         } catch (err) {
             console.error(err);
+            toast.error(err.message)
         }
     }
 

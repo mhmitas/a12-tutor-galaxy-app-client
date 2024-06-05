@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ApprovalModal from '../dashboard/modals/ApproveModal';
 import RejectSessionModal from '../dashboard/modals/RejectModal';
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import askConfirm from '../modals/confirm-modal/AskConfirm';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
+    const axiosSecure = useAxiosSecure()
     const [showModal, setShowModal] = useState(false)
     const [showRejectModal, setShowRejectModal] = useState(false)
     const { session_title, status, tutor_name, tutor_email } = session
@@ -13,6 +18,19 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
     }
     function handleReject() {
         setShowRejectModal(true)
+    }
+    async function handleDelete(id) {
+        try {
+            const ask = await askConfirm('Are you sure? You want to delete this session')
+            if (!ask) { return };
+            const { data } = await axiosSecure.delete(`/study-sessions/delete-by-admin/${id}`)
+            console.log(data);
+            toast.success('Successfully Deleted')
+            refetch()
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message)
+        }
     }
 
     return (
@@ -24,14 +42,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                 <p>{tutor_name}</p>
                 <p className='text-xs'>{tutor_email}</p>
             </td>
-            {/* <td>
-                <span className={`badge badge-primary ${status === 'pending' ?
-                    'badge-primary' :
-                    status === 'rejected' ?
-                        'badge-error' :
-                        'badge-success'
-                    }`}>{status}</span>
-            </td> */}
+
             <td>
                 <div className="dropdown dropdown-bottom">
                     <div tabIndex={0} role="button"
@@ -50,6 +61,14 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                 </div>
                 {showModal && <ApprovalModal setShowModal={setShowModal} refetch={refetch} session={session} />}
                 {showRejectModal && <RejectSessionModal setShowRejectModal={setShowRejectModal} refetch={refetch} session={session} />}
+            </td>
+            <td>
+                {status === 'approved' &&
+                    <div className='flex items-center gap-2'>
+                        <span className='btn btn-xs btn-ghost'><FaEdit size={16} /></span>
+                        <button onClick={() => handleDelete(session._id)} className='btn btn-xs btn-ghost'><FaTrashAlt size={15} /></button>
+                    </div>
+                }
             </td>
         </tr>
     );
@@ -74,3 +93,12 @@ export default AllStudySessionsAdminRow;
     }
 </div>
 */
+
+{/* <td>
+<span className={`badge badge-primary ${status === 'pending' ?
+'badge-primary' :
+status === 'rejected' ?
+'badge-error' :
+'badge-success'
+}`}>{status}</span>
+</td> */}

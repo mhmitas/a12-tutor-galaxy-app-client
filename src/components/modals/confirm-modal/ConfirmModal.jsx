@@ -9,7 +9,7 @@ const ConfirmModal = ({ message, onConfirm, onCancel }) => {
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-30 z-50"
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50"
             onClick={handleOverlayClick}
         >
             <div className="bg-base-100 rounded-lg shadow-lg p-6 w-96">

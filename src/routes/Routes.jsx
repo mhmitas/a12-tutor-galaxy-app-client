@@ -24,6 +24,7 @@ import StudentRoute from "./StudentRoute";
 import AllStudySessionsAdmin from "../pages/Dashboard/admin/AllStudySessionsAdmin";
 import UpdateStudySession from "../pages/Dashboard/shared/UpdateStudySession";
 import ViewAllMaterialsAdmin from "../pages/Dashboard/admin/ViewAllMaterialsAdmin";
+import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -119,6 +120,10 @@ export const router = createBrowserRouter([
             {
                 path: 'admin/all-study-materials',
                 element: <ViewAllMaterialsAdmin />,
+            },
+            {
+                path: 'admin/manage-users',
+                element: <ManageUsers />,
             },
         ]
     }

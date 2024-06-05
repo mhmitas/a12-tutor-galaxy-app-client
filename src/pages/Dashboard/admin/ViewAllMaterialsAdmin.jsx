@@ -2,6 +2,7 @@ import React from 'react';
 import Heading from '../../../components/common/Heading';
 import useGetQuery from '../../../hooks/useGetQuery';
 import ViewAllMaterialsAdminRow from '../../../components/table-rows/ViewAllMaterialsAdminRow';
+import Container from '../../../components/shared/Container';
 
 const ViewAllMaterialsAdmin = () => {
     const [data, isLoading, refetch, error] = useGetQuery('all-study-materials-admin', '/all-materials')
@@ -12,9 +13,9 @@ const ViewAllMaterialsAdmin = () => {
     }
 
     return (
-        <div>
+        <Container>
             <Heading heading={'All study Materials'} />
-            <div className="overflow-x-auto bg-base-100">
+            <div className="overflow-x-auto bg-base-100 my-8">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead className='bg-base-300'>
@@ -31,7 +32,7 @@ const ViewAllMaterialsAdmin = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </Container>
     );
 };
 

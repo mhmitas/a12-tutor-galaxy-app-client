@@ -17,7 +17,8 @@ const tutorMenuItems = <>
 
 
 const adminMenuItems = <>
-    <li><NavLink>All users</NavLink></li>
+    {/* <li><NavLink>All users</NavLink></li> */}
+    <li><NavLink to="/dashboard/admin/manage-users">Manage users</NavLink></li>
     <li><NavLink to="/dashboard/admin/all-study-sessions">All study sessions</NavLink></li>
     <li><NavLink to="/dashboard/admin/all-study-materials">All materials</NavLink></li>
 </>

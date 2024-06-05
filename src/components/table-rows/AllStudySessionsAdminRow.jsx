@@ -43,7 +43,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                             }`}
                     >{status.replace(/\b\w/g, match => match.toUpperCase())}</div>
                     <ul tabIndex={0}
-                        className={`dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box`}>
+                        className={`dropdown-content z-50 menu p-2 shadow bg-base-300 rounded-box `}>
                         <li><button onClick={handleApprove}>Approve</button></li>
                         <li><button onClick={handleReject}>Reject</button></li>
                     </ul>

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { GoX } from "react-icons/go";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast'
 
 const RejectSessionModal = ({ session, setShowRejectModal, refetch }) => {
     const axiosSecure = useAxiosSecure()
     const [processing, setProcessing] = useState(false)
-    console.log(session);
+
     async function handleSubmit(e) {
         e.preventDefault()
         const form = e.target

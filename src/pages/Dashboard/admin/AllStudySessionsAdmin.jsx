@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query'
@@ -7,13 +7,14 @@ import AllStudySessionsAdminRow from '../../../components/table-rows/AllStudySes
 
 const AllStudySessionsAdmin = () => {
     const { user, authLoading } = useAuth()
+    const [tabStatus, setTabStatus] = useState('pending')
     const axiosSecure = useAxiosSecure()
 
     const { data: sessions = [], isLoading, refetch } = useQuery({
-        queryKey: ['all-study-sessions-admin', user?.email],
+        queryKey: ['all-study-sessions-admin', user?.email, tabStatus],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosSecure(`/all-sessions`)
+            const { data } = await axiosSecure(`/all-sessions?status=${tabStatus}`)
             // console.log(data);
             return data
         }
@@ -26,7 +27,14 @@ const AllStudySessionsAdmin = () => {
     return (
         <div className='p-2 bg-base-100 min-h-screen'>
             <Heading heading='Manage All Sessions' />
-            <div className="overflow-x-auto">
+            <div className='my-8 '>
+                <div role="tablist" className="tabs tabs-bordered w-max mx-auto font-semibold">
+                    <span onClick={() => setTabStatus('pending')} role="tab" className={`tab ${tabStatus === 'pending' && 'tab-active text-primary'}`}>Pending</span>
+                    <span onClick={() => setTabStatus('approved')} role="tab" className={`tab ${tabStatus === 'approved' && 'tab-active text-primary'}`}>Approved</span>
+                    <span onClick={() => setTabStatus('rejected')} role="tab" className={`tab ${tabStatus === 'rejected' && 'tab-active text-primary'}`}>Rejected</span>
+                </div>
+            </div>
+            <div className="overflow-x-auto overflow-y-auto">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>

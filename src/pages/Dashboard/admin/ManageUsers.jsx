@@ -40,6 +40,7 @@ const ManageUsers = () => {
                             user={user}
                             key={user._id}
                             idx={idx}
+                            refetch={refetch}
                         />)}
                     </tbody>
                 </table>

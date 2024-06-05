@@ -16,10 +16,10 @@ const ConfirmModal = ({ message, onConfirm, onCancel }) => {
                 <h2 className="mb-2">Confirm Action</h2>
                 <p className="text-lg font-semibold mb-6">{message}</p>
                 <div className="flex justify-end space-x-4">
-                    <button className="btn btn-primary" onClick={onConfirm}>
+                    <button className="btn btn-sm rounded-sm btn-primary" onClick={onConfirm}>
                         Confirm
                     </button>
-                    <button className="btn btn-error" onClick={onCancel}>
+                    <button className="btn btn-sm rounded-sm btn-error" onClick={onCancel}>
                         Cancel
                     </button>
                 </div>

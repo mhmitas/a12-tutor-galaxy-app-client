@@ -37,12 +37,12 @@ const UpdateUserRoleModal = ({ setShowModal, role, user, refetch }) => {
                 <div className="flex justify-center space-x-4 mt-8">
                     <button
                         onClick={handleUpdateRole}
-                        className="btn btn-primary">
+                        className="btn btn-sm btn-primary">
                         Update
                     </button>
                     <button
                         onClick={() => setShowModal(false)}
-                        className="btn btn-error" >
+                        className="btn btn-sm btn-error" >
                         Cancel
                     </button>
                 </div>

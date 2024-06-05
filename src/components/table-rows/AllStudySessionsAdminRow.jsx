@@ -40,8 +40,22 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
         }
     }
 
-    function handleUpdate(updateData) {
-        console.log(updateData);
+    async function handleUpdate(updateData) {
+        // console.log(updateData);
+        try {
+            const { data } = await axiosSecure.patch(`/study-session/update-by-admin/${session?._id}`, updateData)
+            console.log(data);
+            if (data?.modifiedCount > 0) {
+                toast.success('Session updated successfully')
+            }
+            setShowUpdateModal(false)
+            refetch()
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message)
+            setShowUpdateModal(false)
+        }
+
     }
 
     return (
@@ -80,7 +94,7 @@ const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {
                         <button onClick={() => handleDelete(session._id)} className='btn btn-xs btn-ghost'><FaTrashAlt size={15} /></button>
                     </div>
                 }
-                {showUpdateModal && <UpdateStudySessionModal setShowModal={setShowUpdateModal} session={session} />}
+                {showUpdateModal && <UpdateStudySessionModal setShowModal={setShowUpdateModal} session={session} handleUpdate={handleUpdate} />}
             </td>
         </tr>
     );

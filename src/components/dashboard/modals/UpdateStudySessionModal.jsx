@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import uploadImage from '../../../utils/uploadImage';
 
 // this is for admin
-const UpdateStudySessionModal = ({ session, setShowModal }) => {
+const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
@@ -42,8 +42,8 @@ const UpdateStudySessionModal = ({ session, setShowModal }) => {
                 console.log(thumbnail_image);
             }
             const sessionInfo = { ...data, classDuration, registrationDuration, thumbnail_image }
-            // post on database
-            console.table(sessionInfo);
+            // update session: call update function
+            await handleUpdate(sessionInfo)
 
         } catch (err) {
             console.error(err);

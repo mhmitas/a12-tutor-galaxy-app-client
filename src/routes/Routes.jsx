@@ -22,6 +22,7 @@ import ViewSessionMaterials from "../pages/Dashboard/student/ViewSessionMaterial
 import PrivateRoute from "./PrivateRoute";
 import StudentRoute from "./StudentRoute";
 import AllStudySessionsAdmin from "../pages/Dashboard/admin/AllStudySessionsAdmin";
+import UpdateStudySession from "../pages/Dashboard/shared/UpdateStudySession";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <SessionDetail />
                 </PrivateRoute>
+            },
+            {
+                path: 'test',
+                element: <UpdateStudySession />
             }
         ],
     },

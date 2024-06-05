@@ -100,6 +100,8 @@ const SessionDetail = () => {
         // navigate('/')
     }
 
+    console.log(data);
+
     return (
         <div>
             <section className="bg-base-100 my-10">

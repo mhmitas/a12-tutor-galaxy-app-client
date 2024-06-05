@@ -52,7 +52,7 @@ const UpdateStudySession = () => {
         <Container>
             <Heading heading="Update Study Session" />
             <section className='mt-8 mb-20'>
-                <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md overflow-x-auto'>
+                <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 sm:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md overflow-x-auto'>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Tutor Name</span>
@@ -83,54 +83,51 @@ const UpdateStudySession = () => {
                         </label>
                         <input {...register('registration_fee')} defaultValue={0} readOnly type="text" className="input input-bordered" required />
                     </div>
-                    <div className='flex justify-between flex-col lg:flex-row md:col-span-2'>
-                        {/* registration duration */}
-                        <div className="flex gap-2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text ">Registration Start Date</span>
-                                </label>
-                                <input name="regStart" type="date" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text ">Registration End Date</span>
-                                </label>
-                                <input name="regEnd" type="date" className="input input-bordered" />
-                            </div>
-                        </div>
-                        <div className="divider divider-horizontal hidden md:flex"></div>
-                        {/* class start to end date duration */}
-                        <div className="flex gap-2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text ">Class Start Date</span>
-                                </label>
-                                <input name="endDate" type="date" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text ">Class End Date</span>
-                                </label>
-                                <input name="startDate" type="date" className="input input-bordered" />
-                            </div>
-                        </div>
+                    {/* registration duration */}
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text ">Registration Start Date</span>
+                        </label>
+                        <input name="regStart" type="date" className="input input-bordered" />
                     </div>
-                    <div className="form-control md:col-span-2">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text ">Registration End Date</span>
+                        </label>
+                        <input name="regEnd" type="date" className="input input-bordered" />
+                    </div>
+                    {/* <div className="divider divider-horizontal hidden md:flex"></div> */}
+                    {/* class start to end date duration */}
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text ">Class Start Date</span>
+                        </label>
+                        <input name="endDate" type="date" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text ">Class End Date</span>
+                        </label>
+                        <input name="startDate" type="date" className="input input-bordered" />
+                    </div>
+                    <div className='text-center w-full'>
+                        <label className="form-control w-full">
+                            <div className="label">
+                                <span className="label-text">Choose a Image</span>
+                            </div>
+                            <input {...register('thumbnail_image')} type="file" className="file-input file-input-bordered w-full" />
+                        </label>
+                    </div>
+                    <div className="form-control sm:col-span-2">
                         <label className="label">
                             <span className="label-text">Session Description</span>
                         </label>
                         <textarea required {...register('session_description')} className="textarea textarea-bordered" placeholder="About session"></textarea>
                     </div>
-                    <div className='text-center w-full md:col-span-2'>
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Choose a Image</span>
-                            </div>
-                            <input {...register('thumbnail_image')} type="file" className="file-input file-input-bordered w-full max-w-xs" />
-                        </label>
-                    </div>
-                    <div className='text-center w-full md:col-span-2 mt-8'>
+
+                    <div className='text-center w-full sm:col-span-2 mt-8'>
                         <button type='submit' className='btn btn-primary'>Submit</button>
                     </div>
                 </form>

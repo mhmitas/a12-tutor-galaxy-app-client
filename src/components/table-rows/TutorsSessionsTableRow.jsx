@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { BiSolidMessageAltDetail } from "react-icons/bi";
+import { MdOutlineFeedback } from "react-icons/md";
 import FeedbackAndRequestModal from '../dashboard/modals/FeedbackAndRequestModal';
 
 const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
@@ -26,7 +26,7 @@ const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
 
                 </td>
                 <td>{status === 'rejected' &&
-                    <button onClick={handleReasonModal} className='btn btn-ghost btn-xs'><BiSolidMessageAltDetail size={18} /></button>
+                    <button title='Click to see detail' onClick={handleReasonModal} className='btn btn-ghost btn-xs'><MdOutlineFeedback size={20} /></button>
                 }
                     {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} sessionId={session?._id} session={session} refetch={refetch} />}
                 </td>

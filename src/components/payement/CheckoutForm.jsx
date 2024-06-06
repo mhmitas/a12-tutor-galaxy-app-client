@@ -74,6 +74,7 @@ const CheckoutForm = ({ session, setComplete }) => {
                 sessionId: session._id,
                 userName: user?.displayName,
                 userEmail: user?.email,
+                uid: user?.uid,
                 // payment info
                 paymentInfo: {
                     amount: paymentIntent?.amount,

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
-const CheckoutForm = ({ registration_fee }) => {
+const CheckoutForm = ({ session, setComplete }) => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [errorMessage, setErrorMessage] = useState('')
@@ -11,6 +12,8 @@ const CheckoutForm = ({ registration_fee }) => {
     const [clientSecret, setClientSecret] = useState('')
     const stripe = useStripe()
     const elements = useElements()
+
+    const { session_title, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration } = session
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: registration_fee })
@@ -23,6 +26,7 @@ const CheckoutForm = ({ registration_fee }) => {
 
     async function handleSubmit(event) {
         event.preventDefault()
+        setProcessing(true)
 
         if (!stripe || !elements) {
             return
@@ -40,6 +44,7 @@ const CheckoutForm = ({ registration_fee }) => {
         if (error) {
             console.log('[error]', error);
             setErrorMessage(error.message)
+            setProcessing(false)
             return
         } else {
             setErrorMessage('')
@@ -60,9 +65,31 @@ const CheckoutForm = ({ registration_fee }) => {
         if (confirmError) {
             setErrorMessage(confirmError.message)
             console.log(confirmError);
+            setProcessing(false)
         }
-        if (paymentIntent) {
+        if (paymentIntent.status === 'succeeded') {
+            const sessionData = {
+                session_title, tutor_email, tutor_name, registrationDuration, classDuration,
+                sessionId: session._id,
+                userName: user?.displayName,
+                userEmail: user?.email,
+            }
+            try {
+                const res = await axiosSecure.post(`/bookings`, sessionData)
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success('Congratulation! Payment successful')
+                    setComplete(true)
+                }
+            } catch (err) {
+                console.error(err);
+                setErrorMessage(err.message)
+                setProcessing(false)
+            }
+
             console.log('paymentIntent:', paymentIntent);
+            setErrorMessage('')
+            setProcessing(false)
         }
 
     }
@@ -89,10 +116,9 @@ const CheckoutForm = ({ registration_fee }) => {
                 />
                 {errorMessage && <p className='text-error mb-4'>{errorMessage}</p>}
                 <div className='flex justify-center'>
-                    <button type="submit" disabled={!stripe} className="btn btn-primary btn-sm rounded-sm">
-                        Pay ${registration_fee}
-                    </button>
+                    <button type="submit" disabled={!stripe || processing} className="btn btn-primary btn-sm rounded-sm">Pay ${registration_fee}</button>
                 </div>
+                {processing && <div className='absolute z-50 inset-0 flex justify-center items-center bg-black bg-opacity-20'><span className='loading loading-spinner '></span></div>}
             </form>
         </div>
     );

@@ -1,79 +1,44 @@
 import React from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Heading from '../../../components/common/Heading';
-import ViewAllMaterialsRow from '../../../components/table-rows/ViewAllMaterialsRow';
-import askConfirm from '../../../components/modals/confirm-modal/AskConfirm';
-import toast from 'react-hot-toast'
+import StudentMaterialCard from '../../../components/dashboard/cards/StudentMaterialCard';
+import { FaPlus } from "react-icons/fa";
+import StudyMaterialCard from '../../../components/dashboard/cards/StudyMaterialCard';
 
-const ViewAllMaterials = () => {
+const ViewMaterialsTutor = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
+    const { id } = useParams()
+
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: materials = [], isLoading, refetch } = useQuery({
-        queryKey: ['all-study-materials', user?.email],
+    const { data = [], isLoading, refetch } = useQuery({
+        queryKey: ['browse-a-sessions-materials', id],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosSecure(`/materials/tutor/${user?.email}`)
+            const { data } = await axiosSecure(`/materials/session/${id}`)
             // console.log(data);
             return data
         }
     })
 
-    if (isLoading) {
-        return <span>Loading...</span>
-    }
-
-    console.log(materials);
-
-    async function handleDelete(id) {
-        try {
-            const ask = await askConfirm('Are you sure? You want to delete this material')
-            if (!ask) { return };
-            const { data } = await axiosSecure.delete(`/materials/delete/${id}`)
-            console.log(data);
-            toast.success('Successfully Deleted')
-            refetch()
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
     return (
-        <div className='p-2'>
-            <Heading heading="View All Materials" />
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10'>
-                {materials.map((material, idx) => <ViewAllMaterialsRow
-                    material={material}
-                    key={material._id}
-                    handleDelete={handleDelete}
-                    refetch={refetch}
-                />)}
-            </div>
-            {/* ------------------ */}
-            {/* <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                    <thead>
-                        <tr className='bg-base-300'>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Reason</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {materials.map((material, idx) => <ViewAllMaterialsRow
-                            material={material}
-                            key={material._id}
-                            idx={idx}
-                        />)}
-                    </tbody>
-                </table>
-
+        <div>
+            <Heading heading={searchParams.get('title')} subHeading={'All Materials'} />
+            {/* <div className='flex justify-end'>
+                <button className='btn btn-primary btn-sm btn-circle'><FaPlus size={18} /></button>
             </div> */}
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10'>
+                {data.length < 1 ?
+                    <p className='text-center'>No material available</p> :
+                    data.map(material => <StudyMaterialCard material={material} key={material._id} refetch={refetch} />)
+                }
+            </div>
         </div>
     );
 };
 
-export default ViewAllMaterials;
+export default ViewMaterialsTutor;

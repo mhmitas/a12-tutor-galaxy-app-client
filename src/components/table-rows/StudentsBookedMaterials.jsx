@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const StudentsBookedMaterialsRow = ({ session, idx }) => {
+    console.log(session);
     return (
         <tr>
             <td>{idx + 1}</td>

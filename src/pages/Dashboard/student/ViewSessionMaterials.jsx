@@ -5,7 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Heading from '../../../components/common/Heading';
 import Container from '../../../components/shared/Container';
-import StudentMaterialCard from '../../../components/dashboard/cards/StudentMaterialCard';
+import StudyMaterialCard from '../../../components/dashboard/cards/StudyMaterialCard';
 
 const ViewSessionMaterials = () => {
     const { id } = useParams()
@@ -29,7 +29,7 @@ const ViewSessionMaterials = () => {
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10'>
                 {data.length < 1 ?
                     <p className='text-center'>No material available</p> :
-                    data.map(material => <StudentMaterialCard material={material} key={material._id} />)
+                    data.map(material => <StudyMaterialCard material={material} key={material._id} />)
                 }
             </div>
         </Container>

@@ -13,7 +13,7 @@ const useMyBookingIds = () => {
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/bookings/session-ids/${user?.email}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

@@ -8,7 +8,7 @@ const StudentSessionMaterialsTableRow = ({ session, idx }) => {
             <td>{session?.session_title}</td>
             <td>{session?.tutor_name}</td>
             <td>
-                <Link to={`/dashboard/student/session-materials1/${session?.sessionId}`}><button className='btn btn-sm btn-primary'>View Materials</button></Link>
+                <Link to={`/dashboard/student/session-materials1/${session?.sessionId}?title=${session?.session_title}`}><button className='btn btn-sm btn-primary'>View Materials</button></Link>
             </td>
         </tr>
     );

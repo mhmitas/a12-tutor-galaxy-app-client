@@ -8,6 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast'
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import useMyBookingIds from '../../hooks/useMyBookingIds';
 
 const SessionDetail = () => {
     const navigate = useNavigate()
@@ -27,15 +28,7 @@ const SessionDetail = () => {
     })
 
     // get booked sessions ids by current user/student
-    const { data: usersBooedIds = [], isPending: isIdsLoading, refetch: refetchUsersBooedIds } = useQuery({
-        queryKey: ['usersBooedIds', user?.email],
-        enabled: !authLoading || !!user?.email,
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/bookings/session-ids/${user?.email}`)
-            // console.log(data);
-            return data
-        }
-    })
+    const [usersBooedIds, isIdsLoading, refetchUsersBooedIds] = useMyBookingIds()
 
     // get session's review from database:
     const { data: reviews = [], isLoading: reviewsLoading } = useQuery({
@@ -46,6 +39,7 @@ const SessionDetail = () => {
             return data
         }
     })
+
     const averageRatings = reviews?.reduce((total, review) => total + review.rating, 0) / reviews?.length || 0
     // console.log(averageRatings);
 

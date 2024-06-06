@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import Heading from '../../components/common/Heading';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useGetQuery from '../../hooks/useGetQuery';
 import useAuth from '../../hooks/useAuth';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../../components/payement/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import CongratulateModal from '../../components/modals/CongratulationModal';
+import useMyBookingIds from '../../hooks/useMyBookingIds';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK)
 
 const Payment = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
     const { user, authLoading } = useAuth()
     const [complete, setComplete] = useState(false)
     const [data, isLoading, refetch, error] = useGetQuery(`payment-${id}`, `/study-sessions/detail/${id}`)
+    const [bookingIds, idsPending, idsRefetch] = useMyBookingIds()
 
     const { session_title, thumbnail_image, tutor_email, tutor_name, registration_fee, } = data;
 
-    if (isLoading || authLoading) {
+    if (bookingIds.includes(id)) {
+        navigate(-1)
+    }
+
+    if (isLoading || authLoading || idsPending) {
         return <span>Loading...</span>
     }
 

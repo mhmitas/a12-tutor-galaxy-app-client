@@ -67,12 +67,18 @@ const CheckoutForm = ({ session, setComplete }) => {
             console.log(confirmError);
             setProcessing(false)
         }
+        console.log(paymentIntent);
         if (paymentIntent.status === 'succeeded') {
             const sessionData = {
-                session_title, tutor_email, tutor_name, registrationDuration, classDuration,
+                session_title, tutor_email, tutor_name, registrationDuration, classDuration, registration_fee,
                 sessionId: session._id,
                 userName: user?.displayName,
                 userEmail: user?.email,
+                // payment info
+                paymentInfo: {
+                    amount: paymentIntent?.amount,
+                    paymentId: paymentIntent?.id
+                }
             }
             try {
                 const res = await axiosSecure.post(`/bookings`, sessionData)

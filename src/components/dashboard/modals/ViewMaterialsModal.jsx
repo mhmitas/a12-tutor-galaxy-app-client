@@ -29,8 +29,8 @@ const ViewMaterialsModal = ({ material, setShowModal, refetch, setShowUpdateModa
 
     return (
         <div onClick={handleOverlayClick} className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-10 z-50'>
-            <div className='card bg-base-100 rounded-md shadow max-w-sm'>
-                <figure><img className='max-w-sm' src={material?.imageUrl} alt="" /></figure>
+            <div className='card bg-base-100 rounded-md shadow max-w-sm max-h-screen overflow-y-auto'>
+                <figure><img className='max-w-sm ' src={material?.imageUrl} alt="" /></figure>
                 <div className="card-body">
                     <div className=''>
                         <h2 className='card-title text-lg mb-2'>Topic: {material?.materialTitle?.slice(0, 55)}</h2>

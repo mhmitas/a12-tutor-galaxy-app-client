@@ -18,7 +18,7 @@ const ViewAllMaterialsAdminRow = ({ material, idx, refetch }) => {
             <td>
                 <button onClick={() => setShowModal(true)} className='btn btn-sm btn-neutral'>View</button>
                 {showModal && <ViewMaterialsModal material={material} setShowModal={setShowModal} refetch={refetch} setShowUpdateModal={setShowUpdateModal} />}
-                {showUpdateModal && <UpdateMaterialModal material={material} setShowModal={setShowUpdateModal} refetch={refetch} />}
+                {showUpdateModal && <UpdateMaterialModal material={material} setShowModal={setShowUpdateModal} refetch={refetch} updateEndPoint={'materials/update-by-admin'} />}
             </td>
         </tr>
     );

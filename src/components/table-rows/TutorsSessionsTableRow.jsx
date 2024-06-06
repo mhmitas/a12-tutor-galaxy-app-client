@@ -33,7 +33,7 @@ const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
                 <td>
                     <div className='flex items-center gap-2'>
                         <span className='btn btn-xs btn-ghost'><FaEdit size={14} /></span>
-                        <button onClick={() => handleDelete(session?._id)} className='btn btn-xs btn-ghost'><FaTrashAlt className='' /></button>
+                        <button disabled={session.status === 'approved'} onClick={() => handleDelete(session?._id)} className='btn btn-xs btn-ghost'><FaTrashAlt className='' /></button>
                     </div>
                 </td>
             </tr>

@@ -25,8 +25,8 @@ import UpdateStudySession from "../pages/Dashboard/shared/UpdateStudySession";
 import ViewAllMaterialsAdmin from "../pages/Dashboard/admin/ViewAllMaterialsAdmin";
 import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
 import Payment from "../pages/payment/Payment";
-import ViewSessionsToBrowseMaterials from "../pages/Dashboard/tutor/ViewSessionToBrowseMaterials";
-import ViewMaterialsTutor from "../pages/Dashboard/tutor/ViewAllMaterials";
+import AllMaterialsOfTutor from "../pages/Dashboard/tutor/AllMaterialsOfTutor";
+import SessionsMaterial from "../pages/Dashboard/tutor/materials-session";
 
 export const router = createBrowserRouter([
     {
@@ -115,12 +115,12 @@ export const router = createBrowserRouter([
                 element: <UploadMaterials />
             },
             {
-                path: 'all-study-sessions/materials',
-                element: <ViewSessionsToBrowseMaterials />
+                path: 'tutor/view-all-materials',
+                element: <AllMaterialsOfTutor />
             },
             {
-                path: 'view-all-materials/:id',
-                element: <ViewMaterialsTutor />
+                path: 'tutor/view-all-materials/:id',
+                element: <SessionsMaterial />
             },
             // admin related routes
             {

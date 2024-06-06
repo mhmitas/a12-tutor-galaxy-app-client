@@ -11,7 +11,7 @@ const tutorMenuItems = <>
     <li><NavLink to="/dashboard/create-study-session">Create a session</NavLink></li>
     <li><NavLink to="/dashboard/all-study-sessions">View all sessions</NavLink></li>
     <li><NavLink to="/dashboard/upload-materials">Upload materials</NavLink></li>
-    <li><NavLink to="/dashboard/all-study-sessions/materials">View all materials</NavLink></li>
+    <li><NavLink to="/dashboard/tutor/view-all-materials">View all materials</NavLink></li>
     {/* <li><NavLink>View all notes</NavLink></li> */}
 </>
 

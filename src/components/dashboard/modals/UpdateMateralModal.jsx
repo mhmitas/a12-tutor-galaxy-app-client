@@ -3,7 +3,7 @@ import uploadImage from '../../../utils/uploadImage';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 
-const UpdateMaterialModal = ({ material, setShowModal, refetch }) => {
+const UpdateMaterialModal = ({ material, setShowModal, refetch, updateEndPoint }) => {
     const [uploading, setUploading] = useState(false)
     const axiosSecure = useAxiosSecure()
     // console.log(material);
@@ -28,7 +28,7 @@ const UpdateMaterialModal = ({ material, setShowModal, refetch }) => {
             }
             console.table(materials);
             // post on db;
-            const result = await axiosSecure.patch(`/materials/update/${material?._id}`, materials)
+            const result = await axiosSecure.patch(`/${updateEndPoint}/${material?._id}`, materials)
             console.log(result.data);
             if (result.data?.modifiedCount > 0) {
                 toast.success("Material Updated")
@@ -75,7 +75,6 @@ const UpdateMaterialModal = ({ material, setShowModal, refetch }) => {
                             </label>
                             <input
                                 name='drive_link'
-                                required
                                 defaultValue={driveLink}
                                 className='input input-bordered'
                                 type="text" />

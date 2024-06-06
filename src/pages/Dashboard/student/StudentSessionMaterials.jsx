@@ -23,6 +23,10 @@ const StudentSessionMaterials = () => {
         }
     })
 
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
     return (
         <div>
             <Heading heading={searchParams.get('title')} />

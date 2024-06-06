@@ -1,7 +1,4 @@
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, } from "react-router-dom";
 import Root from "../layouts/root";
 import Home from "../pages/home/Home";
 import SignIn from "../pages/authentication/SignIn";
@@ -16,8 +13,6 @@ import BookedSessionDetail from "../pages/Dashboard/student/BookedSessionDetail"
 import CreateNote from "../pages/Dashboard/student/CreateNote";
 import ManageNotes from "../pages/Dashboard/student/ManageNotes";
 import UpdateNote from "../pages/Dashboard/student/UpdateNote";
-import ViewAllStudyMaterials from "../pages/Dashboard/student/ViewAllStudyMaterilas";
-import ViewSessionMaterials from "../pages/Dashboard/student/ViewSessionMaterials";
 import PrivateRoute from "./PrivateRoute";
 import StudentRoute from "./StudentRoute";
 import AllStudySessionsAdmin from "../pages/Dashboard/admin/AllStudySessionsAdmin";
@@ -27,6 +22,8 @@ import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
 import Payment from "../pages/payment/Payment";
 import AllMaterialsOfTutor from "../pages/Dashboard/tutor/AllMaterialsOfTutor";
 import SessionsMaterial from "../pages/Dashboard/tutor/materials-session";
+import StudentSessionMaterialsTable from "../pages/Dashboard/student/StudentSessionMaterialsTable";
+import StudentSessionMaterials from "../pages/Dashboard/student/StudentSessionMaterials";
 
 export const router = createBrowserRouter([
     {
@@ -90,15 +87,15 @@ export const router = createBrowserRouter([
                 element: <UpdateNote />
             },
             {
-                path: 'student/all-materials',
+                path: 'student/session-materials',
                 element: <StudentRoute>
-                    <ViewAllStudyMaterials />
+                    <StudentSessionMaterialsTable />
                 </StudentRoute>
             },
             {
-                path: 'student/session-materials/:id',
+                path: 'student/session-materials1/:id',
                 element: <StudentRoute>
-                    <ViewSessionMaterials />
+                    <StudentSessionMaterials />
                 </StudentRoute>
             },
             // tutor related routes

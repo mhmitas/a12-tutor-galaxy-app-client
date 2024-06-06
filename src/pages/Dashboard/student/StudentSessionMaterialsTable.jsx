@@ -1,15 +1,18 @@
 import React from 'react';
-import Heading from '../../../components/common/Heading';
-import Container from '../../../components/shared/Container';
 import useStudentBookedSessions from '../../../hooks/useStudentBookedSessions';
-import BookedSessionsRow from '../../../components/table-rows/BookedSessionsRow';
 import StudentsBookedMaterialsRow from '../../../components/table-rows/StudentsBookedMaterials';
+import Heading from '../../../components/common/Heading';
+import StudentSessionMaterialsTableRow from '../../../components/table-rows/StudentSessionMaterialsTableRow';
 
-const ViewAllStudyMaterials = () => {
+const StudentSessionMaterialsTable = () => {
     const [bookedSessions, isLoading, refetch] = useStudentBookedSessions()
 
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
     return (
-        <Container>
+        <div>
             <Heading heading={'All Study Materials'} />
             {bookedSessions.length}
             <div className="overflow-x-auto">
@@ -24,7 +27,7 @@ const ViewAllStudyMaterials = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {bookedSessions.map((session, idx) => <StudentsBookedMaterialsRow
+                        {bookedSessions.map((session, idx) => <StudentSessionMaterialsTableRow
                             session={session}
                             refetch={refetch}
                             key={session._id}
@@ -34,8 +37,7 @@ const ViewAllStudyMaterials = () => {
                 </table>
 
             </div>
-        </Container>
+        </div>
     );
 };
-
-export default ViewAllStudyMaterials;
+export default StudentSessionMaterialsTable;

@@ -24,6 +24,7 @@ import AllMaterialsOfTutor from "../pages/Dashboard/tutor/AllMaterialsOfTutor";
 import SessionsMaterial from "../pages/Dashboard/tutor/materials-session";
 import StudentSessionMaterialsTable from "../pages/Dashboard/student/StudentSessionMaterialsTable";
 import StudentSessionMaterials from "../pages/Dashboard/student/StudentSessionMaterials";
+import AllSessions from "../pages/all-sessions/AllSessions";
 
 export const router = createBrowserRouter([
     {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:id',
                 element: <Payment />
-            }
+            },
+            {
+                path: 'all-sessions',
+                element: <AllSessions />
+            },
         ],
     },
     {

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useRole from '../../../hooks/useRole';
+import UpdateHeroModal from '../../../components/modals/UpdateHeroSectionModal';
 
 const Hero = () => {
+    const [role, isLoading] = useRole()
+    // const [showUpdateModal, setShowUpdateModal] = useState(false)
     return (
         <div>
-            <div className="hero h-[600px] pt-2" style={{ backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)' }}>
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-center text-neutral-content">
+            <div className="h-[600px] mt-2" style={{ backgroundImage: 'url(https://i.ibb.co/XS6ZN8H/90.jpg)' }}>
+                <div className="flex text-center justify-center items-center h-full bg-black w-full bg-opacity-25 text-white">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">TutorGalaxy</h1>
                         <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>

@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Heading from '../../../components/common/Heading';
+import StudentMaterialCard from '../../../components/dashboard/cards/StudentMaterialCard';
 
 // Here a student can see a session's all study materials(new)
 const StudentSessionMaterials = () => {
@@ -27,7 +28,7 @@ const StudentSessionMaterials = () => {
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10'>
                 {data.length < 1 ?
                     <p className='text-center'>No material available</p> :
-                    data.map(data => 'hello')
+                    data.map(data => <StudentMaterialCard material={data} key={data._id} />)
                 }
             </div>
         </div>

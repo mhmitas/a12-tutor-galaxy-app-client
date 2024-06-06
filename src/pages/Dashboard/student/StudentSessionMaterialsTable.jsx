@@ -1,6 +1,5 @@
 import React from 'react';
 import useStudentBookedSessions from '../../../hooks/useStudentBookedSessions';
-import StudentsBookedMaterialsRow from '../../../components/table-rows/StudentsBookedMaterials';
 import Heading from '../../../components/common/Heading';
 import StudentSessionMaterialsTableRow from '../../../components/table-rows/StudentSessionMaterialsTableRow';
 

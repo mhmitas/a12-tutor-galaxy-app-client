@@ -1,29 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Heading from '../../../components/common/Heading';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from "@tanstack/react-query";
 import UsersTableRow from '../../../components/table-rows/UsersTableRow';
+import { FaSearch } from "react-icons/fa";
+import { axiosInstance } from '../../../utils/axiosInstance';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure()
-
+    const [searchText, setSearchText] = useState('')
+    console.log(searchText);
     const { data: users = [], isLoading, refetch } = useQuery({
-        queryKey: ['manage-all-users'],
+        queryKey: ['manage-all-users', searchText],
         queryFn: async () => {
-            const { data } = await axiosSecure.get('/users')
+            const { data } = await axiosSecure.get(`/users?searchText=${searchText}`)
             // console.log(data);
             return data
         }
     })
 
-    if (isLoading) {
-        return <span>Loading...</span>
+    async function handleSearch(e) {
+        e.preventDefault()
+        setSearchText(e.target.search.value)
+        // console.log(e.target.search.value);
+        refetch()
     }
 
     return (
         <div className='p-4'>
             <Heading heading={'All Users'} />
+            <form onSubmit={handleSearch} className="max-w-lg mx-auto my-6">
+                <label className="input input-bordered flex items-center gap-2">
+                    <input onChange={e => e.target.value.length === 0 && setSearchText('')} type="text" name='search' className="grow" placeholder="Search user..." />
+                    <button type='submit' className='btn btn-info btn-sm px-4'><FaSearch /></button>
+                </label>
+            </form>
             <div className="overflow-x-auto bg-base-100 mb-10 ">
+                {isLoading && <span>Loading...</span>}
                 <table className="table table-zebra">
                     {/* head */}
                     <thead className='bg-base-300'>

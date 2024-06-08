@@ -29,7 +29,7 @@ const Profile = () => {
             <div className='bg-gray-100'>
                 <div className="mx-auto p-5">
                     <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-                        <div className="bg-cover bg-center h-40" style={{ backgroundImage: "url(https://i.ibb.co/fGVzbks/default-learning.jpg)" }}></div>
+                        <div className="bg-cover bg-center h-40 lg:h-52" style={{ backgroundImage: "url(https://i.ibb.co/fGVzbks/default-learning.jpg)" }}></div>
                         <div className="p-5 pb-0 flex justify-center">
                             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white -mt-16">
                                 <img src={user?.photoURL ? user?.photoURL : 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Profile Picture" />

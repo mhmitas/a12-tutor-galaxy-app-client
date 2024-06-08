@@ -37,6 +37,28 @@ const BookedSessionDetail = () => {
             return data
         }
     })
+
+    // load materials of the session
+    const { data: materials = [], isLoading: materialsLoading } = useQuery({
+        queryKey: ['browse-a-sessions-materials', id],
+        enabled: !authLoading || !!user?.email,
+        queryFn: async () => {
+            const { data } = await axiosSecure(`/materials/session/${id}`)
+            // console.log(data);
+            return data
+        }
+    })
+
+    // all students booked session
+    const { data: classmates = [], isLoading: isClassmatesLoading } = useQuery({
+        queryKey: ['classmates', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure(`/bookings/all-students/${id}`)
+            console.log(data);
+            return data
+        }
+    })
+
     const { session_title, thumbnail_image, tutor_email, tutor_name, classDuration, session_description } = session;
 
     // review and rating function
@@ -78,9 +100,47 @@ const BookedSessionDetail = () => {
                                 <p><strong>Class Start Date:</strong> {format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</p>
                                 <p><strong>Class End Date:</strong> {format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</p>
                             </div>
+                            <div className='flex items-center gap-3'>
+                                <p>Your classmates</p>
+                                <div className="avatar-group -space-x-3 rtl:space-x-reverse btn btn-sm btn-ghost p-0">
+                                    {classmates?.slice(0, 3).map(s => <div
+                                        key={s?._id}
+                                        className="avatar">
+                                        <div className="w-6 rounded">
+                                            <img src={s?.image || 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Tailwind-CSS-Avatar-component" />
+                                        </div>
+                                    </div>)}
+                                    {classmates?.length > 2 && <div className="avatar placeholder">
+                                        <div className="w-6 bg-neutral text-neutral-content">
+                                            <span>+{classmates?.length - 3}</span>
+                                        </div>
+                                    </div>}
+                                </div>
+                            </div>
                         </div>
                     </div>
-
+                    {/* session contents */}
+                    <div className=' mt-16'>
+                        <h3 className='card-title my-2'>Materials</h3>
+                        <div className='flex overflow-x-auto gap-3'>
+                            {materials.map(material => <div key={material._id} className='card card-compact bg-base-100 w-max min-w-52 rounded-md'>
+                                <div className='card-body'>
+                                    <h3 className='card-title text-lg'>{material?.session_title}</h3>
+                                    <div>Google Drive Link: <a className='link link-primary' target='_blank' href={material?.driveLink}>Click</a></div>
+                                    <div>Image Link: <a className='link link-primary' target='_blank' href={material?.imageUrl}>Click</a></div>
+                                </div>
+                            </div>)}
+                        </div>
+                    </div>
+                    <div className='mt-10'>
+                        <h3 className='card-title my-2'>Videos</h3>
+                        <div className='flex overflow-x-auto gap-3'>
+                            <p>Coming soon</p>
+                            <div className='card bg-base-100'>
+                            </div>
+                        </div>
+                    </div>
+                    {/* review section */}
                     <div className="mt-20">
                         <h2 className="text-xl mb-3">Please review this session</h2>
                         <div>

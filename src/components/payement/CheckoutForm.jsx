@@ -14,7 +14,7 @@ const CheckoutForm = ({ session, setComplete }) => {
     const stripe = useStripe()
     const elements = useElements()
 
-    const { session_title, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration } = session
+    const { session_title, tutor_email, tutor_name, registration_fee, classDuration } = session
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: registration_fee })

@@ -1,10 +1,18 @@
 import React from 'react';
 import SessionsCard from './SessionsCard';
-import useStudySessions from '../../../hooks/useStudySessions';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const Sessions = () => {
-    const [sessions, isLoading, error] = useStudySessions(7, 'approved')
-    // console.log(sessions);
+    const axiosSecure = useAxiosSecure()
+    const { data: sessions = [], isLoading, error } = useQuery({
+        queryKey: ['home-page-sessions'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/study-sessions?limit=7&status=approved`)
+            return data
+        }
+    })
 
     if (isLoading) {
         return <span>Loading...</span>
@@ -23,7 +31,7 @@ const Sessions = () => {
             <div className='text-center'>
                 {/* need to repair */}
                 {sessions?.length >= 6 &&
-                    <button className='btn btn-primary mt-8'>See all sessions</button>
+                    <Link to='/all-sessions'><button className='btn btn-primary mt-8'>See all sessions</button></Link>
                 }
             </div>
         </div>

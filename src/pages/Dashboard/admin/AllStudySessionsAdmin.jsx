@@ -14,7 +14,7 @@ const AllStudySessionsAdmin = () => {
         queryKey: ['all-study-sessions-admin', user?.email, tabStatus],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosSecure(`/all-sessions?status=${tabStatus}`)
+            const { data } = await axiosSecure(`/study-sessions/by-admin?status=${tabStatus}`)
             // console.log(data);
             return data
         }

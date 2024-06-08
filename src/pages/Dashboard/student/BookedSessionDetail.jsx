@@ -56,7 +56,7 @@ const BookedSessionDetail = () => {
         queryKey: ['classmates', id],
         queryFn: async () => {
             const { data } = await axiosSecure(`/bookings/all-students/${id}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

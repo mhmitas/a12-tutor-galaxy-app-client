@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -8,11 +8,13 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast'
+import ClassmatesModal from '../../../components/dashboard/modals/ClassmatesModal';
 
 const BookedSessionDetail = () => {
     const { id } = useParams()
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const [showClassmatesModal, setShowClassmatesModal] = useState(false)
     const {
         register,
         handleSubmit,
@@ -100,9 +102,11 @@ const BookedSessionDetail = () => {
                                 <p><strong>Class Start Date:</strong> {format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</p>
                                 <p><strong>Class End Date:</strong> {format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</p>
                             </div>
+
+                            {/* classmates section */}
                             <div className='flex items-center gap-3'>
                                 <p>Your classmates</p>
-                                <div className="avatar-group -space-x-3 rtl:space-x-reverse btn btn-sm btn-ghost p-0">
+                                <div onClick={() => setShowClassmatesModal(true)} className="avatar-group -space-x-3 rtl:space-x-reverse btn btn-sm btn-ghost p-0">
                                     {classmates?.slice(0, 3).map(s => <div
                                         key={s?._id}
                                         className="avatar">
@@ -186,6 +190,7 @@ const BookedSessionDetail = () => {
                     </div>
                 </div>
             </section>
+            {showClassmatesModal && <ClassmatesModal classmates={classmates} setShowModal={setShowClassmatesModal} />}
         </div>
     );
 };

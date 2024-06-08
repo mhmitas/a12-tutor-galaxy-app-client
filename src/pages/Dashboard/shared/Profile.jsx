@@ -12,7 +12,7 @@ const Profile = () => {
     const [role] = useRole()
     const axiosSecure = useAxiosSecure()
 
-    const { data: bookings } = useQuery({
+    const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings-in-profile', user],
         enabled: !authLoading || !!user,
         queryFn: async () => {
@@ -21,6 +21,10 @@ const Profile = () => {
             return data
         }
     })
+
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
 
     return (
         <div>
@@ -52,17 +56,19 @@ const Profile = () => {
                                 <p className="mt-2 text-gray-600">...</p>
                             </div> */}
                             </div>
-                            <div className="mt-5">
-                                <h2 className="text-xl font-semibold text-gray-800">Recently Joined</h2>
-                                <ul className="mt-2 space-y-2">
-                                    {bookings.map(booking => <li
-                                        key={booking._id}
-                                        className="bg-gray-100 p-4 rounded-lg">
-                                        <h3 className="text-lg font-bold text-gray-800">{booking?.session_title}</h3>
-                                        <p className="text-gray-600">{format(booking.bookingDate, 'dd MMM yyyy')}</p>
-                                    </li>)}
-                                </ul>
-                            </div>
+                            {role === 'student' &&
+                                <div className="mt-5">
+                                    <h2 className="text-xl font-semibold text-gray-800">Recently Joined</h2>
+                                    <ul className="mt-2 space-y-2">
+                                        {bookings.map(booking => <li
+                                            key={booking._id}
+                                            className="bg-gray-100 p-4 rounded-lg">
+                                            <h3 className="text-lg font-bold text-gray-800">{booking?.session_title}</h3>
+                                            <p className="text-gray-600">{format(booking.bookingDate, 'dd MMM yyyy')}</p>
+                                        </li>)}
+                                    </ul>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

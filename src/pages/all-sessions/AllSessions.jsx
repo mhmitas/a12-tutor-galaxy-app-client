@@ -74,7 +74,7 @@ const AllSessions = () => {
                     className={`btn ${currentPage === page ? 'btn-warning' : 'btn-neutral'} `}
                 >{page + 1}</button>)}
                 <select value={sessionsPerPage} onChange={(e) => { setSessionsPerPage(e.target.value); setCurrentPage(0) }} className='select select-bordered ml-2'>
-                    <option value={4}>Sessions Per Page 8</option>
+                    <option value={8}>Sessions Per Page 8</option>
                     <option value={10}>Sessions Per Page 15</option>
                     <option value={20}>Sessions Per Page 20</option>
                 </select>

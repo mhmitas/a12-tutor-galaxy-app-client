@@ -25,6 +25,7 @@ import SessionsMaterial from "../pages/Dashboard/tutor/materials-session";
 import StudentSessionMaterialsTable from "../pages/Dashboard/student/StudentSessionMaterialsTable";
 import StudentSessionMaterials from "../pages/Dashboard/student/StudentSessionMaterials";
 import AllSessions from "../pages/all-sessions/AllSessions";
+import Profile from "../pages/Dashboard/shared/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             <Dashboard />
         </PrivateRoute>,
         children: [
+            {
+                path: 'profile',
+                element: <Profile />
+            },
             // student related routes
             {
                 path: 'view-booked-sessions',

@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { formatISO } from "date-fns";
 
 const CheckoutForm = ({ session, setComplete }) => {
     const { user } = useAuth()
@@ -70,11 +71,12 @@ const CheckoutForm = ({ session, setComplete }) => {
         console.log(paymentIntent);
         if (paymentIntent.status === 'succeeded') {
             const sessionData = {
-                session_title, tutor_email, tutor_name, registrationDuration, classDuration, registration_fee,
+                session_title, tutor_email, tutor_name, classDuration, registration_fee,
                 sessionId: session._id,
                 userName: user?.displayName,
                 userEmail: user?.email,
                 uid: user?.uid,
+                bookingDate: formatISO(new Date()),
                 // payment info
                 paymentInfo: {
                     amount: paymentIntent?.amount,

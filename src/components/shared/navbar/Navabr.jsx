@@ -2,6 +2,7 @@ import React from 'react';
 import { navLinks } from './NavLinks';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, authLoading, signOutUser } = useAuth()
@@ -45,7 +46,8 @@ const Navbar = () => {
                                 </div>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 menu menu-sm dropdown-content bg-base-100 rounded-md w-52 shadow-xl">
                                     <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
-                                    <li><span onClick={handleSignOut}>Sign out</span></li>
+                                    <div className='divider my-0 py-0'></div>
+                                    <li><span onClick={handleSignOut}><FaSignOutAlt /> Sign out</span></li>
                                 </ul>
                             </div>
                             :

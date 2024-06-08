@@ -37,7 +37,7 @@ const Sidebar = () => {
             {/* <div className="divider divider-neutral"></div> */}
             {/* <li><NavLink to="/"><FaHome className='text-lg' />home</NavLink></li> */}
             <div className='divider mt-auto'></div>
-            <li><NavLink to={'/'}><FaRegUserCircle size={17} />Profile</NavLink></li>
+            <li><NavLink to={'/dashboard/profile'}><FaRegUserCircle size={17} />Profile</NavLink></li>
             <li className='mb-2'><button onClick={() => signOutUser()}><MdOutlineLogout size={20} />Sign out</button></li>
         </ul>
     );

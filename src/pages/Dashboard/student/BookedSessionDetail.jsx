@@ -8,7 +8,6 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast'
-import ClassmatesModal from '../../../components/dashboard/modals/ClassmatesModal';
 import Classmates from '../../../components/dashboard/student-booked-session-detail/Classmates';
 
 const BookedSessionDetail = () => {

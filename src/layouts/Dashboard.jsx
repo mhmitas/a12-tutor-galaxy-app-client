@@ -15,6 +15,10 @@ const DashboardRoutes = () => {
             console.log(';hello');
             navigate('/dashboard/view-booked-sessions', { replace: true })
         }
+        if (role === 'tutor' && location.pathname === '/dashboard') {
+            console.log(';hello');
+            navigate('/dashboard/tutor', { replace: true })
+        }
     }, [location])
 
     if (isLoading) {

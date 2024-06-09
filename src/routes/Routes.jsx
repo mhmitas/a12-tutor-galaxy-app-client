@@ -26,6 +26,7 @@ import StudentSessionMaterialsTable from "../pages/Dashboard/student/StudentSess
 import StudentSessionMaterials from "../pages/Dashboard/student/StudentSessionMaterials";
 import AllSessions from "../pages/all-sessions/AllSessions";
 import Profile from "../pages/Dashboard/shared/Profile";
+import TutorDashboard from "../pages/Dashboard/tutor/TutorDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
                 </StudentRoute>
             },
             // tutor related routes
+            {
+                path: 'tutor',
+                element: <TutorDashboard />
+            },
             {
                 path: 'create-study-session',
                 element: <CreateStudySession />

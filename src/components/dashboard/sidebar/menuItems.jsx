@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { FaPlusCircle, FaBookOpen, FaUpload, FaFolderOpen, FaChartPie } from 'react-icons/fa';
 
 const studentMenuItems = <>
     <li><NavLink to="/dashboard/view-booked-sessions">View booked sessions</NavLink></li>
@@ -8,10 +9,11 @@ const studentMenuItems = <>
 </>
 
 const tutorMenuItems = <>
-    <li><NavLink to="/dashboard/create-study-session">Create a session</NavLink></li>
-    <li><NavLink to="/dashboard/all-study-sessions">View all sessions</NavLink></li>
-    <li><NavLink to="/dashboard/upload-materials">Upload materials</NavLink></li>
-    <li><NavLink to="/dashboard/tutor/view-all-materials">View all materials</NavLink></li>
+    <li><NavLink to="/dashboard/tutor"><FaChartPie size={16} />Overview</NavLink></li>
+    <li><NavLink to="/dashboard/create-study-session"><FaPlusCircle size={16} /> Create a session</NavLink></li>
+    <li><NavLink to="/dashboard/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li>
+    <li><NavLink to="/dashboard/upload-materials"><FaUpload size={16} /> Upload materials</NavLink></li>
+    <li><NavLink to="/dashboard/tutor/view-all-materials">   <FaFolderOpen size={16} />View all materials</NavLink></li>
     {/* <li><NavLink>View all notes</NavLink></li> */}
 </>
 

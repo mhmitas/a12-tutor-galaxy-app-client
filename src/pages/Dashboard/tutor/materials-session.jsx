@@ -13,12 +13,11 @@ const SessionsMaterial = () => {
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    // in server as students and teachers are calling same api to see study materials i should THINK ABOUT IT ['/materials/session/]
     const { data = [], isLoading, refetch } = useQuery({
         queryKey: ['get-a-sessions-materials', id],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosSecure(`/materials/session/${id}`)
+            const { data } = await axiosSecure(`/api/tutor/materials/session/${id}`)
             // console.log(data);
             return data
         }

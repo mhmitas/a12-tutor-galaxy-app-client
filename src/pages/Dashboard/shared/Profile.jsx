@@ -30,9 +30,9 @@ const Profile = () => {
         <div>
             <Heading heading='Profile' />
             <div className='divider my-0'></div>
-            <div className='bg-gray-100'>
+            <div className='bg-base-100'>
                 <div className="mx-auto p-5">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+                    <div className="bg-base-100 rounded-lg shadow-xl overflow-hidden">
                         <div className="bg-cover bg-center h-40 lg:h-52" style={{ backgroundImage: "url(https://i.ibb.co/fGVzbks/default-learning.jpg)" }}></div>
                         <div className="p-5 pb-0 flex justify-center">
                             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white -mt-16">
@@ -41,9 +41,9 @@ const Profile = () => {
                         </div>
                         <div className="text-center mt-5 relative ">
                             <button className='absolute -bottom-4 right-8 btn btn-sm'><FaEdit /></button>
-                            <h1 className="text-3xl font-bold text-gray-900">{user?.displayName}</h1>
-                            <p className="text-gray-600">{user?.email}</p>
-                            <p className="mt-2 text-gray-600"></p>
+                            <h1 className="text-3xl font-bold">{user?.displayName}</h1>
+                            <p className="">{user?.email}</p>
+                            <p className="mt-2 "></p>
                         </div>
                         <div className="p-5 mt-8">
                             <div>

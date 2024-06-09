@@ -25,7 +25,7 @@ const UpdateProfile = ({ setShowUpdateForm }) => {
     async function onSubmit(form_data, event) {
         setIsUpdateProcessing(true)
         const image_file = event.target.image_file.files[0]
-        let image = userData?.image || user?.photoULR || null;
+        let image = userData?.image || user?.photoURL || null;
 
         try {
             // upload image in imgBB

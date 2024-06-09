@@ -63,6 +63,7 @@ const SignUp = () => {
                             <input
                                 autoFocus
                                 type="text"
+                                name='name'
                                 required
                                 {...register("userName")}
                                 className="input input-bordered"

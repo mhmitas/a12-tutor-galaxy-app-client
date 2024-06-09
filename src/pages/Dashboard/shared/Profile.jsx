@@ -23,7 +23,17 @@ const Profile = () => {
         }
     })
 
-    if (isLoading || isRoleLoading || authLoading) {
+    const { data: userData = {}, isLoading: userDataLoading } = useQuery({
+        queryKey: ['update-profile-data', user],
+        queryFn: async () => {
+            const { data } = await axiosSecure(`/users/role/${user?.email}?a=b`)
+            console.log(data);
+            return data
+        }
+
+    })
+
+    if (isLoading || isRoleLoading || authLoading || userDataLoading) {
         return <span>Loading...</span>
     }
 
@@ -37,13 +47,13 @@ const Profile = () => {
                         <div className="bg-cover bg-center h-40 lg:h-52" style={{ backgroundImage: "url(https://i.ibb.co/fGVzbks/default-learning.jpg)" }}></div>
                         <div className="p-5 pb-0 flex justify-center">
                             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white -mt-16">
-                                <img src={user?.photoURL ? user?.photoURL : 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Profile Picture" />
+                                <img src={userData?.image || user?.photoURL || 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Profile Picture" />
                             </div>
                         </div>
                         <div className="text-center mt-5 relative ">
                             <button onClick={() => setShowUpdateForm(true)} className='absolute -bottom-4 right-8 btn btn-sm'><FaEdit /></button>
-                            <h1 className="text-3xl font-bold">{user?.displayName}</h1>
-                            <p className="">{user?.email}</p>
+                            <h1 className="text-3xl font-bold">{userData?.name}</h1>
+                            <p className="">{userData?.email}</p>
                             <p className="">{role} at TutorGalsxy</p>
                         </div>
                         {showUpdateForm &&

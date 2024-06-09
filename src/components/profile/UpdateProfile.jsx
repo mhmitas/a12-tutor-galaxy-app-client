@@ -43,6 +43,7 @@ const UpdateProfile = ({ setShowUpdateForm }) => {
                 toast.success('Profile Updated')
                 setShowUpdateForm(false)
             }
+            refetch()
             setIsUpdateProcessing(false)
         } catch (err) {
             console.error(err);

@@ -16,7 +16,7 @@ const UpdateNote = () => {
 
     // get detail data of the session
     const { data: oldNote = {}, isPending, refetch } = useQuery({
-        queryKey: ['session-detail', id],
+        queryKey: ['update-note', id],
         enabledL: !!id || user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/notes/detail/${id}`)
@@ -34,6 +34,7 @@ const UpdateNote = () => {
             if (res.data.modifiedCount) {
                 toast.success('Note Updated')
                 navigate('/dashboard/manage-notes')
+                refetch()
             }
         } catch (err) {
             console.error(err);

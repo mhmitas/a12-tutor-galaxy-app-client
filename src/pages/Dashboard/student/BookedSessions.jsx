@@ -12,9 +12,9 @@ const BookedSessions = () => {
     }
 
     return (
-        <div className='p-2 bg-base-100 min-h-screen'>
+        <div className='p-2 min-h-screen'>
             <Heading heading='All Booked Sessions' />
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto bg-base-100">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>

@@ -31,10 +31,12 @@ const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
                     {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} sessionId={session?._id} session={session} refetch={refetch} />}
                 </td>
                 <td>
-                    <div className='flex items-center gap-2'>
-                        <span className='btn btn-xs btn-ghost'><FaEdit size={14} /></span>
-                        <button disabled={session.status === 'approved'} onClick={() => handleDelete(session?._id)} className='btn btn-xs btn-ghost'><FaTrashAlt className='' /></button>
-                    </div>
+                    {session?.status !== 'approved' &&
+                        <div className='flex items-center gap-2'>
+                            <button className='btn btn-xs btn-ghost'><FaEdit size={14} /></button>
+                            <button onClick={() => handleDelete(session?._id)} className='btn btn-xs btn-ghost'><FaTrashAlt className='' /></button>
+                        </div>
+                    }
                 </td>
             </tr>
         </>

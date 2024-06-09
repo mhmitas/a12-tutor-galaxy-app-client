@@ -4,7 +4,6 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from "@tanstack/react-query";
 import UsersTableRow from '../../../components/table-rows/UsersTableRow';
 import { FaSearch } from "react-icons/fa";
-import { axiosInstance } from '../../../utils/axiosInstance';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure()
@@ -13,7 +12,7 @@ const ManageUsers = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['manage-all-users', searchText],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/users?searchText=${searchText}`)
+            const { data } = await axiosSecure.get(`/api/admin/users?searchText=${searchText}`)
             // console.log(data);
             return data
         }

@@ -9,7 +9,7 @@ const UpdateUserRoleModal = ({ setShowModal, role, user, refetch }) => {
     async function handleUpdateRole() {
         const updateRole = { role: userRole }
         try {
-            const { data } = await axiosSecure.patch(`/users/update-role/${user._id}`, updateRole)
+            const { data } = await axiosSecure.patch(`/api/admin/users/update-role/${user._id}`, updateRole)
             console.log(data);
             if (data.modifiedCount > 0) {
                 toast.success(`${user?.name}'s role updated as ${userRole}`)

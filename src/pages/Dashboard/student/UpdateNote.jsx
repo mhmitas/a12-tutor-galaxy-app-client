@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast'
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
@@ -9,6 +9,7 @@ import Heading from '../../../components/common/Heading';
 
 const UpdateNote = () => {
     const navigate = useNavigate()
+    const [submitting, setSubmitting] = useState(false)
     const { register, handleSubmit, reset } = useForm()
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
@@ -27,6 +28,7 @@ const UpdateNote = () => {
     const { title, body, userEmail } = oldNote
 
     async function onSubmit(data) {
+        setSubmitting(true)
         const updateNote = { ...data }
         try {
             const res = await axiosSecure.patch(`/notes/update/${id}`, updateNote)
@@ -36,9 +38,11 @@ const UpdateNote = () => {
                 navigate('/dashboard/manage-notes')
                 refetch()
             }
+            setSubmitting(false)
         } catch (err) {
             console.error(err);
             toast.error(err.message)
+            setSubmitting(false)
         }
     }
 
@@ -49,15 +53,16 @@ const UpdateNote = () => {
     return (
         <div>
             <Heading heading="Update Note" />
-            <form onSubmit={handleSubmit(onSubmit)} className='shadow-lg p-2 md:p-4'>
+            <form onSubmit={handleSubmit(onSubmit)} className='shadow-lg p-2 md:p-4 relative'>
                 <input readOnly defaultValue={user?.email} type="email" className='input mb-1 w-full' />
                 <div className='flex flex-col bg-base-100'>
                     <textarea defaultValue={title} {...register('title')} className='textarea mb-1 text-lg ' placeholder='Title'></textarea>
                     <textarea defaultValue={body} {...register('body')} className='textarea min-h-60' placeholder={`Write Something Awesome...\nYou can submit you personal note link`}></textarea>
                 </div>
                 <div className='text-center mt-3'>
-                    <button className='btn btn-primary'>Update Note</button>
+                    <button disabled={submitting} className='btn btn-primary'>Update Note</button>
                 </div>
+                {submitting && <span className='loading loading-spinner absolute top-1/2 left-1/2'></span>}
             </form>
         </div>
     );

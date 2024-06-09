@@ -13,7 +13,7 @@ const StudentSessionMaterialsTable = () => {
     return (
         <div>
             <Heading heading={'All Study Materials'} />
-            {bookedSessions.length}
+            {/* {bookedSessions.length} */}
             <div className="overflow-x-auto">
                 <table className="table table-zebra bg-base-100">
                     {/* head */}

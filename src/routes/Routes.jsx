@@ -28,11 +28,13 @@ import AllSessions from "../pages/all-sessions/AllSessions";
 import Profile from "../pages/Dashboard/shared/Profile";
 import TutorDashboard from "../pages/Dashboard/tutor/TutorDashboard";
 import TutorAllStudySessions from "../pages/Dashboard/tutor/TutorAllStudySessions";
+import ErrorPage from "../pages/error/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',

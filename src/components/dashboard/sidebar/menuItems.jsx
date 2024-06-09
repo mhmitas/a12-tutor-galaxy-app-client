@@ -9,9 +9,10 @@ const studentMenuItems = <>
 </>
 
 const tutorMenuItems = <>
-    <li><NavLink to="/dashboard/tutor"><FaChartPie size={16} />Overview</NavLink></li>
+    <li><NavLink to="/dashboard/tutor" end><FaChartPie size={16} />Overview</NavLink></li>
     <li><NavLink to="/dashboard/create-study-session"><FaPlusCircle size={16} /> Create a session</NavLink></li>
-    <li><NavLink to="/dashboard/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li>
+    {/* <li><NavLink to="/dashboard/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li> */}
+    <li><NavLink to="/dashboard/tutor/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li>
     <li><NavLink to="/dashboard/upload-materials"><FaUpload size={16} /> Upload materials</NavLink></li>
     <li><NavLink to="/dashboard/tutor/view-all-materials">   <FaFolderOpen size={16} />View all materials</NavLink></li>
     {/* <li><NavLink>View all notes</NavLink></li> */}

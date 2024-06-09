@@ -26,7 +26,7 @@ const TutorsSessionsTableRow = ({ session, idx, refetch, handleDelete }) => {
 
                 </td>
                 <td>{status === 'rejected' &&
-                    <button title='Click to see detail' onClick={handleReasonModal} className='btn btn-ghost btn-xs'><BiSolidMessageDetail size={20} /></button>
+                    <button title='Click to see detail' onClick={handleReasonModal} className='btn btn-ghost btn-xs'><BiSolidMessageDetail size={17} /></button>
                 }
                     {showModal && <FeedbackAndRequestModal setShowModal={setShowModal} sessionId={session?._id} session={session} refetch={refetch} />}
                 </td>

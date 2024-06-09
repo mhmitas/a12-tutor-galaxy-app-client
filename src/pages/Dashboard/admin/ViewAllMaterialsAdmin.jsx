@@ -5,8 +5,8 @@ import ViewAllMaterialsAdminRow from '../../../components/table-rows/ViewAllMate
 import Container from '../../../components/shared/Container';
 
 const ViewAllMaterialsAdmin = () => {
-    const [data, isLoading, refetch, error] = useGetQuery('all-study-materials-admin', '/all-materials')
-    console.log(data);
+    const [data, isLoading, refetch, error] = useGetQuery('all-study-materials-admin', '/all-materials-admin')
+    // console.log(data);
 
     if (isLoading) {
         return <span>Loading...</span>

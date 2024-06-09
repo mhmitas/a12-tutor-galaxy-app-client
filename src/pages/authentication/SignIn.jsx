@@ -1,10 +1,10 @@
 import React from 'react';
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import saveUserInDb from '../../utils/saveUserInDb';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
@@ -13,6 +13,7 @@ const SignIn = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const googleProvider = new GoogleAuthProvider()
+    const githubProvider = new GithubAuthProvider()
     const { register, handleSubmit, } = useForm()
     const { signIn, signInWithProvider, setAuthLoading, user, authLoading } = useAuth()
 
@@ -37,7 +38,7 @@ const SignIn = () => {
         try {
             const result = await signInWithProvider(provider)
             await saveUserInDb({ ...result.user, role: 'student' });
-            toast.success('Sign up successfully')
+            toast.success('Sign in successfully')
             navigate(from ? from : '/')
         } catch (err) {
             toast.error(err?.message)
@@ -94,11 +95,16 @@ const SignIn = () => {
                     </p>
                     <div className="divider mt-6">Or continue with</div>
                     <div className="form-control">
-                        <div className="flex justify-center space-x-2 mt-4">
+                        <div className="flex flex-col items-center gap-3 justify-center mt-4">
                             <button
                                 onClick={() => handleProviderSignIn(googleProvider)}
                                 className="btn btn-outline btn-icon btn-google w-full text-lg">
                                 <FaGoogle className='text-xl' /> Google
+                            </button>
+                            <button
+                                onClick={() => handleProviderSignIn(githubProvider)}
+                                className="btn btn-outline btn-icon btn-google w-full text-lg">
+                                <FaGithub className='text-xl' /> Github
                             </button>
                         </div>
                     </div>

@@ -9,20 +9,20 @@ import { FaEdit } from "react-icons/fa";
 
 const Profile = () => {
     const { user, authLoading } = useAuth()
-    const [role] = useRole()
+    const [role, isRoleLoading] = useRole()
     const axiosSecure = useAxiosSecure()
 
     const { data: bookings = [], isLoading } = useQuery({
-        queryKey: ['bookings-in-profile', user],
-        enabled: !authLoading || !!user,
+        queryKey: ['bookings-in-profile', user?.email],
+        enabled: role === 'student',
         queryFn: async () => {
             const { data } = await axiosSecure(`/bookings/${user?.email}?limit=3`)
-            // console.log(data);
             return data
         }
     })
+    console.log(role === 'student');
 
-    if (isLoading) {
+    if (isLoading, isRoleLoading) {
         return <span>Loading...</span>
     }
 

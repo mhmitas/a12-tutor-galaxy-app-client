@@ -1,17 +1,18 @@
 import React from 'react';
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
 import toast from "react-hot-toast";
 import saveUserInDb from '../../utils/saveUserInDb';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const SignUp = () => {
     const navigate = useNavigate()
     const { register, handleSubmit, } = useForm()
     const googleProvider = new GoogleAuthProvider()
+    const githubProvider = new GithubAuthProvider()
     const { createUser, updateUserProfile, signInWithProvider, setAuthLoading, authLoading, user } = useAuth()
 
     async function onSubmit(data) {
@@ -113,11 +114,16 @@ const SignUp = () => {
                     </p>
                     <div className="divider mt-6">Or continue with</div>
                     <div className="form-control">
-                        <div className="flex justify-center space-x-2 mt-4">
+                        <div className="flex flex-col items-center gap-3 justify-center mt-4">
                             <button
                                 onClick={() => handleProviderSignIn(googleProvider)}
                                 className="btn btn-outline btn-icon btn-google w-full text-lg">
                                 <FaGoogle className='text-xl' /> Google
+                            </button>
+                            <button
+                                onClick={() => handleProviderSignIn(githubProvider)}
+                                className="btn btn-outline btn-icon btn-google w-full text-lg">
+                                <FaGithub className='text-xl' /> Github
                             </button>
                         </div>
                     </div>

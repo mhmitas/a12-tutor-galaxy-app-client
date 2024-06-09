@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Container from '../../../components/shared/Container';
 import Heading from '../../../components/common/Heading';
 import { useForm } from 'react-hook-form';
 import 'react-date-range/dist/styles.css';
@@ -62,7 +61,7 @@ const CreateStudySession = () => {
 
 
     return (
-        <Container>
+        <div>
             <Heading heading="Create Study Session" />
             <section className='mt-8 mb-20'>
                 <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md'>
@@ -141,7 +140,7 @@ const CreateStudySession = () => {
                     </div>
                 </form>
             </section>
-        </Container>
+        </div>
     );
 };
 

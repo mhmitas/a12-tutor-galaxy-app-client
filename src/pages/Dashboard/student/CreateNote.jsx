@@ -1,6 +1,5 @@
 import React from 'react';
 import Heading from '../../../components/common/Heading';
-import Container from '../../../components/shared/Container';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
@@ -26,7 +25,7 @@ const CreateNote = () => {
     }
 
     return (
-        <Container>
+        <div>
             <Heading heading="Create Notes" />
             <form onSubmit={handleSubmit(onSubmit)} className='shadow-lg p-2 md:p-4'>
                 <input readOnly defaultValue={user?.email} type="email" className='input mb-1 w-full' />
@@ -38,7 +37,7 @@ const CreateNote = () => {
                     <button className='btn btn-primary'>Save Note</button>
                 </div>
             </form>
-        </Container>
+        </div>
     );
 };
 

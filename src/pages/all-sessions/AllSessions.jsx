@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Container from '../../components/shared/Container';
 import SessionsCard from '../home/home-components/SessionsCard';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -41,7 +40,7 @@ const AllSessions = () => {
     }
 
     return (
-        <Container>
+        <div>
             <div className="bg-base-100 p-8 rounded-lg shadow-lg my-6">
                 <div className="flex flex-col lg:flex-row justify-between items-center w-full">
                     <h1 className="text-3xl font-semibold mb-4 lg:mb-0">All Sessions</h1>
@@ -79,7 +78,7 @@ const AllSessions = () => {
                     <option value={20}>Sessions Per Page 20</option>
                 </select>
             </div>
-        </Container>
+        </div>
     );
 };
 

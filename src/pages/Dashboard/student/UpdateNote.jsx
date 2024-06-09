@@ -5,7 +5,6 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import Container from '../../../components/shared/Container';
 import Heading from '../../../components/common/Heading';
 
 const UpdateNote = () => {
@@ -47,7 +46,7 @@ const UpdateNote = () => {
     }
 
     return (
-        <Container>
+        <div>
             <Heading heading="Update Note" />
             <form onSubmit={handleSubmit(onSubmit)} className='shadow-lg p-2 md:p-4'>
                 <input readOnly defaultValue={user?.email} type="email" className='input mb-1 w-full' />
@@ -59,7 +58,7 @@ const UpdateNote = () => {
                     <button className='btn btn-primary'>Update Note</button>
                 </div>
             </form>
-        </Container>
+        </div>
     );
 };
 

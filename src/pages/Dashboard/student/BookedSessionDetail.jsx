@@ -75,7 +75,7 @@ const BookedSessionDetail = () => {
     return (
         <div>
             <section className="my-10">
-                <div className="container mx-auto p-6 shadow-md rounded-lg">
+                <div className=" mx-auto p-6 shadow-md rounded-lg">
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-4">
                         <img src={thumbnail_image} alt="Session Thumbnail" className="w-full lg:w-1/2 rounded-lg" />
                         <div className="lg:my-auto">

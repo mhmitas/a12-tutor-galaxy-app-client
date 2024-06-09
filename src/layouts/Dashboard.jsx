@@ -3,6 +3,7 @@ import { MdMenuOpen } from "react-icons/md";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../components/dashboard/sidebar/Sidebar';
 import useRole from '../hooks/useRole';
+import Container from '../components/shared/Container';
 
 
 const DashboardRoutes = () => {
@@ -28,13 +29,16 @@ const DashboardRoutes = () => {
         <div className="drawer sm:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content ">
-                <div className="p-4 sm:hidden">
+                <div className="p-4 pb-0 sm:hidden">
                     <label htmlFor="my-drawer-2" className="btn btn-sm btn-neutral drawer-button "><MdMenuOpen size={20} /></label>
                 </div>
                 {/* Page content here */}
-                <>
-                    <Outlet />
-                </>
+                {/* dashboard navbar problem create korle ekhane asbo */}
+                <div className='relative'>
+                    <Container>
+                        <Outlet />
+                    </Container>
+                </div>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>

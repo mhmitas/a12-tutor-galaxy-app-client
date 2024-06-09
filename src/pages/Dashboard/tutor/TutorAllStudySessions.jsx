@@ -57,7 +57,7 @@ const TutorAllStudySessions = () => {
                 <TutorAllSessionsTab />
             </div>
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table table-zebra bg-base-100">
                     {/* head */}
                     <thead>
                         <tr className='bg-base-300'>
@@ -69,13 +69,16 @@ const TutorAllStudySessions = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {sessions.map((session, idx) => <TutorsSessionsTableRow
-                            session={session}
-                            refetch={refetch}
-                            key={session._id}
-                            idx={idx}
-                            handleDelete={handleDelete}
-                        />)}
+                        {isLoading ?
+                            <span>Loading...</span> :
+                            sessions.map((session, idx) => <TutorsSessionsTableRow
+                                session={session}
+                                refetch={refetch}
+                                key={session._id}
+                                idx={idx}
+                                handleDelete={handleDelete}
+                            />)
+                        }
                     </tbody>
                 </table>
 

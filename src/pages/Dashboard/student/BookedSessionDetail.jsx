@@ -56,7 +56,7 @@ const BookedSessionDetail = () => {
         queryKey: ['classmates', id],
         queryFn: async () => {
             const { data } = await axiosSecure(`/bookings/all-students/${id}`)
-            // console.log(data);
+            console.log(data);
             return data
         }
     })
@@ -107,13 +107,16 @@ const BookedSessionDetail = () => {
                             <div className='flex items-center gap-3'>
                                 <p>Your classmates</p>
                                 <div onClick={() => setShowClassmatesModal(true)} className="avatar-group -space-x-3 rtl:space-x-reverse btn btn-sm btn-ghost p-0">
-                                    {classmates?.slice(0, 3).map(s => <div
-                                        key={s?._id}
-                                        className="avatar">
-                                        <div className="w-6 rounded">
-                                            <img src={s?.image || 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Tailwind-CSS-Avatar-component" />
-                                        </div>
-                                    </div>)}
+                                    {isClassmatesLoading ?
+                                        <span>Loading...</span> :
+                                        classmates?.slice(0, 3).map(s => <div
+                                            key={s?._id}
+                                            className="avatar">
+                                            <div className="w-6 rounded">
+                                                <img src={s?.image || 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Tailwind-CSS-Avatar-component" />
+                                            </div>
+                                        </div>)
+                                    }
                                     {classmates?.length > 2 && <div className="avatar placeholder">
                                         <div className="w-6 bg-neutral text-neutral-content">
                                             <span>+{classmates?.length - 3}</span>

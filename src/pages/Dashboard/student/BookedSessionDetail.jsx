@@ -9,12 +9,12 @@ import '@smastrom/react-rating/style.css'
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast'
 import ClassmatesModal from '../../../components/dashboard/modals/ClassmatesModal';
+import Classmates from '../../../components/dashboard/student-booked-session-detail/Classmates';
 
 const BookedSessionDetail = () => {
     const { id } = useParams()
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
-    const [showClassmatesModal, setShowClassmatesModal] = useState(false)
     const {
         register,
         handleSubmit,
@@ -39,29 +39,18 @@ const BookedSessionDetail = () => {
             return data
         }
     })
+    const { session_title, thumbnail_image, tutor_email, tutor_name, classDuration, session_description } = session;
 
     // load materials of the session
     const { data: materials = [], isLoading: materialsLoading } = useQuery({
         queryKey: ['browse-a-sessions-materials', id],
-        enabled: !authLoading || !!user?.email,
+        enabled: !authLoading && !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure(`/materials/session/${id}`)
             // console.log(data);
             return data
         }
     })
-
-    // all students booked session
-    const { data: classmates = [], isLoading: isClassmatesLoading } = useQuery({
-        queryKey: ['classmates', id],
-        queryFn: async () => {
-            const { data } = await axiosSecure(`/bookings/all-students/${id}`)
-            console.log(data);
-            return data
-        }
-    })
-
-    const { session_title, thumbnail_image, tutor_email, tutor_name, classDuration, session_description } = session;
 
     // review and rating function
     async function onSubmit(data) {
@@ -104,26 +93,7 @@ const BookedSessionDetail = () => {
                             </div>
 
                             {/* classmates section */}
-                            <div className='flex items-center gap-3'>
-                                <p>Your classmates</p>
-                                <div onClick={() => setShowClassmatesModal(true)} className="avatar-group -space-x-3 rtl:space-x-reverse btn btn-sm btn-ghost p-0">
-                                    {isClassmatesLoading ?
-                                        <span>Loading...</span> :
-                                        classmates?.slice(0, 3).map(s => <div
-                                            key={s?._id}
-                                            className="avatar">
-                                            <div className="w-6 rounded">
-                                                <img src={s?.image || 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt="Tailwind-CSS-Avatar-component" />
-                                            </div>
-                                        </div>)
-                                    }
-                                    {classmates?.length > 2 && <div className="avatar placeholder">
-                                        <div className="w-6 bg-neutral text-neutral-content">
-                                            <span>+{classmates?.length - 3}</span>
-                                        </div>
-                                    </div>}
-                                </div>
-                            </div>
+                            <Classmates sessionId={id} />
                         </div>
                     </div>
                     {/* session contents */}
@@ -193,7 +163,7 @@ const BookedSessionDetail = () => {
                     </div>
                 </div>
             </section>
-            {showClassmatesModal && <ClassmatesModal classmates={classmates} setShowModal={setShowClassmatesModal} />}
+
         </div>
     );
 };

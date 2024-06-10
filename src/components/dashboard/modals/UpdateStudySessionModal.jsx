@@ -13,7 +13,7 @@ const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
     const [role, roleLoading] = useRole()
     const { register, handleSubmit, reset } = useForm()
     // destructuring from loaded detail data
-    const { session_title, thumbnail_image: old_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, session_description } = session;
+    const { session_title, thumbnail_image: old_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, session_description, session_duration } = session;
 
     const handleOverlayClick = (e) => {
         if (submitting) return
@@ -83,7 +83,7 @@ const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
                         <label className="label">
                             <span className="label-text">Session Duration</span>
                         </label>
-                        <input {...register('session_duration')} type="text" defaultValue={session_description} className="input input-bordered" required />
+                        <input {...register('session_duration')} type="text" defaultValue={session_duration ? session_duration : ''} className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">

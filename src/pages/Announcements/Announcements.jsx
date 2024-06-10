@@ -9,7 +9,7 @@ const Announcements = () => {
         queryKey: ['Announcements'],
         queryFn: async () => {
             const { data } = await axiosInstance('/announcements')
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

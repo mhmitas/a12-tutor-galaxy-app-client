@@ -16,7 +16,7 @@ const UpdateProfile = ({ setShowUpdateForm }) => {
         queryKey: ['update-profile-data', user],
         queryFn: async () => {
             const { data } = await axiosSecure(`/users/role/${user?.email}?a=b`)
-            console.log(data);
+            // console.log(data);
             return data
         }
 

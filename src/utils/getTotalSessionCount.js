@@ -10,7 +10,7 @@ const useTotalSessionCount = async () => {
         async function fetchData() {
             try {
                 const { data } = await axios.get(`${import.meta.env.VITE_URL}/total-sessions`)
-                console.log(data)
+                // console.log(data)
                 setCount(data.totalSessions)
             } catch (err) {
                 console.error(err);

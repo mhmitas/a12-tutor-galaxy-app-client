@@ -22,7 +22,7 @@ const Sessions = () => {
         return <span>{error.message}</span>
     }
 
-    console.log('some todo exist');
+    // console.log('some todo exist');
 
     return (
         <div className='mb-16'>

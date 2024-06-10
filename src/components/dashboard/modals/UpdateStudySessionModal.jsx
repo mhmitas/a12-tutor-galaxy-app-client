@@ -37,7 +37,7 @@ const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
             if (data.thumbnail_image[0]) {
                 const imgBbRes = await uploadImage(data.thumbnail_image[0])
                 thumbnail_image = imgBbRes
-                console.log(thumbnail_image);
+                // console.log(thumbnail_image);
             }
             const sessionInfo = { ...data, classDuration, registrationDuration, thumbnail_image }
             // update session: call update function

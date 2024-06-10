@@ -68,7 +68,7 @@ const CheckoutForm = ({ session, setComplete }) => {
             console.log(confirmError);
             setProcessing(false)
         }
-        console.log(paymentIntent);
+        // console.log(paymentIntent);
         if (paymentIntent.status === 'succeeded') {
             const sessionData = {
                 session_title, tutor_email, tutor_name, classDuration, registration_fee,
@@ -85,7 +85,7 @@ const CheckoutForm = ({ session, setComplete }) => {
             }
             try {
                 const res = await axiosSecure.post(`/bookings`, sessionData)
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Congratulation! Payment successful')
                     setComplete(true)
@@ -96,7 +96,7 @@ const CheckoutForm = ({ session, setComplete }) => {
                 setProcessing(false)
             }
 
-            console.log('paymentIntent:', paymentIntent);
+            // console.log('paymentIntent:', paymentIntent);
             setErrorMessage('')
             setProcessing(false)
         }

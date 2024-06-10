@@ -6,7 +6,7 @@ const AdminDashboardStat = () => {
     const [tutorEmails, tutorEmailsLoading] = useGetQuery('tutorEmails-count-admin', '/api/admin/count-tutors')
     const [studentEmails, studentEmailsLoading] = useGetQuery('studentEmails-count-admin', '/api/admin/count-students')
 
-    console.log(tutorEmails);
+    // console.log(tutorEmails);
 
     return (
         <div className="stats stats-vertical lg:stats-horizontal shadow w-full rounded-md mb-10">

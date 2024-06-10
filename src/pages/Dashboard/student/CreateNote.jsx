@@ -14,7 +14,7 @@ const CreateNote = () => {
     async function onSubmit(data) {
         setSubmitting(true)
         const note = { ...data, userEmail: user?.email, userName: user?.displayName }
-        console.log(note);
+        // console.log(note);
         try {
             const res = await axiosSecure.post('/notes', note)
             console.log(res.data);

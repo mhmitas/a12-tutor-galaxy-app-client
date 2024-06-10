@@ -13,15 +13,15 @@ const DashboardRoutes = () => {
 
     useEffect(() => {
         if (role === 'student' && location.pathname === '/dashboard') {
-            console.log(';hello');
+            // console.log(';hello');
             navigate('/dashboard/view-booked-sessions', { replace: true })
         }
         if (role === 'tutor' && location.pathname === '/dashboard') {
-            console.log(';hello');
+            // console.log(';hello');
             navigate('/dashboard/tutor', { replace: true })
         }
         if (role === 'admin' && location.pathname === '/dashboard') {
-            console.log(';hello');
+            // console.log(';hello');
             navigate('/dashboard/admin', { replace: true })
         }
     }, [location])

@@ -78,7 +78,7 @@ const SessionDetail = () => {
             }
             try {
                 const res = await axiosSecure.post(`/bookings`, sessionData)
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success('Session Booked')
                 }

@@ -17,7 +17,7 @@ const TutorsSection = () => {
         queryKey: [''],
         queryFn: async () => {
             const { data } = await axiosInstance.get('/api/home/tutors')
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

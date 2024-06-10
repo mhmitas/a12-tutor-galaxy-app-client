@@ -8,7 +8,6 @@ const AllSessions = () => {
     const axiosSecure = useAxiosSecure()
     const [sessionsPerPage, setSessionsPerPage] = useState(8)
     const [currentPage, setCurrentPage] = useState(0)
-    console.log(currentPage);
     const { data: totalSessions = 0, isLoading: counting } = useQuery({
         queryKey: ['total-session-count'],
         queryFn: async () => {

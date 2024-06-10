@@ -20,7 +20,7 @@ const TutorActiveSessionsSection = () => {
     })
     // get total session count
     const [totalSessions, countLoading] = useGetQuery('tutor-totalSessions', `/study-sessions/tutor/count/${user?.email}`)
-    console.log(totalSessions);
+    // console.log(totalSessions);
 
     if (isLoading || countLoading) {
         return <span>Loading...</span>

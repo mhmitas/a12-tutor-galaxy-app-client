@@ -21,7 +21,7 @@ const AllStudySessionsAdmin = () => {
     })
 
     if (isLoading) {
-        <span>Loading...</span>
+        return <span className='absolute top-1/2 left-1/2'>Loading....</span>
     }
 
     return (

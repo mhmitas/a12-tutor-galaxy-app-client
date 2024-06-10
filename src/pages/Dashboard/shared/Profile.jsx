@@ -19,7 +19,7 @@ const Profile = () => {
         enabled: role === 'student',
         queryFn: async () => {
             const { data } = await axiosSecure(`/bookings/${user?.email}?limit=3`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

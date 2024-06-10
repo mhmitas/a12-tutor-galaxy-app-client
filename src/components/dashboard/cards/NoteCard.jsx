@@ -13,7 +13,7 @@ const NoteCard = ({ note, refetch }) => {
             const ask = await askConfirm('Are you sure? You want to delete this note')
             if (!ask) { return }
             const res = await axiosSecure.delete(`/notes/${id}`)
-            console.log(res.data);
+            // console.log(res.data);
             toast.success('Note Deleted')
             refetch()
             setShowModal(false)
@@ -23,7 +23,7 @@ const NoteCard = ({ note, refetch }) => {
         }
     }
     async function handleUpdate(id) {
-        console.log(id, 'ke Update koro');
+        // console.log(id, 'ke Update koro');
     }
 
     return (

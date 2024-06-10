@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
         const subscribe = onAuthStateChanged(auth, (currentUser) => {
             setAuthLoading(false)
             setUser(currentUser)
-            console.log('currentUser =>', currentUser);
+            // console.log('currentUser =>', currentUser);
             if (currentUser) {
                 const user = { email: currentUser?.email, uid: currentUser?.uid };
                 getToken(user)

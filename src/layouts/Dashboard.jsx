@@ -20,6 +20,10 @@ const DashboardRoutes = () => {
             console.log(';hello');
             navigate('/dashboard/tutor', { replace: true })
         }
+        if (role === 'admin' && location.pathname === '/dashboard') {
+            console.log(';hello');
+            navigate('/dashboard/admin', { replace: true })
+        }
     }, [location])
 
     if (isLoading) {

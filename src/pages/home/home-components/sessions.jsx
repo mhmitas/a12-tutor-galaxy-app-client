@@ -29,7 +29,7 @@ const Sessions = () => {
             <div className='mb-8'>
                 <Heading heading={'Latest Learning Opportunities'} subHeading={'Stay ahead with our newest study sessions, covering a wide range of subjects and topics. Book a session with expert tutors and enhance your learning experience today!'} />
             </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
                 {sessions.slice(0, 4).map(session => <SessionsCard session={session} key={session._id} />)}
             </div>
             <div className='text-center'>

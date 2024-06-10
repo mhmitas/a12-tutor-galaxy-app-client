@@ -28,6 +28,8 @@ import Profile from "../pages/Dashboard/shared/Profile";
 import TutorDashboard from "../pages/Dashboard/tutor/TutorDashboard";
 import TutorAllStudySessions from "../pages/Dashboard/tutor/TutorAllStudySessions";
 import ErrorPage from "../pages/error/ErrorPage";
+import AdminDashboard from "../pages/Dashboard/admin/AdminDashboard";
+import Announcements from "../pages/Announcements/Announcements";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +46,10 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <SessionDetail />
                 </PrivateRoute>
+            },
+            {
+                path: 'announcements',
+                element: <Announcements />
             },
             {
                 path: 'payment/:id',
@@ -139,6 +145,10 @@ export const router = createBrowserRouter([
                 element: <SessionsMaterial />
             },
             // admin related routes
+            {
+                path: 'admin',
+                element: <AdminDashboard />
+            },
             {
                 path: 'admin/all-study-sessions',
                 element: <AllStudySessionsAdmin />,

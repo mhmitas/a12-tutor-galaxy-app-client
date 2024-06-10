@@ -54,7 +54,7 @@ const SignIn = () => {
     }
 
     return (
-        <div className='min-h-screen flex flex-col justify-center'>
+        <div className='min-h-screen flex flex-col justify-center mb-10'>
             <div>
                 <div className='md:text-3xl text-2xl font-bold text-center mt-4 mb-8'><Link to='/'>TutorGalaxy</Link></div>
                 <div className='max-w-md mx-auto sm:p-12 p-7 bg-base-100 shadow-lg rounded-md '>

@@ -29,7 +29,7 @@ const TutorAllStudySessions = () => {
         enabled: !authLoading && !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure(`/study-sessions/tutor/${user?.email}?status=${searchParams.get('status') || 'approved'}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

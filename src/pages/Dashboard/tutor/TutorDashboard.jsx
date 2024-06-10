@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import DashboardNavbar from '../../../components/dashboard/DashboardNavbar';
 import useGetQuery from '../../../hooks/useGetQuery';
+import TutorStats from '../../../components/dashboard/student-booked-session-detail/TutorDashboard/TutorStats';
 
 const TutorDashboard = () => {
     const { user } = useAuth()
@@ -17,8 +18,11 @@ const TutorDashboard = () => {
             <main className='my-6'>
                 <div>
                     <h3>Active Sessions: {sessions.length}</h3>
-                </div>
+                    <div>
 
+                    </div>
+                </div>
+                <TutorStats />
             </main>
         </div>
     );

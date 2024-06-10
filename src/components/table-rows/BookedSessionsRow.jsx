@@ -11,8 +11,8 @@ const BookedSessionsRow = ({ session, idx }) => {
             <td>{session_title}</td>
             <td>{tutor_name}</td>
             <td>
-                <span>{format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</span> -
-                <span> {format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</span>
+                <span>{classDuration?.startDate && format(new Date(classDuration?.startDate), 'dd MMM yyyy')}</span> -
+                <span> {classDuration?.endDate && format(new Date(classDuration?.endDate), 'dd MMM yyyy')}</span>
             </td>
             <td>
                 <Link to={`/dashboard/booked-session-detail/${session?.sessionId}`}><button className='btn btn-sm btn-primary'>View Detail</button></Link>

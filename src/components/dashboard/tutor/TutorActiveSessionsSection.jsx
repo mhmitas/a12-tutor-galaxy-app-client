@@ -14,7 +14,7 @@ const TutorActiveSessionsSection = () => {
         queryKey: ['tutor-active-sessions', limit],
         queryFn: async () => {
             const { data } = await axiosSecure(`/study-sessions/tutor/${user?.email}?status=approved&limit=${limit}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

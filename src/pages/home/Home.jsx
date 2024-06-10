@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from './home-components/Hero';
 import Sessions from './home-components/sessions';
 import TutorsSection from './home-components/TutorsSection';
+import FaqHome from './home-components/FaqHome';
 
 const Home = () => {
 
@@ -10,6 +11,7 @@ const Home = () => {
             <Hero />
             <Sessions />
             <TutorsSection />
+            <FaqHome />
         </div>
     );
 };

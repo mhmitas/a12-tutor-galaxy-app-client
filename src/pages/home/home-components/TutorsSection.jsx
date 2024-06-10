@@ -32,7 +32,7 @@ const TutorsSection = () => {
             {/* <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                 {tutors.map(tutor => <TutorCard tutor={tutor} key={tutor?.email} />)}
             </div> */}
-            <div className='rounded-xl shadow-xl' >
+            <div className='rounded-xl shadow-md' >
                 <div className=''>
                     <Swiper
                         className=''
@@ -80,7 +80,7 @@ export default TutorsSection;
 
 function TutorCard({ tutor }) {
     return (
-        <div className="card card-compact max-w-72 h-full bg-base-100 shadow-xl rounded-md ">
+        <div className="card card-compact max-w-72 h-full bg-base-100 shadow-md rounded-md ">
             <figure className='aspect-square'><img className='w-full ' src={tutor?.image || 'https://i.ibb.co/tY0hxsg/default-profile.jpg'} alt={tutor?.name} /></figure>
             <div className="card-body">
                 <h2 className="card-title">Name: {tutor.name}</h2>

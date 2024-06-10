@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useRole from '../../../hooks/useRole';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     const [role, isLoading] = useRole()
@@ -10,8 +11,10 @@ const Hero = () => {
                 <div className="flex text-center justify-center items-center h-full bg-black w-full bg-opacity-25 text-white">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">TutorGalaxy</h1>
-                        <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary">Get Started</button>
+                        <p className="mb-5">Unlock Your Potential with Tutor Galaxy - Your Destination for Personalized Learning and Expert Tutors. Discover a Galaxy of Knowledge, Explore a Wide Range of Courses, and Empower Your Future Today.
+                        </p>
+                        <Link to="/all-sessions"><button className="btn btn-primary">Let's Explore</button></Link>
+
                     </div>
                 </div>
             </div>

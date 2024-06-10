@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useAuth from '../../../../hooks/useAuth';
@@ -22,23 +21,20 @@ const TutorStats = () => {
         <div>
             <div className="stats stats-vertical md:stats-horizontal shadow w-full rounded-md">
 
-                <div className="stat">
+                <div className="stat text-center">
                     <div className="stat-title">Total Students</div>
-                    <div className="stat-value text-center">{students.length}</div>
+                    <div className="stat-value">{students.length}</div>
                 </div>
-
                 <div className="stat text-center">
                     <div className="stat-title">Average Ratings</div>
                     <div className="stat-value">
                         <span className='flex justify-center items-center gap-2'><FaStar className='text-warning' />{avgRating[0]?.averageRating}</span>
                     </div>
                 </div>
-
                 <div className="stat text-center">
                     <div className="stat-title">Revenue</div>
                     <div className="stat-value">${revenue?.revenue}</div>
                 </div>
-
             </div>
         </div>
     );

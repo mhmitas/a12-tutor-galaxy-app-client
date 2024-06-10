@@ -16,7 +16,6 @@ import UpdateNote from "../pages/Dashboard/student/UpdateNote";
 import PrivateRoute from "./PrivateRoute";
 import StudentRoute from "./StudentRoute";
 import AllStudySessionsAdmin from "../pages/Dashboard/admin/AllStudySessionsAdmin";
-import UpdateStudySession from "../pages/Dashboard/shared/UpdateStudySession";
 import ViewAllMaterialsAdmin from "../pages/Dashboard/admin/ViewAllMaterialsAdmin";
 import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
 import Payment from "../pages/payment/Payment";
@@ -45,10 +44,6 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <SessionDetail />
                 </PrivateRoute>
-            },
-            {
-                path: 'test',
-                element: <UpdateStudySession />
             },
             {
                 path: 'payment/:id',

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import Heading from '../../common/Heading';
 import "react-datepicker/dist/react-datepicker.css";
 import uploadImage from '../../../utils/uploadImage';
+import useRole from '../../../hooks/useRole';
 
 // this is for admin
 const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
     const [submitting, setSubmitting] = useState(false)
-    const navigate = useNavigate()
-    const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
+    const [role, roleLoading] = useRole()
     const { register, handleSubmit, reset } = useForm()
     // destructuring from loaded detail data
     const { session_title, thumbnail_image: old_image, tutor_email, tutor_name, registrationDuration, registration_fee, classDuration, session_description } = session;
@@ -53,6 +51,10 @@ const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
         // console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image });
     }
 
+    if (roleLoading) {
+        return <span>Loading...</span>
+    }
+
     return (
         <div onClick={handleOverlayClick} className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50'>
             <section className='shadow-xl w-[90vw] max-w-screen-lg rounded-md mx-auto bg-base-100'>
@@ -87,7 +89,7 @@ const UpdateStudySessionModal = ({ session, setShowModal, handleUpdate }) => {
                         <label className="label">
                             <span className="label-text">Registration Fee</span>
                         </label>
-                        <input defaultValue={registration_fee} readOnly type="text" className="input input-bordered" required />
+                        <input defaultValue={registration_fee} readOnly={role !== 'admin'} type="text" className="input input-bordered" required />
                     </div>
                     {/* registration duration */}
                     <div className="form-control">

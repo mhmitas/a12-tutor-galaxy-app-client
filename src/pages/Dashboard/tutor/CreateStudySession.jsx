@@ -15,6 +15,7 @@ const CreateStudySession = () => {
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
+    const [submitting, setSubmitting] = useState(false)
     const { register, handleSubmit, reset } = useForm()
     const [registrationDate, setRegistrationDate] = useState([
         {
@@ -33,6 +34,7 @@ const CreateStudySession = () => {
 
 
     async function onSubmit(data) {
+        setSubmitting(true)
         const classDuration = { startDate: classDate[0].startDate, endDate: classDate[0].endDate, }
         const registrationDuration = { regStart: registrationDate[0].startDate, regEnd: registrationDate[0].endDate }
         let thumbnail_image = 'https://i.ibb.co/fGVzbks/default-learning.jpg'
@@ -52,8 +54,10 @@ const CreateStudySession = () => {
             toast.success('Session created. Please wait admins will respond soon')
             reset()
             navigate('/dashboard/all-study-sessions')
+            setSubmitting(false)
         } catch (err) {
             console.error(err);
+            setSubmitting(false)
         }
 
         // console.table({ ...data, classDuration, registrationDuration, status: 'pending', thumbnail_image });
@@ -64,7 +68,7 @@ const CreateStudySession = () => {
         <div>
             <Heading heading="Create Study Session" />
             <section className='mt-8 mb-20'>
-                <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md'>
+                <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-100 p-8 max-w-screen-lg mx-auto rounded-md relative'>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Tutor Name</span>
@@ -136,7 +140,7 @@ const CreateStudySession = () => {
                         </label>
                     </div>
                     <div className='text-center w-full md:col-span-2 mt-8'>
-                        <button type='submit' className='btn btn-primary'>Submit</button>
+                        <button disabled={submitting} type='submit' className='btn btn-primary'>{submitting ? <span className='loading loading-spinner'></span> : 'Submit'}</button>
                     </div>
                 </form>
             </section>

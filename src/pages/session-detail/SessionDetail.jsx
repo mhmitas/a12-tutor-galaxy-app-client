@@ -98,7 +98,7 @@ const SessionDetail = () => {
             <section className="bg-base-100 my-10">
                 <div className="mx-auto p-6 shadow-md rounded-lg">
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-4">
-                        <img src={thumbnail_image} alt="Session Thumbnail" className="w-full lg:w-1/3 rounded-lg max-h-[450px]" />
+                        <img src={thumbnail_image} alt="Session Thumbnail" className="w-full lg:min-w-[33%] lg:w-1/3 rounded-lg max-h-[450px]" />
                         <div className="">
                             <h1 className="text-2xl font-bold mb-2">{session_title}</h1>
                             <div className="mb-3">

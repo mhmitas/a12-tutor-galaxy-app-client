@@ -4,12 +4,15 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Heading from '../../../components/common/Heading';
 import TutorAllSessionsTab from '../../../components/dashboard/tutor/TutorAllSessionsTab';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import queryString from 'query-string';
 import TutorsSessionsTableRow from '../../../components/table-rows/TutorsSessionsTableRow';
+import askConfirm from '../../../components/modals/confirm-modal/AskConfirm';
+import toast from 'react-hot-toast';
 
 const TutorAllStudySessions = () => {
     const { user, authLoading } = useAuth()
+    const location = useLocation()
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -22,7 +25,7 @@ const TutorAllStudySessions = () => {
             })
             navigate(query, { replace: true })
         }
-    }, [])
+    }, [searchParams.get('status')])
 
     const { data: sessions = [], isLoading, refetch } = useQuery({
         queryKey: ['all-study-sessions', user?.email, searchParams.get('status')],
@@ -48,7 +51,6 @@ const TutorAllStudySessions = () => {
         }
     }
 
-    console.log(searchParams.get('status'));
 
     return (
         <div>
@@ -69,15 +71,13 @@ const TutorAllStudySessions = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {isLoading ?
-                            <span>Loading...</span> :
-                            sessions.map((session, idx) => <TutorsSessionsTableRow
-                                session={session}
-                                refetch={refetch}
-                                key={session._id}
-                                idx={idx}
-                                handleDelete={handleDelete}
-                            />)
+                        {sessions.map((session, idx) => <TutorsSessionsTableRow
+                            session={session}
+                            refetch={refetch}
+                            key={session._id}
+                            idx={idx}
+                            handleDelete={handleDelete}
+                        />)
                         }
                     </tbody>
                 </table>

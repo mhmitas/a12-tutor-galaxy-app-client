@@ -9,7 +9,7 @@ const UploadMaterials = () => {
     const { user, authLoading } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: sessions = [] } = useQuery({
+    const { data: sessions = [], isLoading } = useQuery({
         queryKey: ['approved-sessions', user?.email],
         enabled: !authLoading || !!user?.email,
         queryFn: async () => {
@@ -18,6 +18,10 @@ const UploadMaterials = () => {
             return data
         }
     })
+
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
 
     return (
         <div className='p-2 min-h-screen'>

@@ -25,7 +25,7 @@ const AllStudySessionsAdmin = () => {
     }
 
     return (
-        <div className='p-2 bg-base-100 min-h-screen'>
+        <div className='p-2 min-h-screen'>
             <Heading heading='Manage All Sessions' />
             <div className='my-8 '>
                 <div role="tablist" className="tabs tabs-bordered w-max mx-auto font-semibold">
@@ -34,7 +34,7 @@ const AllStudySessionsAdmin = () => {
                     <span onClick={() => setTabStatus('rejected')} role="tab" className={`tab ${tabStatus === 'rejected' && 'tab-active text-primary'}`}>Rejected</span>
                 </div>
             </div>
-            <div className="overflow-x-auto overflow-y-auto">
+            <div className="overflow-x-auto overflow-y-auto bg-base-100">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>

@@ -6,7 +6,6 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import askConfirm from '../modals/confirm-modal/AskConfirm';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
-import UpdateStudySession from '../../pages/Dashboard/shared/UpdateStudySession';
 import UpdateStudySessionModal from '../dashboard/modals/UpdateStudySessionModal';
 
 const AllStudySessionsAdminRow = ({ session, idx, refetch }) => {

@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import SessionsCard from '../home/home-components/SessionsCard';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { FaArrowAltCircleRight, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const AllSessions = () => {
     const axiosSecure = useAxiosSecure()
     const [sessionsPerPage, setSessionsPerPage] = useState(8)
     const [currentPage, setCurrentPage] = useState(0)
-
+    console.log(currentPage);
     const { data: totalSessions = 0, isLoading: counting } = useQuery({
         queryKey: ['total-session-count'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/total-sessions`)
-            console.log(data.totalSessions)
+            // console.log(data.totalSessions)
             return data.totalSessions
         }
     })
@@ -67,6 +68,14 @@ const AllSessions = () => {
 
             {/* pagination buttons */}
             <div className='flex my-10 gap-1 items-center justify-center overflow-x-auto'>
+                {/* next previous buttons */}
+                <button
+                    onClick={() => currentPage > 0 && setCurrentPage(currentPage - 1)}
+                    className='btn btn-success'>Previous</button>
+                <button
+                    onClick={() => currentPage < pages.length - 1 && setCurrentPage(currentPage + 1)}
+                    className='btn btn-success'>Next</button>
+                {/* page buttons */}
                 {pages.map(page => <button
                     onClick={() => setCurrentPage(page)}
                     key={page}
@@ -74,7 +83,7 @@ const AllSessions = () => {
                 >{page + 1}</button>)}
                 <select value={sessionsPerPage} onChange={(e) => { setSessionsPerPage(e.target.value); setCurrentPage(0) }} className='select select-bordered ml-2'>
                     <option value={8}>Sessions Per Page 8</option>
-                    <option value={10}>Sessions Per Page 15</option>
+                    <option value={15}>Sessions Per Page 15</option>
                     <option value={20}>Sessions Per Page 20</option>
                 </select>
             </div>

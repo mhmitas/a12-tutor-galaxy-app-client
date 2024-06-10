@@ -53,7 +53,7 @@ const CreateStudySession = () => {
             console.log(res.data);
             toast.success('Session created. Please wait admins will respond soon')
             reset()
-            navigate('/dashboard/all-study-sessions')
+            navigate('/dashboard/tutor/all-study-sessions')
             setSubmitting(false)
         } catch (err) {
             console.error(err);

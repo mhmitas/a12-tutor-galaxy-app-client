@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { differenceInCalendarDays, format } from "date-fns";
+import { differenceInCalendarDays, format, formatISO } from "date-fns";
 import useRole from '../../hooks/useRole';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast'
@@ -74,6 +74,7 @@ const SessionDetail = () => {
                 sessionId: data._id,
                 userName: user?.displayName,
                 userEmail: user?.email,
+                bookingDate: formatISO(new Date())
             }
             try {
                 const res = await axiosSecure.post(`/bookings`, sessionData)

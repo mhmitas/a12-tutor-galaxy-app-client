@@ -19,6 +19,7 @@ const Profile = () => {
         enabled: role === 'student',
         queryFn: async () => {
             const { data } = await axiosSecure(`/bookings/${user?.email}?limit=3`)
+            console.log(data);
             return data
         }
     })
@@ -27,11 +28,12 @@ const Profile = () => {
         queryKey: ['update-profile-data', user],
         queryFn: async () => {
             const { data } = await axiosSecure(`/users/role/${user?.email}?a=b`)
-            console.log(data);
+            // console.log(data);
             return data
         }
 
     })
+
 
     if (isLoading || isRoleLoading || authLoading || userDataLoading) {
         return <span>Loading...</span>
@@ -70,7 +72,7 @@ const Profile = () => {
                                             key={booking._id}
                                             className="bg-gray-100 p-4 rounded-lg">
                                             <h3 className="text-lg font-bold text-gray-800">{booking?.session_title}</h3>
-                                            <p className="text-gray-600">{format(booking.bookingDate, 'dd MMM yyyy')}</p>
+                                            <p className="text-gray-600">{booking.bookingDate && format(booking.bookingDate, 'dd MMM yyyy')}</p>
                                         </li>)}
                                     </ul>
                                 </div>

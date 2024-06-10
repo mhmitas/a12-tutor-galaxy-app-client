@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { FaPlusCircle, FaBookOpen, FaUpload, FaFolderOpen, FaChartPie, FaUsers } from 'react-icons/fa';
+import { FaPlusCircle, FaBookOpen, FaUpload, FaFolderOpen, FaChartPie, FaUsers, FaPen } from 'react-icons/fa';
+import { TbNotes } from "react-icons/tb";
+
 
 const studentMenuItems = <>
-    <li><NavLink to="/dashboard/view-booked-sessions">View booked sessions</NavLink></li>
-    <li><NavLink to="/dashboard/create-note">Create note</NavLink></li>
-    <li><NavLink to="/dashboard/manage-notes">Manage notes</NavLink></li>
-    <li><NavLink to="/dashboard/student/session-materials">Study materials</NavLink></li>
+    <li><NavLink to="/dashboard/view-booked-sessions"><FaBookOpen size={16} />View booked sessions</NavLink></li>
+    <li><NavLink to="/dashboard/create-note"><FaPen size={16} />Create note</NavLink></li>
+    <li><NavLink to="/dashboard/manage-notes"><TbNotes size={16} />Manage notes</NavLink></li>
+    <li><NavLink to="/dashboard/student/session-materials"><FaFolderOpen size={16} />Study materials</NavLink></li>
 </>
 
 const tutorMenuItems = <>
@@ -14,7 +16,7 @@ const tutorMenuItems = <>
     {/* <li><NavLink to="/dashboard/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li> */}
     <li><NavLink to="/dashboard/tutor/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li>
     <li><NavLink to="/dashboard/upload-materials"><FaUpload size={16} /> Upload materials</NavLink></li>
-    <li><NavLink to="/dashboard/tutor/view-all-materials">   <FaFolderOpen size={16} />View all materials</NavLink></li>
+    <li><NavLink to="/dashboard/tutor/view-all-materials"><FaFolderOpen size={16} />View all materials</NavLink></li>
     {/* <li><NavLink>View all notes</NavLink></li> */}
 </>
 

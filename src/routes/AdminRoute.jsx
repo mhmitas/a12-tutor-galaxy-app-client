@@ -16,7 +16,7 @@ const AdminRoute = ({ children }) => {
         return children
     }
 
-    return <Navigate to={'/'} />
+    return <Navigate to={'/'} replace={true} />
 };
 
 export default AdminRoute;

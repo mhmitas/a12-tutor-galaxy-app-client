@@ -30,6 +30,8 @@ import TutorAllStudySessions from "../pages/Dashboard/tutor/TutorAllStudySession
 import ErrorPage from "../pages/error/ErrorPage";
 import AdminDashboard from "../pages/Dashboard/admin/AdminDashboard";
 import Announcements from "../pages/Announcements/Announcements";
+import TutorRoute from "./TutorRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -85,23 +87,33 @@ export const router = createBrowserRouter([
             // student related routes
             {
                 path: 'view-booked-sessions',
-                element: <BookedSessions />
+                element: <StudentRoute>
+                    <BookedSessions />
+                </StudentRoute>
             },
             {
                 path: 'booked-session-detail/:id',
-                element: <BookedSessionDetail />
+                element: <StudentRoute>
+                    <BookedSessionDetail />
+                </StudentRoute>
             },
             {
                 path: 'create-note',
-                element: <CreateNote />
+                element: <StudentRoute>
+                    <CreateNote />
+                </StudentRoute>
             },
             {
                 path: 'manage-notes',
-                element: <ManageNotes />
+                element: <StudentRoute>
+                    <ManageNotes />
+                </StudentRoute>
             },
             {
                 path: 'update-note/:id',
-                element: <UpdateNote />
+                element: <StudentRoute>
+                    <UpdateNote />
+                </StudentRoute>
             },
             {
                 path: 'student/session-materials',
@@ -118,48 +130,70 @@ export const router = createBrowserRouter([
             // tutor related routes
             {
                 path: 'tutor',
-                element: <TutorDashboard />
+                element: <TutorRoute>
+                    <TutorDashboard />
+                </TutorRoute>
             },
             {
                 path: 'create-study-session',
-                element: <CreateStudySession />
+                element: <TutorRoute>
+                    <CreateStudySession />
+                </TutorRoute>
             },
             {
                 path: 'all-study-sessions',
-                element: <AllStudySessions />
+                element: <TutorRoute>
+                    <AllStudySessions />
+                </TutorRoute>
             },
             {
                 path: 'tutor/all-study-sessions',
-                element: <TutorAllStudySessions />
+                element: <TutorRoute>
+                    <TutorAllStudySessions />
+                </TutorRoute>
             },
             {
                 path: 'upload-materials',
-                element: <UploadMaterials />
+                element: <TutorRoute>
+                    <UploadMaterials />
+                </TutorRoute>
             },
             {
                 path: 'tutor/view-all-materials',
-                element: <AllMaterialsOfTutor />
+                element: <TutorRoute>
+                    <AllMaterialsOfTutor />
+                </TutorRoute>
             },
             {
                 path: 'tutor/view-all-materials/:id',
-                element: <SessionsMaterial />
+                element: <TutorRoute>
+                    <SessionsMaterial />
+                </TutorRoute>
             },
             // admin related routes
             {
                 path: 'admin',
-                element: <AdminDashboard />
+                element: <AdminRoute>
+                    <AdminDashboard />
+                </AdminRoute>,
             },
             {
                 path: 'admin/all-study-sessions',
-                element: <AllStudySessionsAdmin />,
+                element: <AdminRoute>
+                    <AllStudySessionsAdmin />
+                </AdminRoute>,
             },
             {
                 path: 'admin/all-study-materials',
-                element: <ViewAllMaterialsAdmin />,
+                element: <AdminRoute>
+                    <ViewAllMaterialsAdmin />
+                </AdminRoute>,
             },
             {
                 path: 'admin/manage-users',
-                element: <ManageUsers />,
+                element: <AdminRoute>
+                    <ManageUsers />
+                </AdminRoute>,
             },
         ]
     }

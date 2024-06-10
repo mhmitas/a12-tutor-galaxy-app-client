@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import DashboardNavbar from '../../../components/dashboard/DashboardNavbar';
 import AdminDashboardStat from '../../../components/dashboard/admin/AdminDashboardStat';
-import { FaPlus } from 'react-icons/fa';
+import { TfiAnnouncement } from "react-icons/tfi";
 import AdminAnnouncementModal from '../../../components/dashboard/modals/AdminAnnouncementModal';
 
 const AdminDashboard = () => {
-    const [title, setTitle] = useState('');
-    const [message, setMessage] = useState('');
     const [showAnnouncementModal, setShowAnnouncementModal] = useState(false)
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission
-        console.log({ title, message });
-        // Reset form fields
-        setTitle('');
-        setMessage('');
-    };
 
     return (
         <div>
@@ -24,7 +14,7 @@ const AdminDashboard = () => {
                 <DashboardNavbar />
             </header>
             <div className='my-10'>
-                <button onClick={() => setShowAnnouncementModal(true)} className='btn btn-info'>Create Announcement <FaPlus size={16} /></button>
+                <button onClick={() => setShowAnnouncementModal(true)} className='btn btn-success rounded-md'>Create Announcement <TfiAnnouncement size={20} /></button>
             </div>
             <AdminDashboardStat />
             {/*  */}

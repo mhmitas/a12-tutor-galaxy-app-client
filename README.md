@@ -2,8 +2,8 @@
 ### a website for a Collaborative Study Platform
 ## [live link ](https://tutor-galaxy.web.app)
 - Admin user name: Tutor Galaxy
-- Admin email: ```md admin@tutor-galaxy.com```
-- Admin Password ```txt admin-password ```
+- Admin email: `admin@tutor-galaxy.com`
+- Admin Password `admin-password`
 
 # Overview
 

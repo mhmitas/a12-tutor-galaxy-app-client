@@ -29,3 +29,18 @@ For security, various private routes are created on the client side (e.g., admin
    - Approved sessions appear in the Approved tab, where the admin can update or delete them.
    - Rejected sessions appear in the Rejected tab. The admin cannot edit or delete pending or rejected sessions.
 3. There is a route in the admin dashboard to manage the materials provided in different sessions. The admin can update or delete any material if needed.
+
+## To get a local copy up and running, follow these simple steps.
+### Prerequisites
+
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. **Clone the repo**
+```sh
+   git clone https://github.com/your-username/your-repo-name.git
+ ```
+2. **Add necessary firebase and stripte configuration to the .env.local file and add your server URL **

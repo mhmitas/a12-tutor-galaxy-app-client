@@ -1,6 +1,6 @@
 # Tutor Galaxy
 ### a website for a Collaborative Study Platform
-🔗 [live link ](https://tutor-galaxy.web.app)
+🔗 [live link ](https://tutor-galaxy.web.app)<br>
 🔗 [Server Repository](https://github.com/mhmitas/a12-tutor-galaxy-app-server)
 
 # Overview

@@ -1,7 +1,7 @@
 # Tutor Galaxy
 ### a website for a Collaborative Study Platform
 ## [live link ](https://tutor-galaxy.web.app)
-- Admin user name: Tutor Galaxy
+🪜 [Server Repository](https://github.com/mhmitas/a12-tutor-galaxy-app-server)
 
 # Overview
 

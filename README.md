@@ -43,4 +43,4 @@ Ensure you have the following installed:
 ```sh
    git clone https://github.com/your-username/your-repo-name.git
  ```
-2. **Add necessary firebase and stripte configuration to the .env.local file and add your server URL **
+2. **Add necessary firebase and stripte configuration to the .env.local file and add your server URL**

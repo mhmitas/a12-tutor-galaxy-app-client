@@ -35,7 +35,7 @@ For security, various private routes are created on the client side (e.g., admin
 
 Ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v14 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
 
 ### Installation
 

@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './routes/Routes'
 import AuthProvider from './providers/AuthProvider'
 import { Toaster } from 'react-hot-toast'
+import ThemeController from './components/controller/ThemeController'
 import {
   QueryClient,
   QueryClientProvider,

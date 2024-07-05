@@ -15,14 +15,14 @@ const Sidebar = () => {
     console.log(role);
 
     return (
-        <ul className="menu p-4 lg:w-64 w-60 min-h-full bg-base-300 text-base-content ">
+        <ul className="menu p-4 lg:w-64 w-60 min-h-full bg-base-100 text-base-content ">
 
             {/* Sidebar content here */}
             <label
                 htmlFor="my-drawer-2" className="btn btn-sm btn-ghost absolute top-4 right-4 z-10 sm:hidden"><RxCross1 size={16}
                 />
             </label>
-            <Link to="/" className="lg:text-3xl  text-2xl p-4 font-semibold cursor-pointer">TutorGalaxy</Link>
+            <Link to="/" className="lg:text-3xl text-2xl p-4 pt-0 font-semibold cursor-pointer">TutorGalaxy</Link>
             {isLoading ?
                 <span>Loading...</span>
                 :

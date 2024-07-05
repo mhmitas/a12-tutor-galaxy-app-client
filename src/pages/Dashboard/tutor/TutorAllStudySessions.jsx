@@ -53,7 +53,7 @@ const TutorAllStudySessions = () => {
 
 
     return (
-        <div>
+        <div className='mb-12'>
             <Heading heading='All Sessions' />
             <div className='my-8 flex justify-center items-center'>
                 <TutorAllSessionsTab />

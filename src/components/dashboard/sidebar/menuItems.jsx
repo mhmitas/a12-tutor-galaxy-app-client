@@ -11,7 +11,7 @@ const studentMenuItems = <>
 </>
 
 const tutorMenuItems = <>
-    <li><NavLink to="/dashboard/tutor" end><FaChartPie size={16} />Overview</NavLink></li>
+    <li><NavLink to="/dashboard/tutor" end><FaChartPie size={16} />Dashboard</NavLink></li>
     <li><NavLink to="/dashboard/create-study-session"><FaPlusCircle size={16} /> Create a session</NavLink></li>
     {/* <li><NavLink to="/dashboard/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li> */}
     <li><NavLink to="/dashboard/tutor/all-study-sessions"><FaBookOpen size={16} /> View all sessions</NavLink></li>
@@ -22,7 +22,7 @@ const tutorMenuItems = <>
 
 
 const adminMenuItems = <>
-    <li><NavLink to="/dashboard/admin" end><FaChartPie size={16} />Overview</NavLink></li>
+    <li><NavLink to="/dashboard/admin" end><FaChartPie size={16} />Dashboard</NavLink></li>
     <li><NavLink to="/dashboard/admin/manage-users"><FaUsers size={16} />Manage users</NavLink></li>
     <li><NavLink to="/dashboard/admin/all-study-sessions"><FaBookOpen size={16} />All study sessions</NavLink></li>
     <li><NavLink to="/dashboard/admin/all-study-materials"><FaFolderOpen size={16} />All materials</NavLink></li>

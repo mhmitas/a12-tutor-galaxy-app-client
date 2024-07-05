@@ -23,9 +23,9 @@ const SessionsCard = ({ session }) => {
 
             <span className={`badge ${dateValidation < 0 ? '' : 'badge-success'} font-semibold py-3 rounded-sm  absolute top-1 right-1`}>{dateValidation < 0 ? 'Registration: Closed' : 'Registration: Ongoing'}</span>
 
-            <figure><img className='rounded-md' src={thumbnail_image} alt="session image" /></figure>
+            <figure><img className='rounded-md w-full' src={thumbnail_image} alt="session image" /></figure>
             <div className="card-body">
-                <h2 className="card-title">{session_title?.slice(0, 30)}{session_title.length > 30 && '...'}.{session.status === 'approved' && ' ✓'}</h2>
+                <h2 className="card-title">{session_title?.slice(0, 30)}{session_title.length > 30 && '...'} {session.status === 'approved' && '✅'}</h2>
                 <p>{session_description?.slice(0, 50)}{session_description.length > 50 && '...'}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/detail/${session?._id}`}>

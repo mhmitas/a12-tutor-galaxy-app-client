@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ const SignIn = () => {
     const githubProvider = new GithubAuthProvider()
     const { register, handleSubmit, } = useForm()
     const { signIn, signInWithProvider, setAuthLoading, user, authLoading } = useAuth()
+    const [processing, setProcessing] = useState(false)
 
     const from = location.state?.from?.pathname
     // console.log(from);
@@ -24,14 +25,17 @@ const SignIn = () => {
     async function onSubmit(data) {
         // console.log(data);
         try {
+            setProcessing(true)
             const result = await signIn(data.email, data.password)
             console.log(result.user);
             toast.success('Sign in Successfully')
             navigate(from ? from : '/')
+            setProcessing(false)
         } catch (err) {
             console.error(err);
             toast.error(err?.message)
             setAuthLoading(false)
+            setProcessing(false)
         }
     }
 
@@ -85,7 +89,12 @@ const SignIn = () => {
                             />
                         </div>
                         <div className="form-control pt-4">
-                            <input type="submit" className="btn btn-primary" value="Login" />
+                            <button disabled={processing} className='btn btn-primary disabled:bg-primary disabled:text-primary-content disabled:bg-opacity-85'>
+                                {processing ?
+                                    <span className='loading loading-spinner'></span> :
+                                    "Log in"
+                                }
+                            </button>
                         </div>
                     </form>
                     <p className="mt-6">

@@ -27,7 +27,7 @@ const SessionsCard = ({ session }) => {
                 <h3 className='line-clamp-2'>{session_description}</h3>
                 <div className="card-actions justify-end mt-auto">
                     <Link to={`/detail/${session?._id}`}>
-                        <button className="bg-primary hover:bg-primary/90 px-4 py-2 text-primary-content rounded-md font-medium">Show Details</button>
+                        <button className="bg-primary hover:bg-primary/90 px-4 py-2 text-primary-content rounded-md font-medium text-sm">Show Details</button>
                     </Link>
                 </div>
             </div>

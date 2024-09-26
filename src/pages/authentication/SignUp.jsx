@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -15,19 +15,23 @@ const SignUp = () => {
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const { createUser, updateUserProfile, signInWithProvider, setAuthLoading, authLoading, user } = useAuth()
+    const [processing, setProcessing] = useState(false)
 
     async function onSubmit(data) {
         // console.log(data);
         try {
+            setProcessing(true)
             const result = await createUser(data.email, data.password);
             await updateUserProfile(data.userName)
             await saveUserInDb({ ...result.user, role: data.role });
             toast.success('Sign up successfully')
             navigate('/')
+            setProcessing(false)
         } catch (err) {
             toast.error(err?.message)
             console.error(err);
             setAuthLoading(false)
+            setProcessing(false)
         }
     }
 
@@ -104,7 +108,12 @@ const SignUp = () => {
                         </div>
 
                         <div className="form-control pt-4">
-                            <input type="submit" className="btn btn-primary" value="Sign up" />
+                            <button disabled={processing} className='btn btn-primary disabled:bg-primary disabled:text-primary-content disabled:bg-opacity-85'>
+                                {processing ?
+                                    <span className='loading loading-spinner'></span> :
+                                    "Sign Up"
+                                }
+                            </button>
                         </div>
                     </form>
                     <p className="my-6">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
@@ -57,9 +58,9 @@ const SignIn = () => {
         <div className='min-h-screen flex flex-col justify-center mb-10'>
             <div>
                 <div className='md:text-3xl text-2xl font-bold text-center mt-4 mb-8'><Link to='/'>TutorGalaxy</Link></div>
-                <div className='max-w-md mx-auto sm:p-12 p-7 bg-base-100 shadow-lg rounded-md '>
+                <div className='max-w-md mx-auto sm:p-8 p-6 bg-base-100 shadow-lg rounded-md '>
                     <h3 className='text-3xl font-semibold text-center mb-6'>Sign in</h3>
-                    <form onSubmit={handleSubmit(onSubmit)} className='w-full  *:mb-4'>
+                    <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-2'>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -77,13 +78,13 @@ const SignIn = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 required
                                 {...register("password")}
                                 className="input input-bordered"
                             />
                         </div>
-                        <div className="form-control my-8">
+                        <div className="form-control pt-4">
                             <input type="submit" className="btn btn-primary" value="Login" />
                         </div>
                     </form>
@@ -99,7 +100,7 @@ const SignIn = () => {
                             <button
                                 onClick={() => handleProviderSignIn(googleProvider)}
                                 className="btn btn-outline btn-icon btn-google w-full text-lg">
-                                <FaGoogle className='text-xl' /> Google
+                                <FcGoogle className='text-2xl' /> Google
                             </button>
                             <button
                                 onClick={() => handleProviderSignIn(githubProvider)}

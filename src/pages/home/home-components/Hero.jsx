@@ -9,7 +9,7 @@ const Hero = () => {
         <div>
             <div className="h-[600px] mt-2 bg-center bg-cover rounded-lg" style={{ backgroundImage: 'url(https://i.ibb.co/Bz51vNw/pexels-pixabay.jpg)' }}>
                 <div className="flex text-center justify-center items-center h-full text-white">
-                    <div className="max-w-3xl rounded-lg bg-black w-full bg-opacity-40 px-12 py-8 mx-10">
+                    <div className="max-w-3xl rounded-lg bg-black w-full bg-opacity-30 px-12 py-8 mx-10 backdrop-blur-sm">
                         <h1 className="mb-5 text-5xl font-bold">TutorGalaxy</h1>
                         <p className="mb-5 font-semibold">Unlock Your Potential with Tutor Galaxy - Your Destination for Personalized Learning and Expert Tutors. Discover a Galaxy of Knowledge, Explore a Wide Range of Courses, and Empower Your Future Today.
                         </p>

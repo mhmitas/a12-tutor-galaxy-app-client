@@ -30,7 +30,7 @@ const ThemeController = () => {
     }, [theme])
     return (
         <div>
-            <button className='btn btn-circle btn-ghost' onClick={handleTheme} >
+            <button className='btn btn-circle btn-sm btn-ghost' onClick={handleTheme} >
                 {theme === 'darkTheme' ? <IoMoonOutline className='text-base-content' size={20} /> : <IoSunnyOutline className='text-base-content' size={20} />}
             </button >
         </div>

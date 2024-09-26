@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../hooks/useAuth';
@@ -53,9 +54,9 @@ const SignUp = () => {
         <div className='min-h-screen '>
             <div className='my-12'>
                 <div className='md:text-3xl text-2xl font-bold text-center mt-4 mb-8'><Link to='/'>TutorGalaxy</Link></div>
-                <div className='max-w-md mx-auto sm:p-12 p-7 bg-base-100 shadow-lg rounded-md '>
-                    <h3 className='text-3xl font-semibold text-center mb-6'>Sign up</h3>
-                    <form onSubmit={handleSubmit(onSubmit)} className='w-full *:mb-3'>
+                <div className='max-w-md mx-auto sm:p-8 p-6 bg-base-100 shadow-lg rounded-lg'>
+                    <h3 className='text-3xl font-semibold text-center mb-4'>Sign up</h3>
+                    <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-2'>
                         <div className="form-control ">
                             <label className="label">
                                 <span className="label-text">Name</span>
@@ -86,7 +87,7 @@ const SignUp = () => {
                             </label>
                             <input
                                 {...register("password", { required: true, minLength: 6 })}
-                                type='text'
+                                type='password'
                                 className='input input-bordered'
                                 required
                                 name="password"
@@ -99,11 +100,10 @@ const SignUp = () => {
                             <select {...register('role')} className="select select-bordered w-full">
                                 <option value='student'>Student</option>
                                 <option value='tutor'>Tutor</option>
-                                <option value='admin'>Admin</option>
                             </select>
                         </div>
 
-                        <div className="form-control mt-8">
+                        <div className="form-control pt-4">
                             <input type="submit" className="btn btn-primary" value="Sign up" />
                         </div>
                     </form>
@@ -119,7 +119,7 @@ const SignUp = () => {
                             <button
                                 onClick={() => handleProviderSignIn(googleProvider)}
                                 className="btn btn-outline btn-icon btn-google w-full text-lg">
-                                <FaGoogle className='text-xl' /> Google
+                                <FcGoogle className='text-2xl' /> Google
                             </button>
                             <button
                                 onClick={() => handleProviderSignIn(githubProvider)}

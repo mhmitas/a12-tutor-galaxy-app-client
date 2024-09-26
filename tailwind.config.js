@@ -18,6 +18,7 @@ export default {
           "accent": "#f43f5e",
           "info": "#38bdf8",
           "success": "#22c55e",
+          "success-content": "#fff",
           "warning": "#ffc01f",
           "error": "#ef4444",
           "neutral": "#2b3440",

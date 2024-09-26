@@ -18,7 +18,7 @@ const NavbarConditionalSection = () => {
                         {/* Profile image section */}
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div title={user?.displayName} className="w-10 rounded-full">
-                                <img alt={user?.displayName && user.displayName} src={user?.photoURL ? user.photoURL : "https://i.ibb.co/tY0hxsg/default-profile.jpg"}
+                                <img alt={user?.displayName && user.displayName} src={user?.photoURL ? user.photoURL : "https://i.ibb.co/tY0hxsg/default-profile.jpg"} width={40} height={40}
                                 />
                             </div>
                         </div>

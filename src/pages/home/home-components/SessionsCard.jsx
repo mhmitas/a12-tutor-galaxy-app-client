@@ -19,42 +19,22 @@ const SessionsCard = ({ session }) => {
 
 
     return (
-        <div className="card bg-base-100 shadow-lg rounded-md relative">
+        <div className="card bg-base-100 shadow-md duration-300 rounded-md overflow-hidden relative group cursor-default">
+            <figure className=' aspect-video flex items-center justify-center overflow-hidden bg-black'><img className='w-full group-hover:scale-[1.03] duration-500' src={thumbnail_image} alt="session image" /></figure>
 
-            <span className={`badge ${dateValidation < 0 ? '' : 'badge-success'} font-semibold py-3 rounded-sm  absolute top-1 right-1`}>{dateValidation < 0 ? 'Registration: Closed' : 'Registration: Ongoing'}</span>
-
-            <figure><img className='rounded-md w-full' src={thumbnail_image} alt="session image" /></figure>
-            <div className="card-body">
-                <h2 className="card-title">{session_title?.slice(0, 30)}{session_title.length > 30 && '...'} {session.status === 'approved' && '✅'}</h2>
-                <p>{session_description?.slice(0, 50)}{session_description.length > 50 && '...'}</p>
-                <div className="card-actions justify-end">
+            <div className="card-body p-4">
+                <h2 className="card-title line-clamp-2">{session_title}</h2>
+                <h3 className='line-clamp-2'>{session_description}</h3>
+                <div className="card-actions justify-end mt-auto">
                     <Link to={`/detail/${session?._id}`}>
-                        <button className="btn btn-primary">Read More</button>
+                        <button className="bg-primary hover:bg-primary/90 px-4 py-2 text-primary-content rounded-md font-medium">Show Details</button>
                     </Link>
                 </div>
             </div>
+            <div className={`badge ${dateValidation < 0 ? '' : 'badge-success'} font-semibold py-3 rounded-sm  absolute top-1 right-1`}>{dateValidation < 0 ? 'Registration: Closed' : 'Registration: Ongoing'}</div>
         </div>
 
     );
 };
 
 export default SessionsCard;
-
-// first date: 5 jun (today)
-// second date: 7 jun
-// i will see is the first date before than the second date
-
-// // TODO: COMPARE BETWEEN DATES AND SHOW RESULT
-// //```````````````````````````````````````````````
-// // console.log(session_title, 'regEndDate:', session.registrationDuration.regEnd, 'today:', new Date());
-
-// const regStartDate = session.registrationDuration.regStart;
-// const regEndDate = session.registrationDuration.regEnd;
-// // const result = isBefore(new Date(), new Date(regEndDate))
-// const result2 = isEqual(new Date(), new Date(regEndDate))
-// console.log(new Date(), new Date(regEndDate));
-// // console.log(session?.session_title, 'result2:', result2);
-
-{/* <p>If a dog chews shoes whose shoes does he choose?</p>
-                <p>RegStart: {session.registrationDuration.regStart && format(session.registrationDuration.regStart, "dd MMM yyyy")}</p>
-                <p>RegEnd: {session.registrationDuration.regEnd && format(session.registrationDuration.regEnd, "dd MMM yyyy")}</p> */}
